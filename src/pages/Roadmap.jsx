@@ -157,7 +157,7 @@ export default function Roadmap() {
             );
           })}
 
-          <section id="lenh-dau-tien" className={`rm-stage final${allOk ? ' cur' : ''}`} aria-labelledby="rm-h-final">
+          <section id="lenh-dau-tien" className={`rm-stage rm-final${allOk ? ' cur' : ''}`} aria-labelledby="rm-h-final">
             <div className="rm-no" aria-hidden="true">8</div>
             <div className="rm-body">
               <div className="rm-head">
