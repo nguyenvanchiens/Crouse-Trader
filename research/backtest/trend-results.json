@@ -1,0 +1,130 @@
+{
+ "chosen": {
+  "N": 100,
+  "M": 10,
+  "K": 2,
+  "sides": "both",
+  "filter": "none"
+ },
+ "design": [
+  {
+   "v": "N100/M50/K2/long/none",
+   "n": 11,
+   "win": 36,
+   "expR": 11.448,
+   "totalR": 125.9,
+   "pf": 16.27,
+   "medHold": 59
+  },
+  {
+   "v": "N100/M50/K2/long/sma200",
+   "n": 11,
+   "win": 36,
+   "expR": 11.448,
+   "totalR": 125.9,
+   "pf": 16.27,
+   "medHold": 59
+  },
+  {
+   "v": "N100/M50/K3/long/none",
+   "n": 10,
+   "win": 40,
+   "expR": 8.327,
+   "totalR": 83.3,
+   "pf": 14.46,
+   "medHold": 69
+  },
+  {
+   "v": "N100/M50/K3/long/sma200",
+   "n": 10,
+   "win": 40,
+   "expR": 8.327,
+   "totalR": 83.3,
+   "pf": 14.46,
+   "medHold": 69
+  },
+  {
+   "v": "N100/M50/K2/both/none",
+   "n": 18,
+   "win": 33,
+   "expR": 6.982,
+   "totalR": 125.7,
+   "pf": 10.44,
+   "medHold": 59
+  },
+  {
+   "v": "N100/M50/K2/both/sma200",
+   "n": 18,
+   "win": 33,
+   "expR": 6.982,
+   "totalR": 125.7,
+   "pf": 10.44,
+   "medHold": 59
+  },
+  {
+   "v": "N100/M50/K3/both/none",
+   "n": 17,
+   "win": 35,
+   "expR": 4.803,
+   "totalR": 81.6,
+   "pf": 8.42,
+   "medHold": 64
+  },
+  {
+   "v": "N100/M50/K3/both/sma200",
+   "n": 17,
+   "win": 35,
+   "expR": 4.803,
+   "totalR": 81.6,
+   "pf": 8.42,
+   "medHold": 64
+  },
+  {
+   "v": "N20/M10/K2/long/sma200",
+   "n": 21,
+   "win": 71,
+   "expR": 4.155,
+   "totalR": 87.2,
+   "pf": 14.48,
+   "medHold": 34
+  },
+  {
+   "v": "N100/M20/K2/long/none",
+   "n": 14,
+   "win": 36,
+   "expR": 3.798,
+   "totalR": 53.2,
+   "pf": 7.84,
+   "medHold": 45
+  }
+ ],
+ "test1": {
+  "n": 28,
+  "win": 39,
+  "expR": 0.004,
+  "totalR": 0.1,
+  "pf": 1.01,
+  "medHold": 22
+ },
+ "test2": {
+  "n": 245,
+  "win": 27,
+  "expR": 0.351,
+  "totalR": 86,
+  "pf": 1.56,
+  "medHold": 12
+ },
+ "test2from2024": {
+  "n": 107,
+  "win": 31,
+  "expR": 0.209,
+  "totalR": 22.3,
+  "pf": 1.36,
+  "medHold": 12
+ },
+ "random": {
+  "system": 0.166,
+  "median": 0.046,
+  "p95": 0.364
+ }
+}

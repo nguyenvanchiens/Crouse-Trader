@@ -1,0 +1,26 @@
+{
+  "name": "so-lenh",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sổ Lệnh: khóa học giao dịch crypto Spot và Futures có kỷ luật, bằng tiếng Việt",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/validate-lessons.js && vite build",
+    "preview": "vite preview",
+    "cf:preview": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "validate:lessons": "node scripts/validate-lessons.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "vite": "^8.3.1",
+    "wrangler": "^4.141.0"
+  }
+}

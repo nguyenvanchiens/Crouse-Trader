@@ -1,0 +1,15 @@
+// Cloudflare Workers (static assets). Deploy: npm run deploy (hoặc npx wrangler deploy)
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "so-lenh",
+  "compatibility_date": "2026-09-01",
+  // wrangler tự chạy lệnh này trước mỗi lần deploy/dev, nên không phụ thuộc ô "Build command" trên dashboard
+  "build": {
+    "command": "npm run build"
+  },
+  "assets": {
+    "directory": "./dist",
+    // React Router dùng đường dẫn thật (/bai-hoc/c1-b1): đường dẫn không khớp file nào sẽ trả về index.html
+    "not_found_handling": "single-page-application"
+  }
+}
