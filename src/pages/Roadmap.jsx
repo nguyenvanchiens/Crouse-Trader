@@ -53,7 +53,7 @@ const STAGES = [
     t: 'Tập dượt bằng tài khoản demo',
     why: 'Cùng giao diện, cùng quy trình, tiền ảo. Mục tiêu không phải lãi, mà là làm đúng quy trình mọi lần.',
     lessons: [['c7-b3', 1], ['c6-b5', 1], ['c7-b2', 1], ['c7-b1', 0], ['c7-b4', 0]],
-    gate: ['Mở tài khoản Binance Demo Trading (hoặc demo của sàn bạn dùng)', 'Đã vào ít nhất 20 lệnh demo, lệnh nào cũng có dừng lỗ ngay khi mở', 'Ghi đủ 20 lệnh vào Nhật ký lệnh, tỷ lệ làm đúng quy tắc từ 90% trở lên', 'Đã xem lại nhật ký và sửa ít nhất một quy tắc dựa trên dữ liệu']
+    gate: ['Mở tài khoản Binance Demo Trading (hoặc demo của sàn bạn dùng)', 'Đã vào ít nhất 30 lệnh demo (bài 7.4), lệnh nào cũng có dừng lỗ ngay khi mở', 'Ghi đủ 30 lệnh vào Nhật ký lệnh, tỷ lệ làm đúng quy tắc từ 90% trở lên', 'Đã xem lại nhật ký và sửa ít nhất một quy tắc dựa trên dữ liệu']
   }
 ];
 
@@ -172,7 +172,7 @@ export default function Roadmap() {
               <OrderPlan />
               <h3>Bước 2: đi qua checklist, thiếu một mục là không vào</h3>
               <PreTrade />
-              <p className="rm-after">Bước 3: vào lệnh theo <Link className="text-link" to={lessonUrl('c5-b9')}>quy trình 10 bước ở bài 5.9</Link>, rồi ghi vào <Link className="text-link" to="/nhat-ky">Nhật ký lệnh</Link>. Sau 20 lệnh thật đầu tiên, làm theo <Link className="text-link" to={lessonUrl('c7-b4')}>kế hoạch 90 ngày ở bài 7.4</Link>.</p>
+              <p className="rm-after">Bước 3: vào lệnh theo <Link className="text-link" to={lessonUrl('c5-b9')}>quy trình 10 bước ở bài 5.9</Link>, rồi ghi vào <Link className="text-link" to="/nhat-ky">Nhật ký lệnh</Link>. Từ lệnh thứ hai trở đi, bạn đang ở giai đoạn tiền nhỏ của <Link className="text-link" to={lessonUrl('c7-b4')}>lộ trình kiểm chứng ở bài 7.4</Link> (rủi ro 0,25–0,5%, thường 3–4 tháng).</p>
             </div>
           </section>
         </div>
