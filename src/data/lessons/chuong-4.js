@@ -91,25 +91,25 @@ const lessons = {
     quiz: [
       {
         q: 'Bạn DCA 3 lần, mỗi lần 300 USDT, ở giá 100, 50 và 150 (giả định). Giá vốn trung bình là bao nhiêu?',
-        options: ['100', '75', 'Khoảng 91,7', 'Khoảng 81,8'],
+        options: ['100', '75', 'Khoảng 116,7', 'Khoảng 81,8'],
         answer: 3,
-        explain: 'Số đơn vị: 3 + 6 + 2 = 11. Giá vốn = 900 ÷ 11 ≈ 81,8. Đáp án 100 là trung bình cộng giá, chỉ đúng khi mua cùng số lượng. 75 và 91,7 là kết quả tính sai.'
+        explain: 'Số đơn vị: 3 + 6 + 2 = 11. Giá vốn = 900 ÷ 11 ≈ 81,8. 100 là trung bình cộng ba mức giá, chỉ đúng khi mua cùng số lượng. 75 là tính nhầm lần mua ở 150 ra 3 đơn vị (tổng 12, 900 ÷ 12). 116,7 là lấy bình quân theo trọng số giá, (100 × 100 + 50 × 50 + 150 × 150) ÷ 300, ngược với DCA: giá thấp mới mua được nhiều đơn vị.'
       },
       {
         q: 'Một người DCA vào altcoin đã giảm 90% và nói: "Giá vốn của tôi giảm liên tục, sớm muộn sẽ lãi". Nhận định nào đúng?',
-        options: ['Sai: giá vốn thấp chưa phải là lãi, giá có thể không bao giờ hồi', 'Đúng: kiên trì DCA đủ lâu thì chắc chắn sẽ có lãi trở lại', 'Đúng: giá vốn càng thấp thì khoản đầu tư càng an toàn hơn', 'Sai: DCA chỉ hiệu quả khi mua mỗi ngày thay vì mỗi tháng'],
+        options: ['Sai: giá vốn thấp chưa phải là lãi, giá có thể không bao giờ hồi', 'Đúng: kiên trì DCA đủ lâu thì chắc chắn sẽ có lãi trở lại', 'Đúng: giá vốn càng thấp thì khoản đầu tư càng an toàn, rủi ro càng nhỏ', 'Sai: DCA chỉ hiệu quả khi mua mỗi ngày thay vì mỗi tháng'],
         answer: 0,
         explain: 'DCA chỉ trung bình hóa giá mua. Nếu giá không quay lại trên giá vốn thì vẫn lỗ, thậm chí mất gần hết. Giá thị trường có thể giảm nhanh hơn giá vốn. Không có chiến lược nào "đảm bảo lãi", và tần suất mua hằng ngày không thay đổi bản chất vấn đề.'
       },
       {
         q: 'Theo nghiên cứu Vanguard trên cổ phiếu 1976–2022, điều nào đúng?',
-        options: ['DCA thắng mua một lần trong gần như mọi giai đoạn', 'Mua một lần thắng trong khoảng 61,6–73,7% số trường hợp', 'Hai cách cho kết quả gần như giống hệt nhau', 'Kết quả này áp dụng y nguyên cho mọi altcoin'],
+        options: ['DCA thắng mua một lần trong gần như mọi giai đoạn và mọi thị trường', 'Mua một lần thắng trong khoảng 61,6–73,7% số trường hợp', 'Hai cách cho kết quả gần như giống hệt nhau', 'Kết quả này áp dụng y nguyên cho mọi altcoin'],
         answer: 1,
         explain: 'Mua một lần thắng phần lớn thời gian vì cổ phiếu có xu hướng tăng dài hạn; chia nhỏ chỉ giúp lỗ ít hơn ở các kịch bản xấu nhất. DCA không luôn thắng, hai cách không như nhau, và dữ liệu cổ phiếu không thể áp nguyên cho altcoin vốn không có xu hướng tăng dài hạn.'
       },
       {
         q: 'Điều nào KHÔNG nên có trong một kế hoạch DCA có điều kiện?',
-        options: ['Số tiền cố định mỗi kỳ từ tiền nhàn rỗi', 'Điều kiện dừng viết ra từ trước', 'Tăng gấp đôi số tiền mỗi khi giá giảm mạnh để về bờ nhanh', 'Ghi sổ và xem lại theo quý'],
+        options: ['Số tiền cố định mỗi kỳ từ tiền nhàn rỗi, sau khi đã có quỹ dự phòng', 'Điều kiện dừng viết ra từ trước, như dự án ngừng phát triển', 'Tăng gấp đôi số tiền mỗi khi giá giảm mạnh để về bờ nhanh', 'Ghi sổ và xem lại theo quý'],
         answer: 2,
         explain: 'Tăng tiền theo cảm xúc khi giá giảm biến DCA thành bình quân giá cảm tính, dễ động vào tiền sinh hoạt. Ba lựa chọn còn lại đều là thành phần của một kế hoạch DCA kỷ luật.'
       }
@@ -211,25 +211,25 @@ const lessons = {
     quiz: [
       {
         q: 'Tài khoản 1.000 USDT, rủi ro 1%. Bạn mua ở 3.000, dừng lỗ 2.800 (giả định). Khối lượng đúng là bao nhiêu?',
-        options: ['0,5 ETH', '0,1 ETH', '0,05 ETH', '0,33 ETH'],
+        options: ['0,5 ETH', '0,1 ETH', '0,05 ETH', '0,333 ETH'],
         answer: 2,
-        explain: 'Rủi ro 10 USDT, khoảng cách 200 USDT/ETH, khối lượng = 10 ÷ 200 = 0,05 ETH. 0,1 ETH là rủi ro 2%; 0,33 ETH là dùng toàn bộ tài khoản; 0,5 ETH vượt số dư.'
+        explain: 'Rủi ro 10 USDT, khoảng cách 200 USDT/ETH, khối lượng = 10 ÷ 200 = 0,05 ETH. 0,1 ETH là rủi ro 2%; 0,333 ETH là dùng toàn bộ tài khoản (1.000 ÷ 3.000); 0,5 ETH vượt số dư.'
       },
       {
         q: 'Giá vừa phá kháng cự bằng một nến H4 tăng mạnh, bạn chưa có lệnh. Theo setup breakout-retest, bạn làm gì?',
-        options: ['Đánh dấu vùng vừa phá, chờ giá quay lại kiểm tra và giữ được rồi mới vào; nếu không quay lại thì bỏ qua', 'Mua market ngay để không lỡ', 'Bán khống vì giá đã tăng quá nhiều', 'Mua và không đặt dừng lỗ vì phá vỡ đã xác nhận'],
+        options: ['Đánh dấu vùng vừa phá, chờ giá quay lại kiểm tra và giữ được rồi mới vào', 'Mua market ngay để không lỡ nhịp, vì phá vỡ bằng nến mạnh hiếm khi quay lại', 'Bán khống vì giá đã tăng quá nhiều trong một nến, dễ bị kéo ngược lại', 'Mua ngay, không đặt dừng lỗ vì nến H4 đóng trên kháng cự đã xác nhận phá vỡ'],
         answer: 0,
-        explain: 'Setup yêu cầu chờ retest để vào ở chỗ rủi ro thấp. Mua đuổi làm dừng lỗ xa và R:R xấu. Bán khống không phải spot và ngược xu hướng. Không đặt dừng lỗ là vi phạm quy tắc cơ bản.'
+        explain: 'Setup yêu cầu chờ retest để vào ở chỗ rủi ro thấp; nếu giá không quay lại thì bỏ qua, không đuổi theo. Mua đuổi làm dừng lỗ xa và R:R xấu. Bán khống không phải spot và ngược xu hướng. Không đặt dừng lỗ là vi phạm quy tắc cơ bản.'
       },
       {
         q: 'Với lệnh mẫu trong bài (vào 2.980, dừng lỗ 2.840), giá chạm TP1 rồi quay về 2.980. Kết quả cả lệnh là gì (bỏ qua phí)?',
-        options: ['Lỗ 1R', 'Hòa vốn', 'Lãi 2,5R', 'Lãi khoảng 1R'],
+        options: ['Lỗ 1R', 'Hòa vốn, vì giá về đúng điểm vào', 'Lãi 2,5R', 'Lãi khoảng 1R'],
         answer: 3,
-        explain: 'Nửa lệnh bán ở 2R cho lãi 0,0355 × 280 ≈ 9,94 USDT, nửa còn lại đóng ở hòa vốn. Tổng khoảng +1R so với rủi ro ban đầu 9,94 USDT. Lỗ 1R chỉ xảy ra khi dừng lỗ bị chạm trước TP1; 2,5R khi chạm cả hai mục tiêu.'
+        explain: 'Nửa lệnh bán ở 2R cho lãi 0,0355 × 280 ≈ 9,94 USDT, nửa còn lại đóng ở hòa vốn. Tổng khoảng +1R so với rủi ro ban đầu 9,94 USDT. "Hòa vốn" là quên phần nửa lệnh đã chốt lãi ở TP1. Lỗ 1R chỉ xảy ra khi dừng lỗ bị chạm trước TP1; 2,5R khi chạm cả hai mục tiêu.'
       },
       {
         q: 'Điều kiện nào sau đây KHÔNG thuộc setup mua pullback trong bài?',
-        options: ['D1 có đỉnh cao hơn và đáy cao hơn', 'Giá đang giảm mạnh dưới EMA 50 trên D1 nên "rẻ", mua ngay', 'Nhịp lùi có volume giảm dần', 'H4 có tín hiệu quay lên tại vùng hỗ trợ'],
+        options: ['D1 có ít nhất 2 đỉnh cao hơn, 2 đáy cao hơn và giá đóng trên EMA 50', 'Giá D1 giảm mạnh dưới EMA 50 nên "rẻ", mua ngay', 'Nhịp lùi có volume giảm dần so với sóng tăng trước đó', 'H4 có nến búa hoặc nhấn chìm tăng tại vùng hỗ trợ'],
         answer: 1,
         explain: 'Giá dưới EMA 50 và giảm mạnh là dấu hiệu xu hướng yếu hoặc giảm, không phải pullback trong xu hướng tăng. "Rẻ" không phải điều kiện vào lệnh. Ba lựa chọn còn lại đều nằm trong checklist.'
       }
@@ -333,9 +333,9 @@ const lessons = {
     quiz: [
       {
         q: 'Mua ở 3.000, đáy pullback gần nhất 2.880, ATR(14) = 100 (giả định). Dừng lỗ nào hợp lý nhất theo bài?',
-        options: ['2.950, vì chỉ muốn lỗ ít', '3.000, hòa vốn ngay từ đầu', '2.700, càng xa càng an toàn', 'Khoảng 2.850, dưới đáy 2.880 thêm vùng đệm 0,3 × ATR'],
+        options: ['2.950, vì dừng lỗ gần thì lỗ ít và R:R đẹp hơn', '3.000, đặt hòa vốn ngay từ đầu để không thể lỗ', '2.700, cách đáy gần 2 ATR để không bao giờ bị quét', 'Khoảng 2.850: dưới đáy 2.880 thêm đệm 0,3 × ATR'],
         answer: 3,
-        explain: 'Điểm vô hiệu là dưới đáy 2.880; vùng đệm 0,3 × 100 = 30 cho khoảng 2.850. 2.950 nằm trên đáy, trong vùng nhiễu. 3.000 là giá vào, không có chỗ cho lệnh thở. 2.700 xa vô lý, làm khối lượng nhỏ và R:R xấu mà không gắn với cấu trúc.'
+        explain: 'Điểm vô hiệu là dưới đáy 2.880; vùng đệm 0,3 × 100 = 30 cho khoảng 2.850. 2.950 nằm trên đáy, trong vùng nhiễu. 3.000 là giá vào, không có chỗ cho lệnh thở. 2.700 (cách đáy 180, gần 2 ATR) xa vô lý, làm khối lượng nhỏ và R:R xấu mà không gắn với cấu trúc; không mức dừng lỗ nào "không bao giờ bị quét".'
       },
       {
         q: 'Tài khoản 2.000 USDT, rủi ro 1%, mua ở 80.000, dừng lỗ 76.000 (giả định). Khối lượng là?',
@@ -351,7 +351,7 @@ const lessons = {
       },
       {
         q: 'Giá sắp chạm dừng lỗ. Hành động nào đúng với kế hoạch?',
-        options: ['Để nguyên dừng lỗ; nếu bị chạm thì ghi sổ và chờ setup mới', 'Dời dừng lỗ ra xa hơn để "cho lệnh thở"', 'Gỡ dừng lỗ và mua thêm để hạ giá vốn', 'Đóng lệnh sớm rồi mở lại gấp đôi khối lượng'],
+        options: ['Để nguyên dừng lỗ; bị chạm thì ghi sổ, chờ setup mới', 'Dời dừng lỗ ra xa hơn một chút để "cho lệnh thở" qua vùng nhiễu', 'Gỡ dừng lỗ và mua thêm để hạ giá vốn, chờ giá hồi về điểm vào', 'Đóng lệnh sớm rồi mở lại gấp đôi khối lượng để gỡ nhanh'],
         answer: 0,
         explain: 'Dừng lỗ chỉ được dời về phía có lợi. Dời ra xa hoặc gỡ dừng lỗ làm rủi ro vượt 1R; mua thêm bình quân giá và gấp đôi khối lượng là hành vi gỡ gạc cảm tính.'
       }
@@ -459,25 +459,25 @@ const lessons = {
     quiz: [
       {
         q: 'Danh mục mục tiêu BTC 50%, stablecoin 50%, tổng 2.000 USDT. BTC tăng 50%, stablecoin giữ nguyên (giả định). Để về đúng mục tiêu, bạn cần làm gì?',
-        options: ['Bán 250 USDT BTC, chuyển vào stablecoin', 'Mua thêm 500 USDT BTC', 'Bán 500 USDT BTC', 'Không làm gì vì BTC đang tăng'],
+        options: ['Bán 250 USDT BTC sang stablecoin', 'Mua thêm 500 USDT BTC để giữ đà tăng', 'Bán 500 USDT BTC, tức đúng phần BTC vừa tăng thêm', 'Không làm gì vì BTC đang tăng, để lãi tiếp tục chạy'],
         answer: 0,
-        explain: 'BTC từ 1.000 lên 1.500, tổng 2.500, mục tiêu mỗi phần 1.250. Bán 250 USDT BTC sang stablecoin. Mua thêm làm lệch nặng hơn; bán 500 là quá tay; không làm gì để rủi ro trôi lên 60%.'
+        explain: 'BTC từ 1.000 lên 1.500, tổng 2.500, mục tiêu mỗi phần 1.250. Bán 250 USDT BTC sang stablecoin. Mua thêm làm lệch nặng hơn; bán 500 là bán cả phần tăng, quên rằng mục tiêu tính trên tổng mới 2.500 (BTC còn 1.000, chỉ 40%); không làm gì để rủi ro trôi lên 60%.'
       },
       {
         q: 'Vì sao mua 10 altcoin khác nhau thường KHÔNG giúp đa dạng hóa nhiều?',
-        options: ['Vì altcoin không được niêm yết trên sàn lớn', 'Vì phí mua 10 đồng quá cao', 'Vì phần lớn altcoin tương quan cao với BTC và với nhau, nhất là khi thị trường giảm mạnh', 'Vì altcoin luôn giảm về 0'],
+        options: ['Vì phần lớn altcoin không được niêm yết trên sàn lớn, khó bán ra khi cần', 'Vì phí giao dịch khi mua 10 đồng khác nhau quá cao, ăn hết lợi nhuận', 'Vì altcoin tương quan cao với BTC và với nhau, nhất là khi thị trường giảm', 'Vì altcoin luôn giảm về 0 trong dài hạn, chỉ BTC và ETH là còn tồn tại'],
         answer: 2,
         explain: 'Vấn đề là tương quan: khi thị trường giảm, các altcoin thường cùng rơi. Phí có thể đáng kể nhưng không phải lý do chính. Nhiều altcoin có niêm yết ở sàn lớn, và không phải mọi altcoin đều về 0.'
       },
       {
         q: 'Sự kiện UST tháng 5/2022 cho thấy điều gì?',
-        options: ['Mọi stablecoin đều an toàn vì neo 1 USD', 'Stablecoin thuật toán có thể mất neo và mất gần hết giá trị trong vài ngày', 'Chỉ stablecoin trên sàn nhỏ mới có rủi ro', 'Mất neo luôn chỉ là tạm thời'],
+        options: ['Mọi stablecoin đều an toàn vì được neo 1 USD và đổi lại được bất cứ lúc nào', 'Stablecoin thuật toán có thể mất neo, mất gần hết giá trị trong vài ngày', 'Chỉ stablecoin giao dịch trên sàn nhỏ, thanh khoản mỏng mới có rủi ro mất neo', 'Mất neo luôn chỉ là tạm thời, như USDC 3/2023 đã hồi lại sau vài ngày'],
         answer: 1,
-        explain: 'UST từ khoảng 1 USD xuống 0,22 USD chỉ trong khoảng 5 ngày và không hồi lại. Neo 1 USD không phải bảo đảm; rủi ro không chỉ ở sàn nhỏ; USDC 3/2023 hồi lại nhưng UST thì không.'
+        explain: 'UST từ khoảng 1 USD xuống 0,22 USD chỉ trong khoảng 5 ngày và không hồi lại. Neo 1 USD không phải bảo đảm; rủi ro không chỉ ở sàn nhỏ; USDC 3/2023 hồi lại nhưng UST thì không, nên không thể nói mất neo "luôn" tạm thời.'
       },
       {
         q: 'Người nào sau đây đang vi phạm nguyên tắc của bài?',
-        options: ['Giữ quỹ dự phòng 6 tháng bằng tiền gửi ngân hàng', 'Giữ 25% danh mục ở stablecoin, chia 2 loại', 'Tái cân bằng mỗi quý khi lệch quá 5 điểm', 'Vay tín chấp 100 triệu để mua altcoin vì "chu kỳ sắp tăng"'],
+        options: ['Giữ quỹ dự phòng 6 tháng bằng tiền gửi ngân hàng', 'Giữ 25% danh mục ở stablecoin, chia ra 2 loại để giảm rủi ro mất neo', 'Tái cân bằng mỗi quý, khi tỷ trọng lệch quá 5 điểm phần trăm', 'Vay tín chấp 100 triệu để mua altcoin vì "chu kỳ sắp tăng"'],
         answer: 3,
         explain: 'Vay tiền để mua altcoin vi phạm nguyên tắc chỉ dùng tiền nhàn rỗi, và buộc bạn phải bán ở đáy khi đến hạn trả nợ. Ba lựa chọn còn lại đều là thực hành đúng.'
       }
