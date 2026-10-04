@@ -300,7 +300,7 @@ const lessons = {
   },
 
   'c1-b4': {
-    duration: 7,
+    duration: 8,
     level: 'Cơ bản',
     summary: 'Market, limit, stop-market, stop-limit, OCO, trailing stop, post-only, reduce-only: dùng khi nào, rủi ro gì, và phí maker/taker ăn vào lợi nhuận ra sao.',
     goals: [
@@ -311,6 +311,7 @@ const lessons = {
     ],
     blocks: [
       { type: 'p', text: 'Loại lệnh là công cụ để biến kế hoạch thành hành động. Chọn sai loại lệnh có thể khiến bạn không thoát được khi giá lao xuống, hoặc trả phí gấp đôi mà không biết.' },
+      { type: 'callout', tone: 'note', title: 'Vì sao bài dùng Binance làm ví dụ', text: 'Khóa dùng giao diện Binance làm ví dụ minh họa vì phổ biến, không phải khuyến nghị sàn; xem bài 1.6 về khung pháp lý.' },
 
       { type: 'h', text: 'Lệnh market và lệnh limit' },
       { type: 'p', text: '<strong>Lệnh thị trường (market)</strong> khớp ngay với giá tốt nhất đang có. Bạn chắc chắn có hàng, nhưng không chắc giá, và có thể bị trượt giá (xem bài 1.3). Lệnh market luôn là taker.' },
@@ -330,6 +331,7 @@ const lessons = {
 
       { type: 'h', text: 'OCO, trailing stop, reduce-only' },
       { type: 'p', text: '<strong>OCO (One Cancels the Other, lệnh này hủy lệnh kia)</strong> ghép một lệnh limit chốt lời với một lệnh stop-limit dừng lỗ. Khi một lệnh khớp (toàn bộ hoặc một phần), lệnh còn lại tự hủy. Bạn đặt xong kế hoạch rồi không cần ngồi canh.' },
+      { type: 'callout', tone: 'warn', title: 'Chân dừng lỗ của OCO là stop-limit', text: 'Trên Binance Spot, chân dừng lỗ của OCO là lệnh <strong>stop-limit</strong>, nên nó mang đúng rủi ro không khớp ở trên. Quy tắc của khóa: đặt giá limit thấp hơn giá kích hoạt (với lệnh bán) ít nhất 0,5–1% với BTC/ETH, và rộng hơn, ví dụ 2–3%, với altcoin thanh khoản mỏng. Ví dụ giả định: kích hoạt 76.000 thì giá limit khoảng 75.240–75.620 (thấp hơn 0,5–1%), không đặt 75.990. Khoảng cách này chỉ làm tăng khả năng khớp, không bảo đảm khớp: nếu giá lao qua cả giá limit, vị thế vẫn mở. Khi cần chắc chắn thoát, hãy theo dõi sát hoặc tự đóng bằng lệnh market.' },
       { type: 'p', text: '<strong>Trailing stop (dừng lỗ kéo theo)</strong> có giá kích hoạt đi theo giá khi giá chạy đúng hướng, và đứng yên khi giá đi ngược. Khoảng cách được đặt theo phần trăm (Binance futures gọi là callback rate).' },
       { type: 'example', title: 'Trailing stop 3% (giả định)', text: 'Bạn giữ BTC, đặt trailing stop bán với khoảng lùi 3%. Giá tăng lên đỉnh 88.000 rồi quay đầu. Lệnh kích hoạt khi giá giảm 3% từ đỉnh: 88.000 × 0,97 = 85.360. Nếu giá chỉ lên 82.000 rồi giảm, lệnh kích hoạt ở 82.000 × 0,97 = 79.540.' },
       { type: 'p', text: '<strong>Reduce-only (chỉ giảm vị thế)</strong> dùng trong futures: lệnh chỉ được phép giảm hoặc đóng vị thế đang có, không bao giờ mở thêm hoặc mở vị thế ngược chiều. Nó chặn lỗi phổ biến: định đóng lệnh long nhưng bấm nhầm khối lượng lớn hơn, vô tình mở thêm một lệnh short.' },
@@ -368,7 +370,7 @@ const lessons = {
       { type: 'h', text: 'Quy tắc chọn lệnh cho người mới' },
       { type: 'steps', items: [
         { title: 'Vào lệnh bằng limit ở vùng giá đã lên kế hoạch', text: 'Không đuổi giá bằng market khi nến đang chạy mạnh.' },
-        { title: 'Đặt dừng lỗ ngay sau khi khớp', text: 'Spot: OCO hoặc stop đặt riêng; futures: stop-market kèm reduce-only.' },
+        { title: 'Đặt dừng lỗ ngay sau khi khớp', text: 'Spot: OCO (chân dừng lỗ là stop-limit, giá limit thấp hơn giá kích hoạt ít nhất 0,5–1%) hoặc lệnh dừng đặt riêng; futures: stop-market kèm reduce-only.' },
         { title: 'Đặt chốt lời bằng limit', text: 'Có thể chia 2–3 phần theo kế hoạch.' },
         { title: 'Kiểm tra lại trên màn hình lệnh chờ', text: 'Đủ lệnh dừng lỗ, đúng khối lượng, đúng chiều.' },
         { title: 'Không sửa dừng lỗ theo hướng xa hơn', text: 'Chỉ được dời dừng lỗ theo hướng giảm rủi ro (ví dụ về hòa vốn khi giá đã chạy đúng), không bao giờ nới ra để "cho lệnh thêm cơ hội".' }
@@ -454,14 +456,14 @@ const lessons = {
       ] },
 
       { type: 'h', text: 'Pig butchering, nhóm kèo và pump and dump' },
-      { type: 'p', text: '<strong>Pig butchering ("nuôi heo rồi giết")</strong> là lừa đảo đầu tư dựa trên lòng tin. Kẻ gian làm quen qua mạng, xây dựng quan hệ hàng tuần, rồi giới thiệu một "nền tảng đầu tư" có vẻ sinh lời rất cao. Nạn nhân được khuyến khích nạp ngày càng nhiều và cuối cùng không rút được tiền. Theo báo cáo IC3 năm 2024 của FBI, loại lừa đảo đầu tư crypto này ghi nhận 41.557 đơn trình báo với <strong>5,8 tỷ USD</strong> thiệt hại chỉ riêng ở Mỹ; tổng thiệt hại liên quan đến crypto là 9,3 tỷ USD.' },
+      { type: 'p', text: '<strong>Pig butchering ("nuôi heo rồi giết")</strong> là lừa đảo đầu tư dựa trên lòng tin. Kẻ gian làm quen qua mạng, xây dựng quan hệ hàng tuần, rồi giới thiệu một "nền tảng đầu tư" có vẻ sinh lời rất cao. Nạn nhân được khuyến khích nạp ngày càng nhiều và cuối cùng không rút được tiền. Theo báo cáo IC3 năm 2024 của FBI, nhóm lừa đảo đầu tư crypto, phần lớn theo kiểu pig butchering, ghi nhận 41.557 đơn trình báo với <strong>5,8 tỷ USD</strong> thiệt hại chỉ riêng ở Mỹ; tổng thiệt hại liên quan đến crypto (149.686 đơn) là 9,3 tỷ USD.' },
       { type: 'calc', title: 'Kịch bản nền tảng giả điển hình (giả định)', rows: [
         ['Nạp lần đầu', '2.000 USDT'],
         ['Ứng dụng giả hiển thị lãi', 'Số dư "tăng" lên 6.000 USDT sau vài tuần'],
         ['Yêu cầu khi rút', 'Nộp "thuế" hoặc "phí mở khóa" 20% số dư: 6.000 × 20% = 1.200 USDT'],
         ['Tổng tiền thật đã chuyển', '2.000 + 1.200 = 3.200 USDT'],
         ['Tiền rút về được', '0 USDT']
-      ], result: 'Số dư 6.000 USDT chỉ là con số trên màn hình do kẻ gian kiểm soát. Mỗi khoản "phí để rút" là một lần mất thêm. Thiệt hại trung bình mỗi đơn trình báo trong báo cáo FBI: 5,8 tỷ ÷ 41.557 ≈ 139.567 USD.' },
+      ], result: 'Số dư 6.000 USDT chỉ là con số trên màn hình do kẻ gian kiểm soát. Mỗi khoản "phí để rút" là một lần mất thêm. Thiệt hại trung bình mỗi đơn trình báo về lừa đảo đầu tư crypto trong báo cáo FBI: 5,8 tỷ ÷ 41.557 ≈ 139.567 USD.' },
       { type: 'p', text: '<strong>Nhóm kèo và "chuyên gia" gọi vốn</strong>: nhóm Telegram, Zalo, Facebook khoe ảnh lãi, có "trợ lý" nhắn riêng, mời vào gói VIP hoặc nhận ủy thác vốn với cam kết lợi nhuận hàng tháng. Ảnh lãi dễ làm giả; lệnh thua thì không bao giờ được đăng.' },
       { type: 'p', text: '<strong>Pump and dump (thổi giá rồi xả)</strong>: một nhóm gom một altcoin thanh khoản mỏng, sau đó hô hào để người khác mua đuổi, đẩy giá lên, rồi bán ra cho chính những người vào sau. Giá sụp, người mua cuối chịu lỗ.' },
       { type: 'figure', name: 'market-cycle', caption: 'Pump and dump là một chu kỳ tích lũy, tăng giá, phân phối, giảm giá bị nén lại trong vài giờ hoặc vài ngày. Người hô hào đã gom ở giai đoạn tích lũy và bán ở giai đoạn phân phối.' },
@@ -491,7 +493,7 @@ const lessons = {
       'Ai giữ khóa người đó giữ tài sản; seed phrase không bao giờ được nhập hay gửi cho ai.',
       'Bộ tối thiểu: email riêng, 2FA bằng ứng dụng, whitelist rút tiền kèm thời gian chờ địa chỉ mới.',
       'Approve độc hại cho phép rút sạch token; chỉ cấp quyền cần thiết và định kỳ thu hồi.',
-      'Pig butchering gây 5,8 tỷ USD thiệt hại tại Mỹ năm 2024 theo FBI; dấu hiệu chính là đòi phí để rút.',
+      'Lừa đảo đầu tư crypto, phần lớn theo kiểu pig butchering, gây 5,8 tỷ USD thiệt hại tại Mỹ năm 2024 theo FBI; dấu hiệu chính là đòi phí để rút.',
       'Cam kết lợi nhuận, thúc giục, nền tảng lạ, kéo người tham gia là cờ đỏ; vụ iFan/Pincoin là ví dụ tại Việt Nam.'
     ],
     practice: [

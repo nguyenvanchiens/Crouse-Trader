@@ -34,7 +34,7 @@ const lessons = {
       { type: 'callout', tone: 'tip', title: 'Đừng quên phí', text: 'Với khoản mua nhỏ, phí có thể ăn đáng kể. Phí 0,1% mỗi lần trên 100 USDT là 0,1 USDT, không lớn. Nhưng nếu bạn mua qua kênh có phí cố định hoặc chênh lệch giá mua bán cao, chia nhỏ quá mức (mua mỗi ngày 5 USDT) có thể tốn hơn lợi ích. Chọn tần suất tuần hoặc tháng là đủ.' },
 
       { type: 'h', text: 'DCA so với mua một lần' },
-      { type: 'p', text: 'Nếu bạn đang có sẵn một khoản tiền lớn, câu hỏi thật sự là: đổ hết ngay hay chia ra mua dần? Nghiên cứu của Vanguard trên thị trường cổ phiếu ở nhiều khu vực, giai đoạn 1976–2022, cho thấy mua một lần thắng chia nhỏ trong khoảng <strong>61,6% đến 73,7% số trường hợp</strong> (xét các giai đoạn 1 năm). Lý do: thị trường đó có xu hướng tăng dài hạn, nên chờ đợi thường nghĩa là mua ở giá cao hơn. Ngược lại, trong những kịch bản xấu nhất, chia nhỏ giúp lỗ ít hơn một chút.' },
+      { type: 'p', text: 'Nếu bạn đang có sẵn một khoản tiền lớn, câu hỏi thật sự là: đổ hết ngay hay chia ra mua dần? Nghiên cứu của Vanguard trên thị trường cổ phiếu ở nhiều khu vực, giai đoạn 1976–2022, cho thấy mua một lần thắng cách chia làm 3 phần mua trong 3 tháng ở khoảng <strong>61,6% đến 73,7% số trường hợp</strong> (so sánh lợi nhuận trên các giai đoạn 1 năm cuộn liên tiếp; tỷ lệ khác nhau theo từng thị trường). Thời gian chia nhỏ càng dài, mua một lần càng hay thắng hơn. Lý do: thị trường đó có xu hướng tăng dài hạn, nên chờ đợi thường nghĩa là mua ở giá cao hơn. Ngược lại, trong những kịch bản xấu nhất, chia nhỏ giúp lỗ ít hơn một chút.' },
       { type: 'callout', tone: 'warn', title: 'Đó là dữ liệu cổ phiếu, không phải crypto', text: 'Kết quả của Vanguard dựa trên chỉ số cổ phiếu đa dạng hóa, vốn có xu hướng tăng dài hạn. Crypto biến động mạnh hơn nhiều, lịch sử ngắn hơn, và phần lớn altcoin không có xu hướng tăng dài hạn nào cả. Đừng mang con số này áp nguyên sang crypto.' },
       { type: 'table', head: ['Tiêu chí', 'Mua một lần', 'DCA'], rows: [
         ['Phù hợp khi', 'Đã có khoản tiền lớn, chịu được biến động ngay', 'Có thu nhập đều, muốn tích lũy dần'],
@@ -91,21 +91,21 @@ const lessons = {
     quiz: [
       {
         q: 'Bạn DCA 3 lần, mỗi lần 300 USDT, ở giá 100, 50 và 150 (giả định). Giá vốn trung bình là bao nhiêu?',
-        options: ['100', 'Khoảng 81,8', '75', 'Khoảng 91,7'],
-        answer: 1,
+        options: ['100', '75', 'Khoảng 91,7', 'Khoảng 81,8'],
+        answer: 3,
         explain: 'Số đơn vị: 3 + 6 + 2 = 11. Giá vốn = 900 ÷ 11 ≈ 81,8. Đáp án 100 là trung bình cộng giá, chỉ đúng khi mua cùng số lượng. 75 và 91,7 là kết quả tính sai.'
       },
       {
         q: 'Một người DCA vào altcoin đã giảm 90% và nói: "Giá vốn của tôi giảm liên tục, sớm muộn sẽ lãi". Nhận định nào đúng?',
-        options: ['Đúng, DCA đảm bảo lãi nếu kiên trì đủ lâu', 'Đúng, vì giá vốn càng thấp càng an toàn', 'Sai, vì DCA chỉ hiệu quả khi mua mỗi ngày', 'Sai, giá vốn giảm không có nghĩa là lãi; nếu giá không quay lại trên giá vốn thì vẫn lỗ, thậm chí mất gần hết'],
-        answer: 3,
-        explain: 'DCA chỉ trung bình hóa giá mua. Giá thị trường có thể giảm nhanh hơn giá vốn. Không có chiến lược nào "đảm bảo lãi", và tần suất mua hằng ngày không thay đổi bản chất vấn đề.'
+        options: ['Sai: giá vốn thấp chưa phải là lãi, giá có thể không bao giờ hồi', 'Đúng: kiên trì DCA đủ lâu thì chắc chắn sẽ có lãi trở lại', 'Đúng: giá vốn càng thấp thì khoản đầu tư càng an toàn hơn', 'Sai: DCA chỉ hiệu quả khi mua mỗi ngày thay vì mỗi tháng'],
+        answer: 0,
+        explain: 'DCA chỉ trung bình hóa giá mua. Nếu giá không quay lại trên giá vốn thì vẫn lỗ, thậm chí mất gần hết. Giá thị trường có thể giảm nhanh hơn giá vốn. Không có chiến lược nào "đảm bảo lãi", và tần suất mua hằng ngày không thay đổi bản chất vấn đề.'
       },
       {
         q: 'Theo nghiên cứu Vanguard trên cổ phiếu 1976–2022, điều nào đúng?',
-        options: ['Mua một lần thắng chia nhỏ trong khoảng 61,6–73,7% trường hợp, còn chia nhỏ giúp lỗ ít hơn ở kịch bản xấu nhất', 'DCA luôn thắng mua một lần', 'Hai cách cho kết quả giống hệt nhau', 'Kết quả này áp dụng y nguyên cho mọi altcoin'],
-        answer: 0,
-        explain: 'Mua một lần thắng phần lớn thời gian vì cổ phiếu có xu hướng tăng dài hạn. DCA không luôn thắng, hai cách không như nhau, và dữ liệu cổ phiếu không thể áp nguyên cho altcoin vốn không có xu hướng tăng dài hạn.'
+        options: ['DCA thắng mua một lần trong gần như mọi giai đoạn', 'Mua một lần thắng trong khoảng 61,6–73,7% số trường hợp', 'Hai cách cho kết quả gần như giống hệt nhau', 'Kết quả này áp dụng y nguyên cho mọi altcoin'],
+        answer: 1,
+        explain: 'Mua một lần thắng phần lớn thời gian vì cổ phiếu có xu hướng tăng dài hạn; chia nhỏ chỉ giúp lỗ ít hơn ở các kịch bản xấu nhất. DCA không luôn thắng, hai cách không như nhau, và dữ liệu cổ phiếu không thể áp nguyên cho altcoin vốn không có xu hướng tăng dài hạn.'
       },
       {
         q: 'Điều nào KHÔNG nên có trong một kế hoạch DCA có điều kiện?',
@@ -124,7 +124,7 @@ const lessons = {
   },
 
   'c4-b2': {
-    duration: 8,
+    duration: 9,
     level: 'Trung cấp',
     summary: 'Chiến lược swing spot theo xu hướng: mua pullback và breakout-retest với điều kiện cụ thể, dừng lỗ theo cấu trúc, chốt lời từng phần, kèm một lệnh mẫu bằng số.',
     goals: [
@@ -147,7 +147,7 @@ const lessons = {
         'Nhịp lùi có volume giảm dần so với sóng tăng trước đó',
         'H4 xuất hiện tín hiệu giá quay lên tại vùng: nến búa, nến nhấn chìm tăng, hoặc phá đỉnh nhỏ của nhịp lùi',
         'Khoảng cách tới mục tiêu đầu tiên ít nhất gấp 2 lần khoảng cách tới dừng lỗ (R:R từ 1:2)',
-        'Không có tin vĩ mô lớn (CPI, FOMC) trong 24 giờ tới, hoặc bạn đã giảm khối lượng'
+        'Không mở lệnh trong khoảng 30 phút trước đến 30 phút sau tin vĩ mô lớn (CPI, FOMC, NFP) (xem bài 5.9). Lựa chọn chặt hơn bộ chuẩn cho lệnh swing: nếu có tin lớn trong 24 giờ tới thì giảm khối lượng hoặc chờ qua tin'
       ] },
       { type: 'p', text: 'Nếu thiếu một điều kiện, bạn không vào. Chính việc bỏ qua các lệnh "gần đủ" mới tạo ra sự khác biệt. Điều kiện 4 rất quan trọng: nó bắt bạn chờ giá chứng minh bên mua quay lại, thay vì "bắt dao rơi" ở giữa nhịp giảm.' },
 
@@ -168,7 +168,7 @@ const lessons = {
       { type: 'p', text: 'Chốt lời từng phần giúp bạn vừa khóa được một phần lợi nhuận, vừa để phần còn lại chạy theo xu hướng. Một cách đơn giản:' },
       { type: 'list', items: [
         '<strong>Mục tiêu 1 (TP1):</strong> bán 50% ở khoảng 2R, hoặc ngay dưới đỉnh gần nhất (kháng cự tiếp theo), chọn mức nào gần hơn.',
-        '<strong>Sau TP1:</strong> dời dừng lỗ của phần còn lại lên điểm hòa vốn (giá vào). Từ đây lệnh gần như không còn rủi ro mất vốn, chỉ còn rủi ro phí và trượt giá.',
+        '<strong>Sau TP1:</strong> dời dừng lỗ của phần còn lại lên điểm hòa vốn (giá vào). Trong điều kiện bình thường, phần còn lại khó lỗ thêm ngoài phí. Nhưng đây không phải bảo đảm: nếu giá nhảy cóc (gap) hoặc sập rất nhanh qua mức dừng lỗ, lệnh có thể khớp thấp hơn giá vào, còn lệnh stop-limit thì có thể không khớp.',
         '<strong>Mục tiêu 2 (TP2):</strong> bán 50% còn lại ở 3R hoặc vùng kháng cự lớn hơn trên D1, hoặc dùng dừng lỗ kéo theo (trailing stop, bài 4.3).'
       ] },
       { type: 'callout', tone: 'tip', title: 'R là gì', text: 'R là số tiền bạn chấp nhận mất nếu dừng lỗ bị chạm. Lãi 2R nghĩa là lãi gấp đôi số tiền đã rủi ro. Quy mọi lệnh về R giúp bạn so sánh lệnh to và lệnh nhỏ trên cùng một thước đo.' },
@@ -188,7 +188,7 @@ const lessons = {
         ['Phí ước tính (0,1% mỗi chiều)', 'Mua ≈ 0,21; bán TP1 ≈ 0,12; bán TP2 ≈ 0,12; tổng ≈ 0,45 USDT']
       ], result: 'Ba kết cục: (1) Dừng lỗ trước TP1: lỗ ≈ 9,94 USDT, tức −1R, cộng phí. (2) Chạm TP1 rồi quay về hòa vốn: lãi ≈ 9,94 USDT, tức +1R. (3) Chạm cả hai mục tiêu: lãi 9,94 + 14,91 = 24,85 USDT, tức khoảng +2,5R. Trước phí ≈ 0,45 USDT.' },
       { type: 'p', text: 'Để ý: khối lượng được tính <em>từ</em> khoảng cách dừng lỗ, không phải từ cảm giác "mua 500 USDT cho đẹp". Dừng lỗ xa thì mua ít, dừng lỗ gần thì mua nhiều, nhưng số tiền rủi ro luôn là 10 USDT. Đây là nền tảng của quản trị vốn, bài 6.1 sẽ học sâu, còn bạn có thể dùng công cụ tính khối lượng ở bài 4.3.' },
-      { type: 'callout', tone: 'risk', title: 'Đặt dừng lỗ ngay sau khi khớp', text: 'Trên spot, hãy đặt lệnh stop-market hoặc OCO (bài 1.4) ngay khi lệnh mua khớp. Không "giữ dừng lỗ trong đầu". Khi giá lao nhanh lúc bạn đang ngủ, dừng lỗ trong đầu không bảo vệ được gì. Stop-limit có thể không khớp nếu giá lao qua mức limit.' },
+      { type: 'callout', tone: 'risk', title: 'Đặt dừng lỗ ngay sau khi khớp', text: 'Trên spot, hãy đặt dừng lỗ lên sàn ngay khi lệnh mua khớp: lệnh stop-market, hoặc OCO (bài 1.4) nếu muốn đặt cùng lúc lệnh chốt lời. Lưu ý: trên Binance Spot, chân dừng lỗ của OCO là lệnh <strong>stop-limit</strong> (giá kích hoạt + giá limit), và stop-market của Spot cũng gửi lệnh có giới hạn trượt giá. Nếu giá lao qua mức limit, lệnh có thể không khớp và bạn vẫn ôm coin. Quy tắc gợi ý: đặt giá limit thấp hơn giá kích hoạt khoảng 0,5–1% với BTC/ETH (1–2% với altcoin thanh khoản mỏng), và tính khối lượng theo giá limit chứ không theo giá kích hoạt. Với lệnh mẫu ở trên: kích hoạt 2.840, limit 2.825 (thấp hơn khoảng 0,5%) thì rủi ro mỗi ETH là 2.980 − 2.825 = 155; giữ 0,071 ETH thì lỗ tối đa ≈ 11 USDT, hơi vượt 1R; muốn chặt chẽ thì mua 10 ÷ 155 ≈ 0,064 ETH. Không "giữ dừng lỗ trong đầu": khi giá lao nhanh lúc bạn đang ngủ, dừng lỗ trong đầu không bảo vệ được gì.' },
       { type: 'steps', items: [
         { title: 'Trước khi vào', text: 'Ghi setup, lý do, vùng vào, dừng lỗ, TP1, TP2, khối lượng vào sổ. Kiểm tra lịch tin.' },
         { title: 'Khi khớp', text: 'Đặt ngay dừng lỗ 2.840 và lệnh limit bán 50% ở 3.260.' },
@@ -237,13 +237,14 @@ const lessons = {
     sources: [
       { title: 'Support & Resistance', url: 'https://chartschool.stockcharts.com/table-of-contents/chart-analysis/support-and-resistance', note: 'StockCharts ChartSchool, tiếng Anh' },
       { title: 'A Short Lesson on R and R-multiple', url: 'https://vantharp.com/wp-content/uploads/2018/06/A_Short_Lesson_on_R_and_R-multiple.pdf', note: 'Van Tharp Institute, tiếng Anh' },
-      { title: 'How to Use Spot Trailing Stop Order?', url: 'https://www.binance.com/en/support/faq/how-to-use-spot-trailing-stop-order-339635f6260d43c5aefa4c3c921728ec', note: 'Binance Support, tiếng Anh' }
+      { title: 'How to Use Spot Trailing Stop Order?', url: 'https://www.binance.com/en/support/faq/how-to-use-spot-trailing-stop-order-339635f6260d43c5aefa4c3c921728ec', note: 'Binance Support, tiếng Anh' },
+      { title: 'Different Order Types in Spot Trading', url: 'https://www.binance.com/en/support/faq/different-order-types-in-spot-trading-8a2973eef1de429dbfad38ab878aa3eb', note: 'Binance Support, tiếng Anh: OCO gồm một lệnh limit và một lệnh stop-limit' }
     ],
     updated: '2026-09'
   },
 
   'c4-b3': {
-    duration: 8,
+    duration: 9,
     level: 'Trung cấp',
     summary: 'Viết trading plan cho một lệnh trước khi bấm nút: điểm vô hiệu, dừng lỗ theo cấu trúc/%/ATR, mục tiêu theo vùng, trailing stop và quy tắc không dời dừng lỗ ra xa.',
     goals: [
@@ -259,7 +260,7 @@ const lessons = {
       { type: 'steps', items: [
         { title: '1. Bối cảnh', text: 'Xu hướng D1 (HH/HL hay LH/LL), vùng giá quan trọng, lịch tin 48 giờ tới. Ví dụ: "D1 tăng, giá pullback về vùng hỗ trợ 79.500–80.500, không có CPI/FOMC trong 2 ngày".' },
         { title: '2. Setup và điều kiện vào', text: 'Tên setup (pullback / breakout-retest) và tín hiệu cụ thể trên H4. Ví dụ: "Nến H4 đóng cửa trên 80.000 sau nến búa tại vùng".' },
-        { title: '3. Điểm vô hiệu và dừng lỗ', text: 'Giá nào chứng minh bạn sai. Dừng lỗ đặt ở đó cộng vùng đệm. Loại lệnh: stop-market hoặc OCO.' },
+        { title: '3. Điểm vô hiệu và dừng lỗ', text: 'Giá nào chứng minh bạn sai. Dừng lỗ đặt ở đó cộng vùng đệm. Loại lệnh: stop-market, hoặc OCO. Trên Binance Spot, chân dừng lỗ của OCO là stop-limit: đặt giá limit thấp hơn giá kích hoạt khoảng 0,5–1% (altcoin mỏng 1–2%) và tính khối lượng theo giá limit (bài 4.2). Giá lao qua mức limit thì lệnh có thể không khớp.' },
         { title: '4. Mục tiêu', text: 'TP1, TP2 theo vùng kháng cự thật, kiểm tra R:R tối thiểu 1:2 tới TP1 hoặc TP2.' },
         { title: '5. Khối lượng', text: 'Số tiền rủi ro (ví dụ 1% tài khoản) ÷ khoảng cách dừng lỗ. Kiểm tra lại bằng công cụ.' },
         { title: '6. Quản lý lệnh', text: 'Khi nào dời dừng lỗ về hòa vốn, khi nào bật trailing, khi nào thoát theo thời gian (ví dụ 10 ngày không chạy thì thoát).' },
@@ -428,11 +429,11 @@ const lessons = {
       { type: 'h', text: 'Rủi ro của stablecoin và nơi lưu ký' },
       { type: 'p', text: 'Stablecoin được thiết kế để giữ giá 1 USD, nhưng "ổn định" không có nghĩa là "không rủi ro". Có ba rủi ro chính:' },
       { type: 'list', items: [
-        '<strong>Mất neo (depeg) vì thiết kế:</strong> UST của Terra là stablecoin thuật toán, không có tài sản dự trữ đầy đủ. Theo Fed Richmond, lúc đỉnh UST có khoảng 18 tỷ USD lưu hành; tháng 5/2022 UST mất neo từ ngày 7–8, xuống 0,60 USD ngày 9 và 0,22 USD ngày 12/5, còn LUNA bị in thêm khoảng 80 lần.',
-        '<strong>Rủi ro tài sản dự trữ và tổ chức phát hành:</strong> ngay cả stablecoin có dự trữ bằng tiền mặt cũng có thể mất neo tạm thời. Ngày 11/3/2023, USDC xuống khoảng 0,87 USD sau khi Circle cho biết có 3,3 tỷ USD, khoảng 8% dự trữ, gửi tại ngân hàng Silicon Valley Bank vừa sụp đổ.',
+        '<strong>Mất neo (depeg) vì thiết kế:</strong> UST của Terra là stablecoin thuật toán, không có tài sản dự trữ đầy đủ. Theo Fed Richmond, lúc đỉnh UST có khoảng 18 tỷ USD lưu hành; tháng 5/2022 UST mất neo từ ngày 7–8, xuống 0,60 USD ngày 9 và 0,22 USD ngày 12/5 (giá trên Binance), còn nguồn cung LUNA bị in thêm khoảng 80 lần, từ 0,4 tỷ lên 32 tỷ token chỉ trong 10–12/5.',
+        '<strong>Rủi ro tài sản dự trữ và tổ chức phát hành:</strong> ngay cả stablecoin có dự trữ bằng tiền mặt cũng có thể mất neo tạm thời. Theo Chainalysis, rạng sáng 11/3/2023, USDC xuống khoảng 0,87 USD sau khi Circle cho biết có 3,3 tỷ USD, khoảng 8% dự trữ, gửi tại ngân hàng Silicon Valley Bank vừa sụp đổ.',
         '<strong>Rủi ro nơi lưu ký:</strong> stablecoin để trên sàn phụ thuộc vào sàn đó còn khả năng chi trả. FTX sụp đổ tháng 11/2022 cho thấy tài sản trên sàn có thể bị đóng băng bất kể đó là coin gì.'
       ] },
-      { type: 'callout', tone: 'risk', title: 'Đừng dồn "tiền mặt" vào một chỗ', text: 'Không giữ toàn bộ phần stablecoin ở một loại stablecoin duy nhất hay một sàn duy nhất. Tránh stablecoin thuật toán hoặc stablecoin trả "lãi" cao bất thường; nền tảng Anchor từng hứa lãi 19,5%/năm cho người gửi UST, và đó chính là mồi thu hút tiền vào trước khi sụp. Phần tiền dự phòng cho cuộc sống nên giữ bằng tiền đồng trong ngân hàng, không phải stablecoin.' },
+      { type: 'callout', tone: 'risk', title: 'Đừng dồn "tiền mặt" vào một chỗ', text: 'Không giữ toàn bộ phần stablecoin ở một loại stablecoin duy nhất hay một sàn duy nhất. Tránh stablecoin thuật toán hoặc stablecoin trả "lãi" cao bất thường; theo Fed Richmond, nền tảng Anchor từng hứa lãi 19,5%/năm cho người gửi UST, và đó chính là mồi thu hút tiền vào trước khi sụp. Phần tiền dự phòng cho cuộc sống nên giữ bằng tiền đồng trong ngân hàng, không phải stablecoin.' },
       { type: 'callout', tone: 'note', title: 'Pháp lý Việt Nam', text: 'Nghị quyết 05/2025/NQ-CP yêu cầu giao dịch tài sản mã hóa trong khuôn khổ thí điểm bằng Đồng Việt Nam qua tổ chức được cấp phép. Nghị định 284/2026/NĐ-CP quy định mức phạt với giao dịch không qua tổ chức được cấp phép, áp dụng sau 6 tháng kể từ khi tổ chức đầu tiên được cấp phép. Khi lập kế hoạch lưu ký dài hạn, hãy kiểm tra quy định mới nhất (bài 1.6).' },
       { type: 'checklist', title: 'Kiểm tra danh mục mỗi quý', items: [
         'Tổng tiền trong crypto vẫn là tiền được phép mất, không có tiền vay',

@@ -42,9 +42,9 @@ const lessons = {
         { title: 'Phần 3. Điều kiện xu hướng (lọc D1)', text: 'Chỉ được LONG khi cả ba đúng trên nến D1 đã đóng: (a) giá đóng cửa trên EMA 50; (b) EMA 20 nằm trên EMA 50; (c) cấu trúc tăng: đáy D1 gần nhất cao hơn đáy trước đó và chưa bị đóng cửa phá xuống. SHORT (chỉ perpetual) khi cả ba điều ngược lại đúng. Không thỏa đủ ba điều: không giao dịch mã đó.' },
         { title: 'Phần 4. Điều kiện vào (khung H4)', text: 'Với LONG: (a) giá hồi xuống chạm vùng giữa EMA 20 và EMA 50 của H4; (b) trong nhịp hồi, không nến H4 nào đóng cửa dưới EMA 50 H4 quá 2 nến liên tiếp; (c) tín hiệu: một nến H4 đóng cửa cao hơn đỉnh của nến H4 ngay trước nó. Vào lệnh bằng lệnh market ngay khi nến tín hiệu đóng. Nếu 6 nến H4 kể từ lúc chạm vùng mà chưa có tín hiệu, bỏ setup.' },
         { title: 'Phần 5. Dừng lỗ', text: 'Đặt tại đáy thấp nhất của nhịp hồi trừ 0,5 × ATR(14) H4 (vùng đệm chống quét dừng lỗ). Dùng lệnh Stop-Market, đặt ngay khi vào lệnh. Nếu khoảng cách dừng lỗ lớn hơn 3 × ATR(14) H4 thì bỏ lệnh vì điểm vào quá xa điểm sai. Không bao giờ nới dừng lỗ ra xa hơn.' },
-        { title: 'Phần 6. Khối lượng và đòn bẩy', text: 'Rủi ro 1% số dư tài khoản mỗi lệnh. Khối lượng = Số tiền rủi ro ÷ Khoảng cách dừng lỗ, làm tròn XUỐNG theo bước khối lượng của sàn. Futures: chế độ isolated, đòn bẩy tối đa 3x, kiểm tra giá thanh lý phải nằm xa hơn dừng lỗ rất nhiều. Tổng rủi ro mở cùng lúc tối đa 2% (tức tối đa 2 lệnh).' },
+        { title: 'Phần 6. Khối lượng và đòn bẩy', text: 'Rủi ro 1% số dư tài khoản mỗi lệnh. Khối lượng = Số tiền rủi ro ÷ Khoảng cách dừng lỗ, làm tròn XUỐNG theo bước khối lượng của sàn. Futures: chế độ isolated, đòn bẩy tối đa 3x, khoảng cách từ giá vào đến giá thanh lý ít nhất gấp 3 lần khoảng cách đến dừng lỗ (bài 5.9). Tổng rủi ro mở cùng lúc tối đa 2R, tức 2% (tối đa 2 lệnh).' },
         { title: 'Phần 7. Chốt lời và quản lý lệnh', text: 'Khi giá đạt 2R: chốt 50% khối lượng, dời dừng lỗ phần còn lại về giá vào cộng phí. Phần còn lại dùng dừng lỗ kéo theo kiểu Chandelier Exit trên H4: Đỉnh cao nhất 22 nến H4 − 3 × ATR(22), cập nhật sau mỗi nến H4 đóng, chỉ dời lên, không dời xuống. Dừng lỗ thời gian: nếu sau 12 nến H4 (2 ngày) giá chưa đạt 1R, đóng toàn bộ.' },
-        { title: 'Phần 8. Điều kiện không giao dịch', text: '(a) Không mở lệnh trong 60 phút trước và sau giờ công bố CPI Mỹ, bảng lương phi nông nghiệp và quyết định lãi suất FOMC (bảng giờ VN ở bài 7.3). (b) Thua 3 lệnh liên tiếp: nghỉ 48 giờ. (c) Sụt giảm 6% từ đỉnh tài khoản trong tháng: dừng đến hết tháng và xem lại nhật ký. (d) Funding rate cao bất thường theo chiều lệnh của bạn, ví dụ từ 0,05% mỗi 8 giờ trở lên (ngưỡng tự đặt, cần kiểm chứng khi backtest): bỏ qua. (e) Mệt, say, vừa cãi nhau, đang cần tiền gấp: không mở biểu đồ.' }
+        { title: 'Phần 8. Điều kiện không giao dịch', text: 'Các mục (a), (b), (c) dưới đây là quy tắc riêng của hệ thống mẫu (đã dùng trong backtest), chặt hơn ở một số điểm so với bộ chuẩn bài 5.9. (a) Không mở lệnh trong 60 phút trước và sau giờ công bố CPI Mỹ, bảng lương phi nông nghiệp và quyết định lãi suất FOMC (bảng giờ VN ở bài 7.3). (b) Thua 3 lệnh liên tiếp: nghỉ 48 giờ. (c) Sụt giảm 6% từ đỉnh tài khoản trong tháng: dừng đến hết tháng và xem lại nhật ký. (d) Funding rate cao bất thường theo chiều lệnh của bạn, ví dụ từ 0,05% mỗi 8 giờ trở lên (ngưỡng tự đặt, cần kiểm chứng khi backtest): bỏ qua. (e) Mệt, say, vừa cãi nhau, đang cần tiền gấp: không mở biểu đồ. (f) Cộng thêm bộ chuẩn bài 5.9: lỗ 2R trong ngày thì nghỉ đến hôm sau, lỗ 5R trong tuần thì nghỉ đến tuần sau, tối đa 3 lệnh mỗi ngày, thua 2 lệnh liên tiếp thì dừng trong ngày, sụt 10% từ đỉnh thì giảm rủi ro còn một nửa, sụt 20% thì dừng tiền thật.' }
       ] },
       { type: 'figure', name: 'trade-plan', caption: 'Cấu trúc lệnh của hệ thống mẫu: điểm vào sau nến tín hiệu H4, dừng lỗ dưới đáy nhịp hồi có đệm ATR, chốt 50% tại 2R, phần còn lại kéo dừng lỗ.' },
 
@@ -82,7 +82,7 @@ const lessons = {
       'Hệ thống giao dịch là bộ quy tắc trả lời trước mọi quyết định, gồm 8 phần: thị trường, khung thời gian, xu hướng, điều kiện vào, dừng lỗ, khối lượng, chốt lời/quản lý lệnh, điều kiện không giao dịch.',
       'Quy tắc phải kiểm tra được bằng đúng/sai, dùng nến đã đóng, dùng số thay cho tính từ.',
       'Phép thử người lạ: người khác đọc quy tắc phải ra cùng điểm vào, dừng lỗ, khối lượng như bạn.',
-      'Hệ thống mẫu D1/H4 với EMA, đệm ATR, chốt 50% tại 2R và kéo dừng lỗ chỉ là ví dụ giáo dục, chưa kiểm chứng.',
+      'Hệ thống mẫu D1/H4 đã được backtest 455 lệnh: không có lợi thế (+0,016R/lệnh). Dùng nó để học cách viết quy tắc, không dùng để giao dịch.',
       'Đánh số phiên bản và không sửa quy tắc giữa đợt test; điều kiện không giao dịch là phần hay bị bỏ quên nhất.'
     ],
     practice: [
@@ -91,10 +91,10 @@ const lessons = {
       'Làm phép thử người lạ: gửi quy tắc và 3 biểu đồ trên cho một người khác, ghi lại mọi chỗ họ chọn khác bạn và sửa quy tắc.'
     ],
     quiz: [
-      { q: 'Quy tắc nào sau đây được viết đủ rõ để kiểm tra bằng đúng/sai?', options: ['Vào lệnh khi xu hướng tăng mạnh', 'Vào lệnh khi nến H4 đã đóng cửa cao hơn đỉnh nến H4 liền trước, trong lúc nến D1 đóng trên EMA 50', 'Vào lệnh khi thấy lực mua tốt', 'Vào lệnh khi giá hồi đủ sâu'], answer: 1, explain: 'Chỉ lựa chọn B có điều kiện đo được trên nến đã đóng. "Tăng mạnh", "lực mua tốt", "đủ sâu" là tính từ, mỗi người hiểu một kiểu nên không kiểm tra và không backtest được.' },
-      { q: 'Theo hệ thống mẫu, tài khoản 2.000 USDT, BTC vào 80.000, đáy nhịp hồi 78.000, ATR(14) H4 = 800. Khối lượng lý thuyết là bao nhiêu?', options: ['0,025 BTC', '0,01 BTC', '0,0125 BTC', '0,0083 BTC'], answer: 3, explain: 'Dừng lỗ = 78.000 − 0,5 × 800 = 77.600; khoảng cách = 2.400 (nhỏ hơn 3 × ATR = 2.400, vừa đúng giới hạn nên hợp lệ). Rủi ro 1% = 20 USDT; 20 ÷ 2.400 ≈ 0,0083 BTC. 0,01 BTC là khi quên vùng đệm (20 ÷ 2.000). 0,025 BTC là tính rủi ro nhầm thành 50 USDT. 0,0125 BTC không khớp phép tính nào đúng.' },
-      { q: 'Thành phần nào thường bị bỏ quên nhất và khiến trader vẫn vào lệnh lúc tin lớn hoặc sau chuỗi thua?', options: ['Điều kiện không giao dịch', 'Khung thời gian', 'Điều kiện vào', 'Thị trường'], answer: 0, explain: 'Nhiều người có quy tắc vào rất kỹ nhưng không viết khi nào đứng ngoài. Khung thời gian, điều kiện vào và thị trường thường được nghĩ đến trước tiên nên ít bị thiếu hơn.' },
-      { q: 'Bạn đang test hệ thống A v1.0 được 40 lệnh thì muốn đổi EMA 20 thành EMA 21 vì "trông khớp hơn". Cách làm đúng là gì?', options: ['Đổi ngay và tính tiếp 40 lệnh cũ vào kết quả', 'Đổi và chỉ tính các lệnh thắng', 'Ghi thành phiên bản v1.1 và test lại từ đầu, không trộn kết quả với v1.0', 'Không bao giờ được thay đổi hệ thống'], answer: 2, explain: 'Mỗi thay đổi tạo phiên bản mới phải test riêng. Trộn kết quả làm dữ liệu vô nghĩa. Chọn lệnh thắng là tự lừa mình. Hệ thống được phép cải tiến, nhưng phải có kiểm soát, nên "không bao giờ thay đổi" cũng sai.' }
+      { q: 'Quy tắc nào sau đây được viết đủ rõ để kiểm tra bằng đúng/sai?', options: ['Vào lệnh khi xu hướng D1 tăng mạnh và lực mua trên H4 áp đảo', 'Vào khi nến H4 đóng trên đỉnh nến H4 trước, D1 đóng trên EMA 50', 'Vào lệnh khi giá hồi đủ sâu về vùng hỗ trợ mạnh và nến trông đẹp', 'Vào lệnh khi thấy dòng tiền vào rõ và thị trường đang khá hưng phấn'], answer: 1, explain: 'Chỉ lựa chọn B có điều kiện đo được trên nến đã đóng. "Tăng mạnh", "áp đảo", "đủ sâu", "trông đẹp", "khá hưng phấn" là tính từ, mỗi người hiểu một kiểu nên không kiểm tra và không backtest được.' },
+      { q: 'Theo hệ thống mẫu, tài khoản 2.000 USDT, BTC vào 80.000, đáy nhịp hồi 78.000, ATR(14) H4 = 800. Khối lượng lý thuyết là bao nhiêu?', options: ['0,025 BTC', '0,01 BTC', '0,0167 BTC', '0,0083 BTC'], answer: 3, explain: 'Dừng lỗ = 78.000 − 0,5 × 800 = 77.600; khoảng cách = 80.000 − 77.600 = 2.400, bằng đúng 3 × ATR = 2.400. Quy tắc chỉ bỏ lệnh khi dừng lỗ LỚN HƠN 3 ATR, nên lệnh vẫn hợp lệ. Rủi ro 1% = 20 USDT; 20 ÷ 2.400 ≈ 0,0083 BTC. 0,01 BTC là khi quên vùng đệm (20 ÷ 2.000). 0,025 BTC là lấy nhầm ATR làm khoảng cách dừng lỗ (20 ÷ 800). 0,0167 BTC là rủi ro 2% (40 ÷ 2.400), vượt mức 1% của hệ thống.' },
+      { q: 'Thành phần nào thường bị bỏ quên nhất và khiến trader vẫn vào lệnh lúc tin lớn hoặc sau chuỗi thua?', options: ['Điều kiện không giao dịch', 'Khung thời gian vào lệnh', 'Điều kiện vào lệnh cụ thể', 'Thị trường được giao dịch'], answer: 0, explain: 'Nhiều người có quy tắc vào rất kỹ nhưng không viết khi nào đứng ngoài. Khung thời gian, điều kiện vào và thị trường thường được nghĩ đến trước tiên nên ít bị thiếu hơn.' },
+      { q: 'Bạn đang test hệ thống A v1.0 được 40 lệnh thì muốn đổi EMA 20 thành EMA 21 vì "trông khớp hơn". Cách làm đúng là gì?', options: ['Đổi ngay sang EMA 21 và gộp tiếp 40 lệnh cũ vào cùng kết quả', 'Đổi sang EMA 21 nhưng chỉ giữ lại các lệnh thắng để so sánh', 'Ghi thành v1.1, test lại từ đầu và không trộn với kết quả v1.0', 'Giữ nguyên mãi mãi vì hệ thống đã viết ra thì không được sửa'], answer: 2, explain: 'Mỗi thay đổi tạo phiên bản mới phải test riêng. Trộn kết quả làm dữ liệu vô nghĩa. Chọn lệnh thắng là tự lừa mình. Hệ thống được phép cải tiến, nhưng phải có kiểm soát, nên "không bao giờ thay đổi" cũng sai.' }
     ],
     sources: [
       { title: 'Average True Range (ATR) and Average True Range Percent (ATRP)', url: 'https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/average-true-range-atr-and-average-true-range-percent-atrp', note: 'StockCharts ChartSchool, tiếng Anh' },
@@ -144,7 +144,7 @@ const lessons = {
         ['30 lệnh: sai số chuẩn', '1,47 ÷ √30 ≈ 0,27R → khoảng tin cậy 95% từ khoảng −0,33R đến +0,73R'],
         ['100 lệnh: sai số chuẩn', '1,47 ÷ √100 ≈ 0,15R → khoảng từ −0,09R đến +0,49R'],
         ['200 lệnh: sai số chuẩn', '1,47 ÷ √200 ≈ 0,10R → khoảng từ khoảng 0R đến +0,40R'],
-        ['Tỷ lệ thắng đo được với 30 lệnh (thật là 50%)', 'Khoảng tin cậy 95% ≈ 50% ± 17,9 điểm, tức từ 32% đến 68%']
+        ['Tỷ lệ thắng đo được với 30 lệnh (thật là 40%)', 'Khoảng tin cậy 95% ≈ 40% ± 1,96 × √(0,4 × 0,6 ÷ 30) ≈ 40% ± 17,5 điểm, tức từ khoảng 22% đến 58%']
       ], result: 'Với 30 lệnh, một hệ thống có kỳ vọng thật +0,2R vẫn có thể cho kết quả âm hoặc dương rất đẹp chỉ do may rủi. Ngay cả 100 lệnh vẫn chưa loại trừ được khả năng kỳ vọng bằng 0. Vì vậy 100 lệnh là mức tối thiểu để bắt đầu tin một phần, còn 200 lệnh trở lên mới cho bức tranh rõ hơn.' },
       { type: 'p', text: 'Khuyến nghị thực dụng: <strong>tối thiểu 100 lệnh backtest</strong> trải qua cả thị trường tăng, giảm và đi ngang. Chỉ tiếp tục nếu kỳ vọng sau chi phí dương rõ ràng, ví dụ từ +0,15R trở lên, và chuỗi thua dài nhất nằm trong mức bạn chịu được. Nếu hệ thống cho quá ít tín hiệu để có 100 lệnh trên BTC và ETH trong vài năm dữ liệu, bạn cần thời gian test dài hơn, không phải hạ tiêu chuẩn.' },
       { type: 'figure', name: 'equity-curves', caption: 'Cùng một chuỗi lệnh, rủi ro 1%, 5% và 20% mỗi lệnh cho ra đường vốn rất khác nhau. Backtest cho bạn chuỗi R; mức rủi ro quyết định bạn có sống sót qua chuỗi thua hay không.' },
@@ -162,7 +162,7 @@ const lessons = {
       { type: 'h', text: 'Ví dụ thật: backtest hệ thống mẫu của bài 7.1' },
       { type: 'p', text: 'Để bạn thấy backtest trung thực trông như thế nào, khóa học đã lập trình đúng từng quy tắc của hệ thống "Hồi về EMA theo xu hướng D1" ở bài 7.1 và chạy trên dữ liệu thật của Binance USDⓈ-M Futures: nến D1 và H4 của BTCUSDT, ETHUSDT từ 01/01/2020 đến 26/09/2026, cùng lịch sử funding thật (7.385 mốc mỗi mã). Giả định chi phí: phí taker 0,05% cho lệnh market và dừng lỗ, maker 0,02% cho lệnh chốt lời, trượt giá 0,02% mỗi lệnh market. Khi một nến chạm cả dừng lỗ lẫn mục tiêu, tính là dính dừng lỗ trước (giả định bất lợi). Chưa áp dụng bộ lọc tin CPI/FOMC vì thiếu lịch sử giờ tin đầy đủ.' },
       { type: 'table', head: ['Chỉ số', 'Kết quả'], rows: [
-        ['Số lệnh', '455 (khoảng 69 lệnh/năm)'],
+        ['Số lệnh', '455 trong khoảng 6,74 năm dữ liệu (01/01/2020 đến 26/09/2026), tức khoảng 67–68 lệnh/năm hay 1,3 lệnh/tuần'],
         ['Tỷ lệ thắng', '38%; lệnh thắng trung bình +1,42R, lệnh thua trung bình −0,85R'],
         ['Kỳ vọng mỗi lệnh', '<strong>+0,016R</strong> (tổng +7,1R sau gần 7 năm)'],
         ['Profit factor', '1,03'],
@@ -186,11 +186,12 @@ const lessons = {
       ] },
       { type: 'p', text: 'Điều đáng chú ý là cả họ hệ thống vẫn có dấu hiệu dương: trên dữ liệu kiểm tra 2024–2026 của 12 mã, 46 trên 48 biến thể có kỳ vọng dương, trung vị +0,40R/lệnh. Tham số kinh điển lấy nguyên từ tài liệu gốc (không do khóa học tối ưu) cho kết quả như sau trên 12 mã, giai đoạn 2024–2026:' },
       { type: 'table', head: ['Phiên bản', 'Lệnh', 'Kỳ vọng', 'Ngẫu nhiên ≥ hệ thống', 'Ghi chú'], rows: [
-        ['Turtle 20/10, long và short', '342', '+0,26R', '4,3%', 'Năm 2025: −0,28R/lệnh'],
-        ['Turtle 55/20, long và short', '174', '+0,34R', '6,7%', 'Phía long +0,62R, phía short −0,02R'],
+        ['Turtle 20/10, long và short', '342', '+0,26R', '4,3%', 'Nhiều lệnh nhất trong bảng'],
+        ['Turtle 55/20, long và short', '174', '+0,34R', '6,7%', 'Bỏ phía short (dòng dưới) thì kỳ vọng tăng lên +0,66R'],
         ['55/20 chỉ long', '100', '+0,66R', '9,0%', 'Làm được trên spot, không cần đòn bẩy'],
-        ['100/50, long và short', '111', '−0,10R', '70,7%', 'Không có lợi thế']
+        ['100/50, long và short', 'không ghi', '−0,10R', '70,7%', 'Không có lợi thế']
       ] },
+      { type: 'p', text: 'Một kiểm tra tham chiếu khác, chạy trước đó với Donchian 55/20 khung ngày, dừng lỗ 2 × ATR(20), trên BTC, ETH, SOL giai đoạn 2020–2026 (bộ dữ liệu khác bảng trên), cũng cho thấy lợi thế nằm ở phía long: long +3,19R/lệnh (49 lệnh), short −0,02R/lệnh (40 lệnh). Tổng 89 lệnh nghe rất đẹp (+1,747R/lệnh), nhưng 2020–2023 là +2,88R còn 2024–2026 chỉ +0,154R, và lợi nhuận tập trung ở các đợt tăng lớn 2020–2021.' },
       { type: 'p', text: 'Danh mục Turtle 55/20 với rủi ro 1% mỗi lệnh, tối đa 3 lệnh mở cùng lúc: giai đoạn 2024–2026 tăng 24% (khoảng 8,5%/năm), sụt giảm tối đa 10,5%. Cả giai đoạn 2020–2026: tăng 182%, sụt giảm tối đa 16,9%, chuỗi thua dài nhất 12 lệnh; lợi nhuận tập trung mạnh ở năm 2020. Để so sánh, mua và giữ BTC giai đoạn 2024–2026 tăng 99%, ETH tăng 18%.' },
       { type: 'callout', tone: 'warn', title: 'Đọc kết quả này thế nào cho đúng', text: 'Chưa có hệ thống nào qua được kiểm tra theo chuẩn khóa học đặt ra (kỳ vọng dương trên cả hai bộ dữ liệu kiểm tra và tỷ lệ ngẫu nhiên tốt hơn dưới 5%). Các phiên bản Turtle kinh điển có dấu hiệu lợi thế nhỏ, chủ yếu ở phía long, nhưng mức ý nghĩa ở ngưỡng biên, và bảng thứ hai được xem sau khi đã biết dữ liệu kiểm tra, nên dễ bị ảnh hưởng bởi việc chọn lựa. Vì vậy: <strong>Turtle 55/20 là ứng viên đáng forward test trên Demo Trading, không phải hệ thống đã được chứng minh.</strong> Lưu ý thêm: 12 đồng được kiểm tra đều là đồng còn tồn tại đến nay (thiên kiến sống sót), và giao dịch theo xu hướng có nhiều giai đoạn thua kéo dài.' },
       { type: 'callout', tone: 'note', title: 'Tự chạy lại được', text: 'Mã nguồn backtest và dữ liệu nằm trong thư mục <code>research/backtest</code> của dự án (<code>download.mjs</code>, <code>backtest.mjs</code>, <code>analyze.mjs</code>). Bạn có thể đổi quy tắc, chạy lại, và so với vào lệnh ngẫu nhiên. Mọi thay đổi quy tắc tạo phiên bản mới và phải kiểm tra trên dữ liệu chưa dùng.' },
@@ -231,10 +232,10 @@ const lessons = {
       'Tạo tài khoản Binance Demo Trading, đặt thử một lệnh futures isolated với Stop-Market dừng lỗ theo đúng quy tắc, khối lượng tính theo 1% của số vốn thật bạn định dùng.'
     ],
     quiz: [
-      { q: 'Backtest 30 lệnh cho kỳ vọng +0,5R. Kết luận hợp lý nhất là gì?', options: ['Hệ thống chắc chắn có lợi thế, vào tiền thật ngay', 'Hệ thống chắc chắn không có lợi thế', 'Chưa đủ dữ liệu; với 30 lệnh, khoảng bất định quá rộng, cần test tối thiểu 100 lệnh', 'Nên tăng đòn bẩy để tận dụng lợi thế'], answer: 2, explain: 'Với 30 lệnh, sai số chuẩn của kỳ vọng rất lớn, may rủi có thể tạo ra +0,5R. Không kết luận được có hay không có lợi thế. Tăng đòn bẩy dựa trên mẫu nhỏ là rủi ro nghiêm trọng.' },
-      { q: 'Bạn test chiến lược trên 20 altcoin lớn nhất HIỆN NAY, dùng dữ liệu từ 2021. Kết quả rất tốt. Lỗi chính là gì?', options: ['Survivorship bias: danh sách hiện nay đã loại các coin sụp đổ hoặc bị hủy niêm yết', 'Look-ahead bias do dùng nến chưa đóng', 'Cỡ mẫu quá lớn', 'Chi phí funding quá thấp'], answer: 0, explain: 'Chọn danh sách coin theo hiện tại nghĩa là chỉ test trên kẻ sống sót. Look-ahead bias là lỗi khác (dùng thông tin chưa có). Cỡ mẫu lớn không phải lỗi. Funding không giải thích vì sao kết quả đẹp giả tạo.' },
+      { q: 'Backtest 30 lệnh cho kỳ vọng +0,5R. Kết luận hợp lý nhất là gì?', options: ['Hệ thống chắc chắn có lợi thế, có thể vào tiền thật ngay', 'Hệ thống chắc chắn không có lợi thế, nên bỏ ngay từ bây giờ', 'Chưa kết luận được; 30 lệnh quá ít, cần test tối thiểu 100 lệnh', 'Có lợi thế rõ, nên tăng đòn bẩy để tận dụng tối đa kỳ vọng'], answer: 2, explain: 'Với 30 lệnh, sai số chuẩn của kỳ vọng rất lớn, may rủi có thể tạo ra +0,5R. Không kết luận được có hay không có lợi thế. Tăng đòn bẩy dựa trên mẫu nhỏ là rủi ro nghiêm trọng.' },
+      { q: 'Bạn test chiến lược trên 20 altcoin lớn nhất HIỆN NAY, dùng dữ liệu từ 2021. Kết quả rất tốt. Lỗi chính là gì?', options: ['Survivorship bias: danh sách hôm nay đã loại các coin đã chết', 'Look-ahead bias: dùng nến chưa đóng để ra quyết định vào lệnh', 'Cỡ mẫu quá lớn nên kết quả bị làm mượt một cách giả tạo', 'Chi phí funding giả định quá thấp so với thực tế thị trường'], answer: 0, explain: 'Chọn danh sách coin theo hiện tại nghĩa là chỉ test trên kẻ sống sót. Look-ahead bias là lỗi khác (dùng thông tin chưa có). Cỡ mẫu lớn không phải lỗi. Funding không giải thích vì sao kết quả đẹp giả tạo.' },
       { q: 'Giả định dừng lỗ cách giá vào 1%, phí 0,05% mỗi chiều. Riêng phí khứ hồi tốn bao nhiêu R?', options: ['0,05R', '0,01R', '0,5R', '0,1R'], answer: 3, explain: 'Dừng lỗ 1% nghĩa là giá trị danh nghĩa bằng 100 lần số tiền rủi ro. Phí khứ hồi 0,1% danh nghĩa = 0,1% × 100R = 0,1R. 0,05R là trường hợp dừng lỗ 2%. 0,01R và 0,5R không đúng phép tính.' },
-      { q: 'Khi backtest bằng Bar Replay, việc nào gây ra look-ahead bias?', options: ['Ghi quyết định trước khi bấm Forward', 'Kéo biểu đồ sang phải xem nến tương lai rồi mới quyết định có vào lệnh không', 'Chỉ đọc nến đã đóng', 'Test trên nhiều giai đoạn thị trường'], answer: 1, explain: 'Xem nến tương lai rồi quyết định là dùng thông tin mà lúc đó chưa có. Các lựa chọn còn lại chính là cách phòng look-ahead bias và làm backtest đáng tin hơn.' }
+      { q: 'Khi backtest bằng Bar Replay, việc nào gây ra look-ahead bias?', options: ['Ghi quyết định vào bảng trước khi bấm Forward sang nến kế tiếp', 'Kéo biểu đồ sang phải xem nến sau rồi mới quyết định vào lệnh', 'Chỉ đọc tín hiệu trên nến đã đóng, bỏ qua nến đang chạy dở', 'Chọn điểm bắt đầu ở nhiều giai đoạn tăng, giảm và đi ngang'], answer: 1, explain: 'Xem nến tương lai rồi quyết định là dùng thông tin mà lúc đó chưa có. Các lựa chọn còn lại chính là cách phòng look-ahead bias và làm backtest đáng tin hơn.' }
     ],
     sources: [
       { title: 'Bar Replay: how and why to test a strategy in the past', url: 'https://www.tradingview.com/support/solutions/43000712747-bar-replay-how-and-why-to-test-a-strategy-in-the-past/', note: 'TradingView Help Center, tiếng Anh' },
@@ -247,7 +248,7 @@ const lessons = {
   },
 
   'c7-b3': {
-    duration: 9,
+    duration: 10,
     level: 'Trung cấp',
     summary: 'Biến mỗi phiên giao dịch thành một quy trình lặp lại: chuẩn bị trước, checklist trước lệnh, im lặng trong lệnh, ghi nhật ký sau lệnh.',
     goals: [
@@ -259,17 +260,18 @@ const lessons = {
       { type: 'h', text: 'Vì sao cần quy trình phiên' },
       { type: 'p', text: 'Phi công trước mỗi chuyến bay đều đọc checklist, dù đã bay hàng nghìn giờ. Không phải vì họ quên cách bay, mà vì một bước bị bỏ sót lúc mệt hoặc vội có thể gây hậu quả lớn. Giao dịch cũng vậy. Phần lớn lệnh thua nặng không đến từ phân tích sai, mà từ việc bỏ qua một bước: quên tin CPI, quên đặt dừng lỗ, vào lệnh khi đang tức.' },
       { type: 'p', text: 'Quy trình phiên chia làm ba giai đoạn: <strong>trước phiên</strong> (chuẩn bị, quyết định có giao dịch hay không), <strong>trong lệnh</strong> (để hệ thống làm việc), <strong>sau lệnh</strong> (ghi nhật ký, rút bài học). Với hệ thống D1/H4 như ở bài 7.1, bạn không cần ngồi cả ngày. Tổng thời gian thường chỉ 30–60 phút mỗi ngày.' },
+      { type: 'callout', tone: 'risk', title: 'Hệ thống 7.1 ở đây chỉ là ví dụ quy trình', text: 'Các bước bên dưới dùng hệ thống mẫu bài 7.1 (vùng EMA 20–50, chốt 50% ở 2R, Chandelier) làm ví dụ cụ thể để bạn thấy một quy trình phiên chạy ra sao. Hệ thống đó đã backtest và <strong>không có lợi thế</strong> (bài 7.2), nên đây là bài học về cách vận hành quy trình, không phải vì hệ thống có lãi. Khi giao dịch tiền thật, thay phần điều kiện vào, dừng lỗ, chốt lời bằng hệ thống của chính bạn đã qua kiểm chứng ở bài 7.2. Phần kỷ luật chung (giới hạn ngày, tuần, chuỗi thua) giữ theo bộ chuẩn bài 5.9.' },
       { type: 'callout', tone: 'warn', title: 'Giao dịch không phải để giải trí', text: 'Nếu bạn mở ứng dụng sàn khi chán, khi chờ xe buýt, hay trước khi ngủ "cho vui", đó là dấu hiệu giao dịch đang thay thế giải trí. Thị trường crypto chạy 24/7, luôn có nến đang chạy để bạn bấm. Đa số ngày trong quy trình tốt là ngày <strong>không có lệnh nào</strong>, và đó là kết quả bình thường.' },
 
       { type: 'h', text: 'Quy trình ba giai đoạn' },
       { type: 'steps', items: [
-        { title: 'Trước phiên 1: kiểm tra bản thân', text: 'Ngủ đủ không? Có đang tức giận, say, hay cần tiền gấp không? Có vừa thua 3 lệnh liên tiếp (đang trong thời gian nghỉ) không? Có một câu trả lời "có" là hôm nay không giao dịch.' },
-        { title: 'Trước phiên 2: xem lịch tin', text: 'Mở lịch kinh tế, ghi các tin lớn trong 24 giờ tới theo giờ Việt Nam (xem bảng bên dưới). Đánh dấu vùng cấm mở lệnh 60 phút trước và sau.' },
+        { title: 'Trước phiên 1: kiểm tra bản thân', text: 'Ngủ đủ không? Có đang tức giận, say, hay cần tiền gấp không? Hôm nay đã thua 2 lệnh liên tiếp hoặc lỗ 2R chưa? Tuần này đã lỗ 5R chưa? Có đang trong thời gian nghỉ theo quy tắc hệ thống của bạn không? Có một câu trả lời "có" là hôm nay không giao dịch.' },
+        { title: 'Trước phiên 2: xem lịch tin', text: 'Mở lịch kinh tế, ghi các tin lớn trong 24 giờ tới theo giờ Việt Nam (xem bảng bên dưới). Đánh dấu vùng cấm mở lệnh quanh giờ tin. Bộ chuẩn bài 5.9 là 30 phút trước và 30 phút sau; hệ thống mẫu 7.1 dùng 60 phút, chặt hơn. Bài này dùng 60 phút.' },
         { title: 'Trước phiên 3: khung lớn', text: 'Mở D1 của BTC và ETH. Xu hướng theo quy tắc là tăng, giảm hay không rõ? Không rõ thì mã đó hôm nay không giao dịch.' },
         { title: 'Trước phiên 4: vùng giá và cảnh báo', text: 'Trên H4, đánh dấu vùng giá bạn chờ (ví dụ vùng EMA 20–EMA 50, hỗ trợ cũ). Đặt cảnh báo giá (alert) tại vùng đó rồi đóng biểu đồ. Không ngồi nhìn chờ giá.' },
         { title: 'Trong lệnh 1: đặt lệnh trọn gói', text: 'Khi có tín hiệu và qua checklist, đặt lệnh vào, dừng lỗ Stop-Market và mục tiêu chốt lời ngay trong một lần. Kiểm tra lại khối lượng, đòn bẩy, chế độ isolated trên màn hình xác nhận.' },
         { title: 'Trong lệnh 2: không nhìn lãi lỗ từng phút', text: 'Chỉ xem lại lệnh khi nến H4 đóng hoặc khi cảnh báo kêu. Nhìn con số lãi lỗ nhảy liên tục tạo cảm giác phải "làm gì đó", dẫn đến chốt non hoặc dời dừng lỗ. Tắt thông báo lãi lỗ nếu cần.' },
-        { title: 'Trong lệnh 3: chỉ hành động theo quy tắc', text: 'Các hành động hợp lệ: chốt 50% ở 2R, dời dừng lỗ về hòa vốn, cập nhật dừng lỗ kéo theo sau nến H4 đóng, đóng theo dừng lỗ thời gian. Mọi hành động khác là phá quy tắc.' },
+        { title: 'Trong lệnh 3: chỉ hành động theo quy tắc', text: 'Các hành động hợp lệ là những hành động hệ thống của bạn viết sẵn. Với hệ thống mẫu 7.1: chốt 50% ở 2R, dời dừng lỗ về hòa vốn, cập nhật dừng lỗ kéo theo sau nến H4 đóng, đóng theo dừng lỗ thời gian. Mọi hành động khác là phá quy tắc.' },
         { title: 'Sau lệnh 1: ghi nhật ký trong 24 giờ', text: 'Ghi giá vào, dừng lỗ, kết quả theo R, ảnh chụp biểu đồ lúc vào và lúc ra, đã tuân thủ đủ mọi quy tắc chưa, cảm xúc lúc vào và lúc ra (xem bài 6.5).' },
         { title: 'Sau lệnh 2: đánh giá quyết định, không đánh giá kết quả', text: 'Lệnh thua nhưng đúng quy tắc là lệnh tốt. Lệnh thắng nhưng phá quy tắc là lệnh xấu. Chấm điểm tuân thủ, không chấm điểm lãi lỗ.' },
         { title: 'Sau lệnh 3: kiểm tra giới hạn', text: 'Đã chạm giới hạn số lệnh hoặc mức lỗ ngày chưa? Nếu có, đóng ứng dụng sàn đến hết ngày.' }
@@ -296,13 +298,13 @@ const lessons = {
         'Tín hiệu vào xuất hiện trên nến H4 ĐÃ ĐÓNG',
         'Dừng lỗ đặt tại điểm quy tắc chỉ định, có vùng đệm ATR, không đặt đúng số tròn',
         'Khối lượng đã tính bằng công thức: rủi ro 1% ÷ khoảng cách dừng lỗ, làm tròn xuống',
-        'Tổng rủi ro các lệnh đang mở cộng lệnh này không vượt 2% tài khoản',
-        'Futures: chế độ isolated, đòn bẩy trong giới hạn, giá thanh lý xa hơn dừng lỗ nhiều',
+        'Tổng rủi ro các lệnh đang mở cộng lệnh này không vượt 2R (2% tài khoản nếu 1R = 1%), tối đa 2 lệnh mở',
+        'Futures: chế độ isolated, đòn bẩy thật không quá 3x, khoảng cách tới giá thanh lý ít nhất gấp 3 lần khoảng cách tới dừng lỗ',
         'Dừng lỗ dùng Stop-Market và sẽ được đặt cùng lúc với lệnh vào',
         'Mục tiêu 2R có không gian, không có kháng cự lớn chắn ngay trước',
         'Funding rate không cao bất thường theo chiều lệnh của tôi',
         'Tôi chấp nhận mất 1R của lệnh này mà không cảm thấy phải gỡ lại',
-        'Hôm nay chưa chạm giới hạn số lệnh và mức lỗ ngày',
+        'Hôm nay chưa chạm giới hạn số lệnh, mức lỗ 2R, chưa thua 2 lệnh liên tiếp; tuần này chưa lỗ 5R',
         'Tôi đã chụp biểu đồ và sẵn sàng ghi nhật ký'
       ] },
       { type: 'tool', name: 'position-size', note: 'Nhập số dư, % rủi ro, giá vào và giá dừng lỗ để lấy khối lượng trước khi tick mục khối lượng trong checklist.' },
@@ -317,9 +319,9 @@ const lessons = {
 
       { type: 'h', text: 'Giới hạn số lệnh và mức lỗ ngày' },
       { type: 'list', items: [
-        '<strong>Tối đa 2 lệnh mới mỗi ngày.</strong> Với hệ thống H4, hiếm khi có hơn 2 tín hiệu hợp lệ. Lệnh thứ ba thường là lệnh cảm xúc.',
-        '<strong>Lỗ ngày tối đa 2% tài khoản.</strong> Chạm mức này, đóng ứng dụng đến hết ngày, kể cả khi "thấy cơ hội rất đẹp".',
-        '<strong>3 lệnh thua liên tiếp: nghỉ 48 giờ.</strong> Chuỗi thua là bình thường về thống kê, nhưng là lúc dễ giao dịch trả thù nhất.',
+        '<strong>Tối đa 2 lệnh mới mỗi ngày.</strong> Đây là mức chặt hơn trần 3 lệnh của bộ chuẩn bài 5.9. Với hệ thống H4, hiếm khi có hơn 2 tín hiệu hợp lệ. Lệnh thứ ba thường là lệnh cảm xúc.',
+        '<strong>Lỗ ngày tối đa 2R, lỗ tuần tối đa 5R</strong> (bài 5.9; với 1R = 1% là 2% và 5% tài khoản). Chạm mức ngày thì đóng ứng dụng đến hôm sau, chạm mức tuần thì nghỉ đến tuần sau, kể cả khi "thấy cơ hội rất đẹp".',
+        '<strong>Thua 2 lệnh liên tiếp: dừng trong ngày</strong> (bài 5.9). Riêng hệ thống mẫu 7.1 có thêm quy tắc chặt hơn: thua 3 lệnh liên tiếp thì nghỉ 48 giờ. Chuỗi thua là bình thường về thống kê, nhưng là lúc dễ giao dịch trả thù nhất.',
         '<strong>Không mở lệnh sau 23:00 nếu sáng hôm sau đi làm.</strong> Ngủ kém ngày mai sẽ quyết định kém.',
         '<strong>Không xem biểu đồ quá số lần đã định</strong>, ví dụ tối đa 6 lần mỗi ngày tại lúc nến H4 đóng.'
       ] },
@@ -330,7 +332,7 @@ const lessons = {
       'Mỗi phiên có ba giai đoạn: trước phiên (bản thân, lịch tin, khung lớn, vùng giá), trong lệnh (đặt trọn gói, không nhìn lãi lỗ từng phút), sau lệnh (nhật ký, chấm điểm tuân thủ).',
       'CPI và bảng lương Mỹ ra lúc 19:30 giờ VN khi Mỹ theo giờ mùa hè, 20:30 khi theo giờ mùa đông (từ 01/11/2026); FOMC 01:00 hoặc 02:00 sáng hôm sau.',
       'Checklist trước lệnh: thiếu một mục là không vào, không có ngoại lệ.',
-      'Giới hạn: tối đa 2 lệnh mới mỗi ngày, lỗ ngày tối đa 2%, 3 thua liên tiếp nghỉ 48 giờ.',
+      'Giới hạn: lỗ ngày 2R, lỗ tuần 5R, thua 2 lệnh liên tiếp dừng trong ngày (bài 5.9); bài này chọn tối đa 2 lệnh mới mỗi ngày, chặt hơn trần 3 lệnh. Quy tắc 3 thua nghỉ 48 giờ là của riêng hệ thống mẫu 7.1.',
       'Đa số ngày không có lệnh là bình thường; giao dịch không phải trò giải trí.'
     ],
     practice: [
@@ -341,8 +343,8 @@ const lessons = {
     quiz: [
       { q: 'CPI Mỹ tháng 10/2026 công bố ngày 10/11/2026 lúc 8:30 sáng giờ miền Đông. Theo giờ Việt Nam là mấy giờ?', options: ['19:30 ngày 10/11', '07:30 ngày 10/11', '21:30 ngày 10/11', '20:30 ngày 10/11'], answer: 3, explain: 'Từ 01/11/2026 Mỹ theo giờ mùa đông (EST, UTC−5), chênh 12 giờ với Việt Nam (UTC+7): 8:30 + 12 = 20:30. 19:30 là giờ khi Mỹ còn theo giờ mùa hè. 07:30 và 21:30 là tính sai chênh lệch.' },
       { q: 'Tài khoản 1.000 USDT, rủi ro 1%, vào BTC 80.000, dừng lỗ 78.400. Bạn đặt đòn bẩy 3x isolated. Rủi ro thực tế nếu dừng lỗ kích hoạt (bỏ qua phí, trượt giá) khi vào 0,006 BTC?', options: ['30 USDT, vì đòn bẩy 3x nhân rủi ro lên 3 lần', '9,6 USDT', '480 USDT', '160 USDT'], answer: 1, explain: 'Rủi ro = khối lượng × khoảng cách dừng lỗ = 0,006 × 1.600 = 9,6 USDT. Đòn bẩy chỉ quyết định ký quỹ, không nhân rủi ro khi khối lượng đã cố định. 480 USDT là giá trị danh nghĩa. 160 USDT là ký quỹ ở 3x.' },
-      { q: 'Lệnh của bạn đang lãi 1,5R, chưa tới 2R. Bạn thấy lo và muốn chốt hết. Theo quy trình, bạn nên làm gì?', options: ['Chốt hết để khóa lãi', 'Dời dừng lỗ sát giá hiện tại', 'Không làm gì ngoài các hành động quy tắc cho phép; chỉ xem lại khi nến H4 đóng', 'Mở thêm lệnh để tăng lãi'], answer: 2, explain: 'Trong lệnh chỉ thực hiện hành động hợp lệ theo quy tắc. Chốt non và dời dừng lỗ tùy tiện làm hỏng kỳ vọng của hệ thống và làm nhật ký không còn đo được hệ thống. Mở thêm lệnh vì hưng phấn là phá giới hạn rủi ro.' },
-      { q: 'Hôm nay bạn đã thua 2 lệnh, tổng lỗ 2% tài khoản. Một setup rất đẹp xuất hiện. Bạn làm gì?', options: ['Không vào, vì đã chạm giới hạn lỗ ngày 2%; đóng ứng dụng đến hết ngày', 'Vào với khối lượng gấp đôi để gỡ', 'Vào bình thường vì setup đẹp', 'Vào nhưng không đặt dừng lỗ'], answer: 0, explain: 'Giới hạn lỗ ngày được đặt ra chính cho khoảnh khắc này. Gấp đôi khối lượng là giao dịch trả thù. "Setup đẹp" sau chuỗi thua là cảm nhận dễ sai nhất. Bỏ dừng lỗ là vi phạm quy tắc sống còn.' }
+      { q: 'Lệnh của bạn đang lãi 1,5R, chưa tới 2R. Bạn thấy lo và muốn chốt hết. Theo quy trình, bạn nên làm gì?', options: ['Chốt hết ngay để khóa lãi 1,5R trước khi giá quay đầu', 'Dời dừng lỗ sát giá hiện tại để giữ phần lãi đang có', 'Chỉ làm điều quy tắc cho phép, xem lại khi nến H4 đóng', 'Mở thêm một lệnh cùng chiều để tận dụng đà đang chạy'], answer: 2, explain: 'Trong lệnh chỉ thực hiện hành động hợp lệ theo quy tắc. Chốt non và dời dừng lỗ tùy tiện làm hỏng kỳ vọng của hệ thống và làm nhật ký không còn đo được hệ thống. Mở thêm lệnh vì hưng phấn là phá giới hạn rủi ro.' },
+      { q: 'Hôm nay bạn đã thua 2 lệnh liên tiếp, tổng lỗ 2R. Một setup rất đẹp xuất hiện. Bạn làm gì?', options: ['Không vào: thua 2 lệnh liên tiếp, chạm 2R, nghỉ đến mai', 'Vào với khối lượng gấp đôi để gỡ lại 2R vừa mất trong ngày', 'Vào bình thường với 1R vì setup đẹp và đúng hệ thống', 'Vào nhưng bỏ dừng lỗ để lệnh có thêm chỗ dao động'], answer: 0, explain: 'Theo bộ chuẩn bài 5.9, thua 2 lệnh liên tiếp là dừng trong ngày, và lỗ 2R là chạm giới hạn lỗ ngày. Hai giới hạn này được đặt ra chính cho khoảnh khắc này. Gấp đôi khối lượng là giao dịch trả thù. "Setup đẹp" sau chuỗi thua là cảm nhận dễ sai nhất. Bỏ dừng lỗ là vi phạm quy tắc sống còn.' }
     ],
     sources: [
       { title: 'Schedule of Releases for the Consumer Price Index', url: 'https://www.bls.gov/schedule/news_release/cpi.htm', note: 'U.S. Bureau of Labor Statistics, tiếng Anh' },
@@ -355,22 +357,22 @@ const lessons = {
   },
 
   'c7-b4': {
-    duration: 9,
+    duration: 11,
     level: 'Trung cấp',
-    summary: 'Lộ trình 90 ngày có tiêu chí định lượng để chuyển giai đoạn, cách nhận ra khi nào nên dừng trading chủ động, nguồn học tiếp và lời kết của khóa.',
+    summary: 'Lộ trình tối thiểu 90 ngày có tiêu chí định lượng để chuyển giai đoạn, cách nhận ra khi nào nên dừng trading chủ động, nguồn học tiếp và lời kết của khóa.',
     goals: [
-      'Lập kế hoạch 90 ngày gồm 3 giai đoạn với tiêu chí chuyển giai đoạn đo được',
+      'Lập kế hoạch tối thiểu 90 ngày gồm 3 giai đoạn với tiêu chí chuyển giai đoạn đo được',
       'Biết các dấu hiệu định lượng cho thấy nên dừng trading chủ động và chuyển sang DCA',
       'Có danh sách nguồn học tiếp uy tín và nắm lại khung pháp lý, thuế Việt Nam hiện hành'
     ],
     blocks: [
-      { type: 'h', text: 'Lộ trình 90 ngày: ba giai đoạn, ba cửa kiểm tra' },
-      { type: 'p', text: 'Bạn đã có hệ thống (bài 7.1), cách kiểm chứng (bài 7.2) và quy trình phiên (bài 7.3). Bài cuối ghép chúng thành một lộ trình có thời hạn. Mỗi giai đoạn kết thúc bằng một cửa kiểm tra có tiêu chí bằng số. Không đạt thì ở lại hoặc quay lại, không "thử liều" giai đoạn sau.' },
-      { type: 'callout', tone: 'warn', title: '90 ngày là tối thiểu, không phải hạn chót', text: 'Hệ thống D1/H4 trên BTC và ETH có thể chỉ cho vài tín hiệu mỗi tuần. Nếu sau 30 ngày chưa đủ số lệnh yêu cầu, bạn kéo dài giai đoạn đó. Hạ tiêu chuẩn cho kịp lịch là cách nhanh nhất để quay về trading cảm tính.' },
+      { type: 'h', text: 'Lộ trình tối thiểu 90 ngày: ba giai đoạn, ba cửa kiểm tra' },
+      { type: 'p', text: 'Bạn đã có một bản mẫu để viết hệ thống (bài 7.1), cách kiểm chứng (bài 7.2) và quy trình phiên (bài 7.3). Lưu ý: chính hệ thống mẫu 7.1 đã trượt backtest, nên bạn chưa có hệ thống nào để giao dịch tiền thật. Ở giai đoạn 1, bạn làm một trong hai việc: tự thiết kế hệ thống của mình rồi backtest nó, hoặc forward test một ứng viên như Turtle 55/20 khung D1 (bài 7.2), vốn cũng <strong>chưa đạt chuẩn</strong> của khóa. Bài cuối ghép mọi thứ thành một lộ trình có cửa kiểm tra. Mỗi cửa có tiêu chí bằng số. Không đạt thì ở lại hoặc quay lại, không "thử liều" giai đoạn sau.' },
+      { type: 'callout', tone: 'warn', title: '90 ngày là tối thiểu, không phải hạn chót', text: 'Tiêu chí chuyển giai đoạn tính theo số lệnh, không theo số ngày. Hệ thống khung D1/H4 cho rất ít lệnh. Ví dụ hệ thống mẫu 7.1 chỉ có 455 lệnh trên BTC và ETH trong 6,74 năm, khoảng 67–68 lệnh mỗi năm, tức 1,3 lệnh mỗi tuần. Với tần suất đó, 30 lệnh demo mất khoảng 23 tuần (hơn 5 tháng), 20 lệnh tiền thật mất thêm khoảng 15 tuần. Cả lộ trình có thể kéo dài 9–12 tháng. Hệ thống khung ngày như Turtle 55/20 còn cho ít lệnh hơn trên mỗi mã. Hạ tiêu chuẩn cho kịp lịch là cách nhanh nhất để quay về trading cảm tính.' },
       { type: 'table', head: ['Giai đoạn', 'Việc chính', 'Tiêu chí để sang giai đoạn sau (phải đạt TẤT CẢ)'], rows: [
-        ['Ngày 1–30: Giấy', 'Viết hệ thống v1.0. Backtest bằng Bar Replay. Forward test trên Binance Demo Trading với số dư coi như số vốn thật dự định.', '≥ 100 lệnh backtest; ≥ 50 lệnh giấy tổng cộng (replay ghi đủ nhật ký + demo), trong đó ≥ 20 lệnh demo thời gian thực; kỳ vọng sau chi phí ≥ +0,15R; tuân thủ quy tắc ≥ 90%; 0 lần vi phạm quy tắc rủi ro (không đặt dừng lỗ, vượt 1%)'],
-        ['Ngày 31–60: Tiền nhỏ', 'Tiền thật, rủi ro 0,25–0,5% mỗi lệnh, ưu tiên spot hoặc futures isolated tối đa 3x. Cùng phiên bản quy tắc.', '≥ 20 lệnh thật; tuân thủ ≥ 90%; sụt giảm tối đa ≤ 5% tài khoản; kỳ vọng thực tế không thấp hơn 50% kỳ vọng backtest; trượt giá thực tế đã được ghi và cập nhật vào tính toán'],
-        ['Ngày 61–90: Đánh giá', 'Tiếp tục ở mức rủi ro nhỏ. Cuối kỳ tổng hợp toàn bộ dữ liệu, so sánh backtest, demo và thật.', 'Quyết định một trong ba: tăng dần lên rủi ro 1%; lặp lại giai đoạn 2 với hệ thống đã sửa (phiên bản mới phải test lại từ giai đoạn 1); hoặc dừng trading chủ động và chỉ DCA']
+        ['Giai đoạn 1: Giấy (tối thiểu 30 ngày, thường 5–6 tháng)', 'Tự viết hệ thống v1.0 hoặc chọn một ứng viên như Turtle 55/20 D1. Backtest bằng Bar Replay hoặc mã nguồn. Forward test trên Binance Demo Trading với số dư coi như số vốn thật dự định.', '≥ 100 lệnh backtest; ≥ 30 lệnh demo thời gian thực với cùng phiên bản quy tắc; kỳ vọng sau chi phí ≥ +0,15R; tuân thủ quy tắc ≥ 90%; 0 lần vi phạm quy tắc rủi ro (không đặt dừng lỗ, vượt 1%)'],
+        ['Giai đoạn 2: Tiền nhỏ (tối thiểu 30 ngày, thường 3–4 tháng)', 'Tiền thật, rủi ro 0,25–0,5% mỗi lệnh, ưu tiên spot hoặc futures isolated tối đa 3x. Cùng phiên bản quy tắc.', '≥ 20 lệnh thật; tuân thủ ≥ 90%; sụt giảm tối đa ≤ 5% tài khoản; kỳ vọng thực tế không thấp hơn 50% kỳ vọng backtest; trượt giá thực tế đã được ghi và cập nhật vào tính toán'],
+        ['Giai đoạn 3: Đánh giá (tối thiểu 30 ngày)', 'Tiếp tục ở mức rủi ro nhỏ. Cuối kỳ tổng hợp toàn bộ dữ liệu, so sánh backtest, demo và thật.', 'Quyết định một trong ba: tăng dần lên rủi ro 1%; lặp lại giai đoạn 2 với hệ thống đã sửa (phiên bản mới phải test lại từ giai đoạn 1); hoặc dừng trading chủ động và chỉ DCA']
       ] },
       { type: 'p', text: 'Tỷ lệ tuân thủ được tính đơn giản: số lệnh làm đúng 100% quy tắc chia cho tổng số lệnh. Một lệnh vào đúng nhưng dời dừng lỗ là một lệnh không tuân thủ. Con số này quan trọng hơn lãi lỗ ở 90 ngày đầu, vì lãi lỗ ngắn hạn phần lớn là may rủi, còn tuân thủ hoàn toàn trong tay bạn.' },
 
@@ -378,8 +380,8 @@ const lessons = {
       { type: 'steps', items: [
         { title: 'Hằng ngày (30–60 phút)', text: 'Chạy quy trình phiên của bài 7.3: kiểm tra bản thân, lịch tin, D1, vùng giá, cảnh báo. Ghi nhật ký mọi lệnh trong 24 giờ.' },
         { title: 'Cuối tuần (60 phút)', text: 'Tính số lệnh, tỷ lệ tuân thủ, tổng R, chuỗi thua dài nhất. Đọc lại 3 lệnh tệ nhất về mặt tuân thủ, không phải tệ nhất về lãi lỗ.' },
-        { title: 'Cuối mỗi 30 ngày (2 giờ)', text: 'Đối chiếu với tiêu chí trong bảng. Viết một đoạn kết luận: đạt hay không, vì sao. Quyết định chuyển, ở lại, hay quay lại giai đoạn trước.' },
-        { title: 'Không làm trong 90 ngày', text: 'Không đổi hệ thống giữa giai đoạn. Không thêm mã mới ngoài BTC, ETH. Không tăng rủi ro vì "đang thắng". Không dùng tiền vay.' }
+        { title: 'Cuối mỗi 30 ngày (2 giờ)', text: 'Đối chiếu với tiêu chí trong bảng. Viết một đoạn kết luận: đạt hay không, vì sao. Chưa đủ số lệnh thì ghi "chưa đủ dữ liệu" và ở lại, không chấm đạt sớm. Quyết định chuyển, ở lại, hay quay lại giai đoạn trước.' },
+        { title: 'Không làm trong suốt lộ trình', text: 'Không đổi hệ thống giữa giai đoạn. Không thêm mã ngoài danh sách đã ghi trong hệ thống. Không tăng rủi ro vì "đang thắng". Không dùng tiền vay.' }
       ] },
 
       { type: 'h', text: 'Khi nào nên dừng trading chủ động và chỉ DCA' },
@@ -387,12 +389,13 @@ const lessons = {
       { type: 'checklist', title: 'Dấu hiệu nên dừng trading chủ động (chỉ cần một)', items: [
         'Sau ít nhất 100 lệnh thật, kỳ vọng sau mọi chi phí vẫn ≤ 0',
         'Tỷ lệ tuân thủ dưới 80% trong hai tháng liên tiếp, dù đã cố gắng',
-        'Sụt giảm tài khoản vượt 15% từ đỉnh',
+        'Sụt giảm tài khoản chạm 20% từ đỉnh (mức dừng tiền thật của bài 5.9), hoặc vượt rõ mức sụt tối đa trong backtest của chính hệ thống',
         'Lợi nhuận sau chi phí thấp hơn việc chỉ mua định kỳ BTC trong cùng giai đoạn',
         'Bạn vay tiền, dùng tiền sinh hoạt, hoặc giấu gia đình để giao dịch',
         'Giao dịch làm bạn mất ngủ, ảnh hưởng công việc hoặc các mối quan hệ',
         'Bạn liên tục phá giới hạn lỗ ngày và giao dịch trả thù'
       ] },
+      { type: 'p', text: 'Về ngưỡng sụt giảm: bộ chuẩn bài 5.9 yêu cầu sụt 10% từ đỉnh thì giảm rủi ro mỗi lệnh còn một nửa, sụt 20% thì dừng tiền thật, quay lại demo và rà soát. Ngưỡng của từng hệ thống nên dựa vào mức sụt tối đa trong backtest của chính nó. Ví dụ danh mục Turtle 55/20 với rủi ro 1% từng sụt 16,9% trong giai đoạn 2020–2026. Nếu bạn đặt ngưỡng bỏ hệ thống ở 15%, bạn sẽ bỏ nó trong một đợt sụt mà lịch sử cho thấy là bình thường. Ngược lại, sụt vượt rõ mức tối đa của backtest là dấu hiệu hệ thống có thể đã hết tác dụng, hoặc bạn đang làm khác quy tắc.' },
       { type: 'calc', title: 'Thời gian của bạn đáng giá bao nhiêu? (giả định)', rows: [
         ['Vốn giao dịch', '20.000.000 đồng'],
         ['Lãi ròng sau 90 ngày (giả định khá tốt)', '20.000.000 × 3% = 600.000 đồng'],
@@ -401,7 +404,7 @@ const lessons = {
         ['Thuế TNCN 0,1% khi bán qua tổ chức được cấp phép, ví dụ một lần bán 10.000.000 đồng', '10.000.000 × 0,1% = 10.000 đồng']
       ], result: 'Ngay cả khi có lãi, với vốn nhỏ, thu nhập mỗi giờ có thể rất thấp. Giá trị thật của 90 ngày đầu là kỹ năng và dữ liệu về bản thân, không phải tiền lãi. Nếu dữ liệu cho thấy bạn không có lợi thế, thời gian đó nên dành cho công việc chính và DCA.' },
       { type: 'figure', name: 'dca', caption: 'DCA: mua cùng một số tiền theo định kỳ. Giá vốn trung bình tự điều chỉnh theo giá thị trường, không cần canh điểm vào, không cần nhìn biểu đồ mỗi ngày.' },
-      { type: 'scenario', title: 'Ngày 90: dữ liệu không như mong muốn', setup: 'Sau 90 ngày, người học có 35 lệnh thật, tuân thủ 72%, kỳ vọng −0,1R. Các lệnh thua lớn nhất đều là lệnh phá quy tắc.', bad: 'Người thứ nhất nghĩ "chỉ cần hệ thống tốt hơn". Anh bỏ hệ thống, mua một khóa "tín hiệu VIP", tăng đòn bẩy để gỡ nhanh. Sáu tháng sau tài khoản còn một nửa.', good: 'Người thứ hai đọc dữ liệu: vấn đề không phải hệ thống mà là tuân thủ. Cô chọn hoặc quay về giai đoạn giấy 30 ngày chỉ để luyện tuân thủ, hoặc dừng trading chủ động. Cô chọn cách thứ hai: đặt lệnh DCA hằng tháng với số tiền cố định, xóa ứng dụng futures, và dùng thời gian học thêm kỹ năng nghề chính.' },
+      { type: 'scenario', title: 'Cuối lộ trình: dữ liệu không như mong muốn', setup: 'Sau khoảng một năm theo lộ trình, người học có 35 lệnh thật, tuân thủ 72%, kỳ vọng −0,1R. Các lệnh thua lớn nhất đều là lệnh phá quy tắc.', bad: 'Người thứ nhất nghĩ "chỉ cần hệ thống tốt hơn". Anh bỏ hệ thống, mua một khóa "tín hiệu VIP", tăng đòn bẩy để gỡ nhanh. Sáu tháng sau tài khoản còn một nửa.', good: 'Người thứ hai đọc dữ liệu: vấn đề không phải hệ thống mà là tuân thủ. Cô chọn hoặc quay về giai đoạn giấy 30 ngày chỉ để luyện tuân thủ, hoặc dừng trading chủ động. Cô chọn cách thứ hai: đặt lệnh DCA hằng tháng với số tiền cố định, xóa ứng dụng futures, và dùng thời gian học thêm kỹ năng nghề chính.' },
 
       { type: 'h', text: 'Pháp lý, thuế và nguồn học tiếp' },
       { type: 'callout', tone: 'risk', title: 'Khung pháp lý Việt Nam (tính đến 27/09/2026)', text: 'Nghị quyết 05/2025/NQ-CP thí điểm thị trường tài sản mã hóa 5 năm: giao dịch phải bằng Đồng Việt Nam qua tổ chức được Bộ Tài chính cấp phép, và nghị quyết <strong>không nhắc đến giao dịch phái sinh/hợp đồng tương lai</strong>. Nghị định 284/2026/NĐ-CP (hiệu lực 01/09/2026) quy định phạt 30–50 triệu đồng với nhà đầu tư trong nước giao dịch không qua tổ chức được cấp phép; theo Ủy ban Chứng khoán Nhà nước, mức phạt áp dụng sau 6 tháng kể từ khi sàn đầu tiên được cấp phép. Thông tư 32/2026/TT-BTC: thuế TNCN 0,1% trên giá chuyển nhượng từng lần qua tổ chức cung cấp dịch vụ. Khung pháp lý thay đổi nhanh; kiểm tra văn bản mới nhất trên cổng thông tin Chính phủ và Ủy ban Chứng khoán Nhà nước. Khóa học không phải tư vấn pháp lý.' },
@@ -426,25 +429,26 @@ const lessons = {
         'Mọi thay đổi hệ thống phải test lại; mọi lệnh phải ghi nhật ký.',
         'Nếu dữ liệu nói bạn không có lợi thế, hãy tin dữ liệu và chuyển sang DCA.'
       ] },
-      { type: 'p', text: 'Khóa học này không hứa bạn sẽ kiếm được tiền. Không ai trung thực có thể hứa điều đó. Điều khóa học cố gắng làm là giúp bạn thay tiếng nói của cảm xúc bằng quy tắc, thay niềm tin bằng dữ liệu, và giữ tài khoản sống đủ lâu để biết sự thật về chính mình. Nếu sau 90 ngày bạn kết luận rằng DCA hợp với mình hơn, khóa học đã thành công, vì bạn đã tránh được những năm thua lỗ mà nhiều người phải trải qua trước khi hiểu ra. Chúc bạn giao dịch có kỷ luật, và biết dừng đúng lúc.' }
+      { type: 'p', text: 'Khóa học này không hứa bạn sẽ kiếm được tiền. Không ai trung thực có thể hứa điều đó. Điều khóa học cố gắng làm là giúp bạn thay tiếng nói của cảm xúc bằng quy tắc, thay niềm tin bằng dữ liệu, và giữ tài khoản sống đủ lâu để biết sự thật về chính mình. Nếu cuối lộ trình bạn kết luận rằng DCA hợp với mình hơn, khóa học đã thành công, vì bạn đã tránh được những năm thua lỗ mà nhiều người phải trải qua trước khi hiểu ra. Chúc bạn giao dịch có kỷ luật, và biết dừng đúng lúc.' }
     ],
     keyPoints: [
-      'Lộ trình 90 ngày: 30 ngày giấy, 30 ngày tiền nhỏ (rủi ro 0,25–0,5%), 30 ngày đánh giá; mỗi cửa có tiêu chí bằng số.',
-      'Tiêu chí mẫu: ≥ 100 lệnh backtest, ≥ 50 lệnh giấy, tuân thủ ≥ 90%, kỳ vọng sau chi phí dương; thiếu số lệnh thì kéo dài, không hạ chuẩn.',
-      'Dừng trading chủ động khi kỳ vọng ≤ 0 sau 100 lệnh thật, tuân thủ < 80% hai tháng liền, sụt giảm > 15%, hoặc giao dịch ảnh hưởng cuộc sống.',
+      'Lộ trình tối thiểu 90 ngày: giấy, tiền nhỏ (rủi ro 0,25–0,5%), đánh giá; mỗi cửa có tiêu chí bằng số và tính theo số lệnh, nên với hệ thống D1/H4 thường mất 9–12 tháng.',
+      'Hệ thống mẫu 7.1 đã trượt backtest; giai đoạn 1 là tự thiết kế hệ thống hoặc forward test một ứng viên như Turtle 55/20, vốn chưa đạt chuẩn.',
+      'Tiêu chí mẫu: ≥ 100 lệnh backtest, ≥ 30 lệnh demo, tuân thủ ≥ 90%, kỳ vọng sau chi phí ≥ +0,15R; thiếu số lệnh thì kéo dài, không hạ chuẩn.',
+      'Dừng trading chủ động khi kỳ vọng ≤ 0 sau 100 lệnh thật, tuân thủ < 80% hai tháng liền, sụt 20% từ đỉnh hoặc vượt rõ mức sụt tối đa của backtest, hoặc giao dịch ảnh hưởng cuộc sống.',
       'DCA là lựa chọn hợp lý, không phải thất bại; thời gian của bạn cũng có giá.',
       'Pháp lý VN đang thay đổi: giao dịch qua tổ chức được cấp phép, thuế TNCN 0,1% mỗi lần chuyển nhượng, phái sinh chưa được đề cập.'
     ],
     practice: [
-      'Chép bảng lộ trình 90 ngày vào lịch của bạn, ghi ngày bắt đầu và ngày kiểm tra cuối mỗi giai đoạn, kèm tiêu chí bằng số.',
+      'Chép bảng lộ trình vào lịch của bạn, ghi ngày bắt đầu và ngày kiểm tra cuối mỗi giai đoạn, kèm tiêu chí bằng số.',
       'Tạo bảng theo dõi tuần với các cột: số lệnh, tỷ lệ tuân thủ, tổng R, chuỗi thua dài nhất, sụt giảm tối đa.',
       'Viết sẵn "kế hoạch B": số tiền DCA hằng tháng, ngày mua, và điều kiện cụ thể khiến bạn chuyển sang kế hoạch này.',
       'Chọn một cuốn sách trong danh sách và đặt mục tiêu đọc xong trong giai đoạn 1.'
     ],
     quiz: [
-      { q: 'Sau 30 ngày giấy, bạn có 110 lệnh backtest, 28 lệnh demo, tuân thủ 85%, kỳ vọng +0,2R. Bạn nên làm gì?', options: ['Ở lại giai đoạn giấy, vì tuân thủ 85% chưa đạt mức 90%', 'Chuyển sang tiền thật vì kỳ vọng dương', 'Chuyển sang tiền thật với rủi ro 1% luôn', 'Đổi hệ thống khác vì chưa hoàn hảo'], answer: 0, explain: 'Phải đạt tất cả tiêu chí. Số lệnh và kỳ vọng đạt, nhưng tuân thủ 85% dưới 90%. Kỳ vọng dương khi bạn không làm đúng quy tắc không đáng tin. Đổi hệ thống không giải quyết vấn đề tuân thủ.' },
+      { q: 'Kết thúc giai đoạn giấy, bạn có 110 lệnh backtest, 34 lệnh demo, tuân thủ 85%, kỳ vọng +0,2R. Bạn nên làm gì?', options: ['Ở lại giai đoạn giấy, vì tuân thủ 85% chưa đạt mức 90%', 'Chuyển sang tiền thật nhỏ vì kỳ vọng dương và đủ số lệnh', 'Chuyển sang tiền thật với rủi ro 1% luôn cho đỡ mất thời gian', 'Đổi sang hệ thống khác vì hệ thống này vẫn chưa hoàn hảo'], answer: 0, explain: 'Phải đạt tất cả tiêu chí. Số lệnh và kỳ vọng đạt, nhưng tuân thủ 85% dưới 90%. Kỳ vọng dương khi bạn không làm đúng quy tắc không đáng tin. Đổi hệ thống không giải quyết vấn đề tuân thủ.' },
       { q: 'Vốn 20 triệu đồng, lãi ròng 3% sau 90 ngày, mỗi ngày dành 1 giờ. Thu nhập mỗi giờ khoảng bao nhiêu?', options: ['66.667 đồng', '600.000 đồng', '6.667 đồng', '222 đồng'], answer: 2, explain: '20.000.000 × 3% = 600.000 đồng; 600.000 ÷ 90 giờ ≈ 6.667 đồng/giờ. 600.000 là tổng lãi, 66.667 là chia cho 9 giờ, 222 là chia nhầm cho 2.700.' },
-      { q: 'Trường hợp nào là dấu hiệu rõ ràng nên dừng trading chủ động và chuyển sang DCA?', options: ['Thua 4 lệnh liên tiếp trong tuần đầu', 'Sau 120 lệnh thật, kỳ vọng sau chi phí là −0,05R và tuân thủ dưới 80% hai tháng liền', 'Thị trường đi ngang một tháng', 'Một lệnh thắng nhưng phá quy tắc'], answer: 1, explain: 'Mẫu đủ lớn (trên 100 lệnh) với kỳ vọng âm và tuân thủ kém kéo dài là bằng chứng rõ ràng. Chuỗi 4 thua là bình thường về thống kê. Thị trường đi ngang một tháng chỉ cần đứng ngoài. Một lệnh phá quy tắc cần rút kinh nghiệm, chưa đủ để dừng hẳn.' },
+      { q: 'Trường hợp nào là dấu hiệu rõ ràng nên dừng trading chủ động và chuyển sang DCA?', options: ['Thua 4 lệnh liên tiếp ngay trong tuần đầu dùng tiền thật', 'Sau 120 lệnh thật, kỳ vọng −0,05R, tuân thủ dưới 80% hai tháng', 'Thị trường đi ngang suốt một tháng, hệ thống gần như không có lệnh', 'Có một lệnh thắng lớn nhưng lệnh đó phá quy tắc dừng lỗ'], answer: 1, explain: 'Mẫu đủ lớn (trên 100 lệnh) với kỳ vọng âm và tuân thủ kém kéo dài là bằng chứng rõ ràng. Chuỗi 4 thua là bình thường về thống kê. Thị trường đi ngang một tháng chỉ cần đứng ngoài. Một lệnh phá quy tắc cần rút kinh nghiệm, chưa đủ để dừng hẳn.' },
       { q: 'Theo Thông tư 32/2026/TT-BTC, cá nhân bán tài sản mã hóa trị giá 50 triệu đồng qua tổ chức cung cấp dịch vụ nộp thuế TNCN bao nhiêu?', options: ['5.000.000 đồng (10%)', '500.000 đồng (1%)', '0 đồng', '50.000 đồng (0,1%)'], answer: 3, explain: 'Thuế TNCN là 0,1% trên giá chuyển nhượng từng lần: 50.000.000 × 0,1% = 50.000 đồng. 10% và 1% là tỷ lệ sai. Không phải 0 vì thuế tính trên từng lần chuyển nhượng, kể cả khi lỗ.' }
     ],
     sources: [

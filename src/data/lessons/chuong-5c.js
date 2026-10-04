@@ -15,7 +15,7 @@ const lessons = {
       { type: 'p', text: 'Cách duy nhất chống lại phản xạ này là quyết định trước, lúc còn bình tĩnh. Nếu một quy tắc cần bạn "cân nhắc tùy tình huống", nó không phải quy tắc. Quy tắc tốt phải có con số và có điều kiện rõ ràng để kiểm tra được: đúng hoặc sai.' },
       { type: 'callout', tone: 'risk', title: 'Thực tế về người trade nhỏ lẻ', text: 'ESMA (2018) ghi nhận 74–89% tài khoản nhà đầu tư nhỏ lẻ giao dịch CFD thua lỗ. Nghiên cứu "Day Trading for a Living?" (2019) cho thấy 97% người kiên trì day trade hợp đồng tương lai ở Brazil hơn 300 ngày bị lỗ. Futures crypto có đòn bẩy cao hơn và chạy 24/7. Bộ quy tắc không đảm bảo bạn thắng, nó chỉ giúp bạn sống sót đủ lâu để học.' },
 
-      { type: 'h', text: 'Bộ quy tắc mẫu: 12 điều có con số' },
+      { type: 'h', text: 'Bộ quy tắc mẫu: 13 điều có con số' },
       { type: 'p', text: 'Dưới đây là một bộ quy tắc mẫu cho người mới đến trung cấp, tài khoản giả định 1.000 USDT. Bạn có thể chỉnh con số cho hợp với mình, nhưng chỉ chỉnh vào cuối tuần, khi không có lệnh mở, và theo hướng an toàn hơn nếu đang thua.' },
       { type: 'table', head: ['#', 'Quy tắc', 'Con số mẫu'], rows: [
         ['1', 'Rủi ro tối đa mỗi lệnh (1R)', '0,5–1% vốn (5–10 USDT với tài khoản 1.000 USDT)'],
@@ -27,9 +27,10 @@ const lessons = {
         ['7', 'Lỗ tối đa trong tuần', '5R thì nghỉ đến tuần sau'],
         ['8', 'Số lệnh tối đa mỗi ngày', '3 lệnh (kể cả lệnh hòa vốn)'],
         ['9', 'Thua 2 lệnh liên tiếp', 'Dừng trong ngày, dù chưa chạm 2R'],
-        ['10', 'Tin vĩ mô lớn (CPI, FOMC)', 'Không mở lệnh mới trong 30 phút trước và 30 phút sau giờ công bố'],
+        ['10', 'Tin vĩ mô lớn (CPI, FOMC, NFP)', 'Không mở lệnh mới trong 30 phút trước và 30 phút sau giờ công bố'],
         ['11', 'Vị thế mở cùng lúc', 'Tối đa 2, tổng rủi ro mở không quá 2R'],
-        ['12', 'Không bao giờ dời dừng lỗ ra xa, không nhồi thêm vào lệnh đang lỗ', 'Không có ngoại lệ']
+        ['12', 'Không bao giờ dời dừng lỗ ra xa, không nhồi thêm vào lệnh đang lỗ', 'Không có ngoại lệ'],
+        ['13', 'Drawdown tài khoản (sụt từ đỉnh vốn)', 'Sụt 10%: giảm rủi ro mỗi lệnh còn một nửa; sụt 20%: dừng tiền thật, quay lại demo và rà soát (bài 6.3)']
       ] },
       { type: 'p', text: '<strong>Quy tắc 1 và 2: rủi ro nhỏ và đòn bẩy thật thấp.</strong> Với rủi ro 1% mỗi lệnh, 10 lệnh thua liên tiếp chỉ làm vốn giảm khoảng 9,6% (0,99<sup>10</sup> ≈ 0,904). Với rủi ro 5%, cùng chuỗi đó làm mất khoảng 40%, và bạn cần lãi khoảng 67% mới về lại vốn cũ. Đòn bẩy thật 3x có nghĩa: tổng giá trị danh nghĩa các vị thế không quá 3.000 USDT khi vốn là 1.000 USDT.' },
       { type: 'p', text: '<strong>Quy tắc 3: đòn bẩy trên thanh trượt khác đòn bẩy thật.</strong> Con số 20x hay 50x trên sàn chỉ quyết định bạn phải khóa bao nhiêu ký quỹ và giá thanh lý nằm ở đâu. Khối lượng lệnh phải được tính từ khoảng cách dừng lỗ, không từ thanh trượt. Để thanh trượt ở mức 5x–10x giúp giá thanh lý nằm rất xa dừng lỗ. Lưu ý thêm: theo Binance, từ ngày 7/12/2025 tài khoản futures mới mở trong 30 ngày đầu không được dùng đòn bẩy trên 20x.' },
@@ -113,15 +114,15 @@ const lessons = {
       'Luyện quy trình trên Binance Demo Trading trước, ghi lại mọi lần phạm quy tắc'
     ],
     practice: [
-      'Chép bảng 12 quy tắc ra giấy hoặc ghi chú điện thoại, điền con số của riêng bạn, ký tên và ngày. Dán cạnh màn hình.',
+      'Chép bảng 13 quy tắc ra giấy hoặc ghi chú điện thoại, điền con số của riêng bạn, ký tên và ngày. Dán cạnh màn hình.',
       'Trên Binance Demo Trading, đặt sẵn One-Way và Isolated, rồi mở 3 lệnh BTCUSDT theo đúng 10 bước; chụp màn hình tab Positions để xác nhận SL và TP đã hiện.',
       'Tra lịch CPI và FOMC tháng tới, ghi các khung giờ cấm mở lệnh theo giờ Việt Nam vào lịch điện thoại.',
       'Với vốn của bạn, tính khối lượng cho một lệnh long ETH giả định vào 3.000, dừng lỗ 2.940, rủi ro 1%; kiểm tra đòn bẩy thật.'
     ],
     quiz: [
       { q: 'Vốn 1.000 USDT, rủi ro 1%. Long BTC tại 80.000, dừng lỗ 79.600. Khối lượng đúng và đòn bẩy thật là bao nhiêu?', options: ['0,0125 BTC, khoảng 1x', '0,025 BTC, 2x', '0,25 BTC, 20x', '0,0025 BTC, 0,2x'], answer: 1, explain: 'Khoảng cách dừng lỗ 400 USDT. Khối lượng = 10 ÷ 400 = 0,025 BTC, danh nghĩa 2.000 USDT, đòn bẩy thật 2x (dưới 3x). 0,0125 BTC là tính với rủi ro 0,5%. 0,25 BTC là rủi ro 100 USDT (10%). 0,0025 BTC là tính sai một chữ số.' },
-      { q: 'Bạn đã thua 2 lệnh liên tiếp hôm nay, tổng −1,8R. Một setup rất đẹp xuất hiện. Theo bộ quy tắc mẫu, bạn làm gì?', options: ['Vào lệnh với rủi ro 0,2R để không vượt 2R', 'Vào lệnh bình thường vì chưa chạm 2R', 'Không vào, dừng giao dịch trong ngày vì đã thua 2 lệnh liên tiếp', 'Vào lệnh gấp đôi khối lượng để gỡ'], answer: 2, explain: 'Quy tắc 9 độc lập với quy tắc 2R: thua 2 lệnh liên tiếp là dừng trong ngày. Vào lệnh "bình thường" hay "nhỏ để vừa giới hạn" đều là tìm cách lách luật. Gấp đôi khối lượng là trả thù thị trường, vi phạm nặng nhất.' },
-      { q: 'Vì sao nên chuyển sang Isolated và đặt đòn bẩy TRƯỚC khi vào lệnh trên Binance?', options: ['Vì Isolated luôn có phí thấp hơn Cross', 'Vì Binance không cho đổi chế độ ký quỹ khi đang có vị thế hoặc lệnh chờ, và không cho giảm đòn bẩy của vị thế isolated đang mở', 'Vì Isolated đảm bảo không bao giờ bị thanh lý', 'Vì đòn bẩy cao hơn làm lệnh khớp nhanh hơn'], answer: 1, explain: 'Theo tài liệu Binance, chế độ ký quỹ không đổi được khi có lệnh chờ hoặc vị thế, và vị thế isolated đang mở không giảm được đòn bẩy. Isolated không giảm phí, vẫn có thể bị thanh lý (chỉ giới hạn mất trong ký quỹ của vị thế), và đòn bẩy không ảnh hưởng tốc độ khớp.' },
+      { q: 'Bạn đã thua 2 lệnh liên tiếp hôm nay, tổng −1,8R. Một setup rất đẹp xuất hiện. Theo bộ quy tắc mẫu, bạn làm gì?', options: ['Vào lệnh với rủi ro 0,2R để không vượt 2R', 'Vào lệnh bình thường vì chưa chạm 2R', 'Không vào: thua 2 lệnh liên tiếp là dừng', 'Vào lệnh gấp đôi khối lượng để gỡ lại'], answer: 2, explain: 'Quy tắc 9 độc lập với quy tắc 2R: thua 2 lệnh liên tiếp là dừng trong ngày. Vào lệnh "bình thường" hay "nhỏ để vừa giới hạn" đều là tìm cách lách luật. Gấp đôi khối lượng là trả thù thị trường, vi phạm nặng nhất.' },
+      { q: 'Vì sao nên chuyển sang Isolated và đặt đòn bẩy TRƯỚC khi vào lệnh trên Binance?', options: ['Vì Isolated luôn có phí thấp hơn Cross', 'Vì đang có lệnh thì không đổi được nữa', 'Vì Isolated bảo đảm không bị thanh lý', 'Vì đòn bẩy cao giúp lệnh khớp nhanh hơn'], answer: 1, explain: 'Theo tài liệu Binance, chế độ ký quỹ không đổi được khi có lệnh chờ hoặc vị thế, và vị thế isolated đang mở không giảm được đòn bẩy. Isolated không giảm phí, vẫn có thể bị thanh lý (chỉ giới hạn mất trong ký quỹ của vị thế), và đòn bẩy không ảnh hưởng tốc độ khớp.' },
       { q: 'CPI Mỹ công bố 8:30 sáng giờ miền Đông, đang là giờ mùa hè. Theo quy tắc 30 phút, bạn không mở lệnh mới trong khung giờ Việt Nam nào?', options: ['07:00–08:00', '20:00–21:00', '01:00–02:00', '19:00–20:00'], answer: 3, explain: 'Giờ mùa hè (EDT) CPI ra lúc 19:30 giờ Việt Nam, nên cấm từ 19:00 đến 20:00. 20:00–21:00 đúng cho giờ mùa đông (CPI 20:30). 01:00–02:00 là quanh giờ FOMC. 07:00 là một mốc funding, không phải giờ CPI.' }
     ],
     sources: [
@@ -137,7 +138,7 @@ const lessons = {
   },
 
   'c5-b10': {
-    duration: 11,
+    duration: 12,
     level: 'Trung cấp',
     summary: 'Mười cách cháy tài khoản futures phổ biến nhất, mỗi cách kèm ví dụ số cho thấy tài khoản mất bao nhiêu và một quy tắc cụ thể để phòng tránh.',
     goals: [
@@ -148,7 +149,7 @@ const lessons = {
     ],
     blocks: [
       { type: 'h', text: 'Tài khoản không cháy trong một lệnh, nó cháy trong một thói quen' },
-      { type: 'p', text: 'Ngày 10/10/2025, sau thông báo thuế quan 100% với hàng nhập khẩu Trung Quốc, thị trường crypto chứng kiến đợt thanh lý lớn nhất lịch sử: theo CoinGecko, hơn 19 tỷ USD vị thế đòn bẩy bị thanh lý trong 24 giờ, hơn 1,6 triệu tài khoản bị thanh lý. Khoảng 70% số thanh lý đó diễn ra chỉ trong 40 phút. BTC giảm từ khoảng 122.574 xuống 104.782 USD (khoảng 14,5%), một số altcoin có lúc mất hơn 40%.' },
+      { type: 'p', text: 'Ngày 10/10/2025, sau thông báo thuế quan 100% với hàng nhập khẩu Trung Quốc, thị trường crypto chứng kiến đợt thanh lý lớn nhất lịch sử: theo CoinGecko, hơn 19 tỷ USD vị thế đòn bẩy bị thanh lý trong 24 giờ, hơn 1,6 triệu tài khoản bị thanh lý. Theo dữ liệu của Amberdata, khoảng 6,93 tỷ USD bị thanh lý chỉ trong 40 phút (20:50–21:30 giờ UTC), khoảng 70% tổng số thanh lý mà Amberdata theo dõi. BTC giảm từ đỉnh khoảng 122.574 USD trong ngày 10/10 xuống 104.782 USD khi đợt bán tháo lắng xuống sang ngày 11/10 (khoảng 14,5%); một số altcoin như SOL có lúc mất hơn 40%.' },
       { type: 'p', text: 'Những ngày như thế không tạo ra lỗi mới. Chúng chỉ phơi bày các thói quen xấu đã tồn tại từ trước: đòn bẩy quá cao, không có dừng lỗ, dùng cross toàn ví, hay nhồi thêm vào lệnh đang lỗ. Bài này đi qua 10 thói quen đó. Mỗi thói quen có một ví dụ số (giả định) và một quy tắc để chặn nó.' },
       { type: 'figure', name: 'drawdown-recovery', caption: 'Lỗ càng sâu, mức lãi cần để hoà vốn càng tăng rất nhanh: lỗ 50% cần lãi 100%, lỗ 90% cần lãi 900%.' },
       { type: 'calc', title: 'Toán của sự sụt vốn', rows: [
@@ -223,7 +224,7 @@ const lessons = {
       'Martingale và nhồi lệnh thua tạo nhiều lần thắng nhỏ rồi một lần thua lớn hơn tất cả; ví dụ nhồi 4 lần gấp đôi cháy tài khoản chỉ với cú giảm 14%',
       'Dời dừng lỗ ra xa có thể biến kỳ vọng +0,2R thành −0,4R mỗi lệnh',
       'Trả thù, trade tin, copy trade mù và all-in sau chuỗi thắng đều là lỗi cảm xúc; chặn bằng quy tắc có con số, không bằng ý chí',
-      'Ngày 10/10/2025 hơn 19 tỷ USD vị thế bị thanh lý trong 24 giờ, hơn 1,6 triệu tài khoản: thị trường có thể giảm 14% trong vài giờ'
+      'Ngày 10/10/2025 hơn 19 tỷ USD vị thế bị thanh lý trong 24 giờ, hơn 1,6 triệu tài khoản: BTC giảm khoảng 14,5% từ đỉnh xuống đáy trong chưa đầy một ngày'
     ],
     practice: [
       'Xem lại 20 lệnh gần nhất (thật hoặc Demo), đánh dấu mỗi lệnh phạm lỗi nào trong 10 lỗi. Lỗi xuất hiện nhiều nhất là thứ bạn sửa trong tháng này.',
@@ -233,11 +234,12 @@ const lessons = {
     quiz: [
       { q: 'Tài khoản lỗ 40%. Cần lãi bao nhiêu phần trăm trên số vốn còn lại để hoà vốn?', options: ['40%', 'Khoảng 66,7%', '60%', 'Khoảng 28,6%'], answer: 1, explain: 'Còn 60% vốn, cần 1 ÷ 0,6 − 1 ≈ 66,7%. 40% là ngộ nhận phổ biến rằng lỗ bao nhiêu lãi bấy nhiêu là đủ. 60% nhầm với phần vốn còn lại. 28,6% là tính ngược chiều (0,4 ÷ 1,4).' },
       { q: 'Hệ thống thắng 40%, thắng 2R, thua 1R. Bạn có thói quen dời SL khiến một nửa số lệnh thua thành lỗ 3R. Kỳ vọng mỗi lệnh là bao nhiêu?', options: ['+0,2R', '0R', '−0,4R', '−1R'], answer: 2, explain: '0,4 × 2 − 0,3 × 1 − 0,3 × 3 = 0,8 − 0,3 − 0,9 = −0,4R. +0,2R là kỳ vọng gốc khi không dời SL. 0R và −1R không khớp với phép tính.' },
-      { q: 'Ví futures 2.000 USDT ở Cross, 3 lệnh long altcoin mỗi lệnh danh nghĩa 4.000 USDT. Cả ba cùng giảm 20%. Điều gì nhiều khả năng xảy ra?', options: ['Chỉ lệnh lỗ nhất bị thanh lý, hai lệnh còn lại an toàn', 'Không sao vì Cross dùng chung ký quỹ nên chịu được lâu hơn', 'Tài khoản lỗ 20% tức 400 USDT', 'Tổng lỗ khoảng 2.400 USDT vượt số dư, toàn bộ ví bị thanh lý và mọi lệnh chờ bị hủy'], answer: 3, explain: 'Tổng danh nghĩa 12.000 × 20% = 2.400 USDT, lớn hơn cả ví 2.000, nên cả ví bị thanh lý (thực tế xảy ra sớm hơn, quanh mức giảm khoảng 16–17%). Ở Cross, các vị thế dùng chung ký quỹ nên kéo nhau cùng chết; lỗ tính trên danh nghĩa, không trên số dư.' },
-      { q: 'Sau 5 lệnh thắng liên tiếp, cách xử lý nào đúng với bộ quy tắc kỷ luật?', options: ['Giữ nguyên % rủi ro mỗi lệnh; chỉ xem xét điều chỉnh vào cuối tuần theo dữ liệu', 'Tăng đòn bẩy lên 20x vì đang có phong độ', 'Dùng toàn bộ lợi nhuận làm ký quỹ cho lệnh tiếp theo', 'Bỏ SL cho lệnh tiếp vì xác suất thắng đang cao'], answer: 0, explain: 'Chuỗi thắng không làm lệnh sau có xác suất thắng cao hơn. Tăng đòn bẩy, all-in lợi nhuận hay bỏ SL đều là lỗi 10 (all-in sau chuỗi thắng) và lỗi 2 (không dừng lỗ), có thể xóa sạch lợi nhuận cả tháng trong một lệnh.' }
+      { q: 'Ví futures 2.000 USDT ở Cross, 3 lệnh long altcoin mỗi lệnh danh nghĩa 4.000 USDT. Cả ba cùng giảm 20%. Điều gì nhiều khả năng xảy ra?', options: ['Chỉ lệnh lỗ nhất bị thanh lý, hai lệnh kia an toàn', 'Không sao, Cross dùng chung ký quỹ nên chịu lâu hơn', 'Tài khoản chỉ lỗ 20% số dư, tức khoảng 400 USDT', 'Lỗ 2.400 USDT vượt số dư, cả ví bị thanh lý'], answer: 3, explain: 'Tổng danh nghĩa 12.000 × 20% = 2.400 USDT, lớn hơn cả ví 2.000, nên cả ví bị thanh lý (thực tế xảy ra sớm hơn, quanh mức giảm khoảng 16–17%) và mọi lệnh chờ bị hủy. Ở Cross, các vị thế dùng chung ký quỹ nên kéo nhau cùng chết; lỗ tính trên danh nghĩa, không trên số dư.' },
+      { q: 'Sau 5 lệnh thắng liên tiếp, cách xử lý nào đúng với bộ quy tắc kỷ luật?', options: ['Giữ nguyên % rủi ro, chỉnh vào cuối tuần', 'Tăng đòn bẩy lên 20x vì đang có phong độ', 'Dùng toàn bộ lợi nhuận làm ký quỹ lệnh sau', 'Bỏ SL lệnh sau vì xác suất thắng đang cao'], answer: 0, explain: 'Chuỗi thắng không làm lệnh sau có xác suất thắng cao hơn; % rủi ro chỉ được điều chỉnh vào cuối tuần theo dữ liệu. Tăng đòn bẩy, all-in lợi nhuận hay bỏ SL đều là lỗi 10 (all-in sau chuỗi thắng) và lỗi 2 (không dừng lỗ), có thể xóa sạch lợi nhuận cả tháng trong một lệnh.' }
     ],
     sources: [
       { title: 'October 10 Crypto Crash Explained', url: 'https://www.coingecko.com/learn/october-10-crypto-crash-explained', note: 'CoinGecko, 2025, tiếng Anh' },
+      { title: 'How $3.21B Vanished in 60 Seconds: October 2025 Crypto Crash Explained Through 7 Charts', url: 'https://blog.amberdata.io/how-3.21b-vanished-in-60-seconds-october-2025-crypto-crash-explained-through-7-charts', note: 'Amberdata, 2025: 6,93 tỷ USD thanh lý trong 40 phút, tiếng Anh' },
       { title: 'Binance Futures Liquidation Protocols', url: 'https://www.binance.com/en/support/faq/detail/360033525271', note: 'Binance Support, tiếng Anh' },
       { title: 'The Cross-Section of Speculator Skill: Evidence from Day Trading', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=529063', note: 'Barber, Lee, Liu, Odean, Journal of Financial Markets 2014, tiếng Anh' },
       { title: 'Crypto shocks and retail losses (BIS Bulletin 69)', url: 'https://www.bis.org/publ/bisbull69.pdf', note: 'BIS, 2023, tiếng Anh' },
@@ -334,7 +336,7 @@ const lessons = {
         '<strong>Sàn sụp đổ:</strong> cả hai chân thường nằm trên cùng một sàn. FTX sụp đổ tháng 11/2022; SEC sau đó cáo buộc tiền của khách hàng FTX bị chuyển sang Alameda Research. Delta-neutral không bảo vệ bạn khỏi rủi ro đối tác: sàn mất thì cả hai chân cùng mất.',
         '<strong>Thanh lý chân short khi giá tăng mạnh:</strong> spot lãi nhưng nằm ở ví khác, chân short có thể bị thanh lý trước khi bạn kịp nạp ký quỹ. Khi đó bạn chỉ còn một chân long trần, không còn trung tính.',
         '<strong>Funding đảo chiều:</strong> Binance nêu rõ khi funding âm, người short phải trả phí thay vì nhận. Funding âm kéo dài làm chiến lược lỗ dần.',
-        '<strong>ADL (tự động giảm đòn bẩy):</strong> khi quỹ bảo hiểm không đỡ nổi, vị thế đang lãi bị đóng bớt. CoinGecko ghi nhận ngày 10/10/2025 nhiều vị thế delta-neutral của market maker bị ADL đóng mất chân short đang lãi, để lại chân long lỗ không được bù.',
+        '<strong>ADL (tự động giảm đòn bẩy):</strong> khi quỹ bảo hiểm không đỡ nổi, vị thế đang lãi bị đóng bớt. CoinGecko ghi nhận trong đợt sập 10/10/2025, nhiều vị thế delta-neutral của market maker và trader chuyên nghiệp bị ADL đóng mất chân short đang lãi, để lại chân long lỗ không được bù.',
         '<strong>Chênh lệch giá cực đoan:</strong> trong biến động mạnh, giá perpetual có thể lệch xa spot, gây lỗ tạm thời trên chân futures đủ lớn để đe dọa ký quỹ.'
       ] },
       { type: 'callout', tone: 'risk', title: '"Không rủi ro" là tín hiệu cảnh báo', text: 'Bất kỳ sản phẩm nào gọi funding arbitrage là "lãi chắc chắn" đều đang bỏ qua rủi ro sàn, thanh lý, funding đảo chiều và ADL. Hiểu cơ chế để đọc thị trường là đủ; đừng dồn phần lớn tài sản vào một sàn để "ăn funding".' },
@@ -348,7 +350,7 @@ const lessons = {
         ['Đòn bẩy thật lúc này', '9.450 ÷ 1.000 ≈ 9,5x'],
         ['Giá xuống 68.000 (−15% từ 80.000)', 'Lỗ 0,125 × (75.600 − 68.000) = 950 USDT, gần như cháy tài khoản']
       ], result: 'Một đợt giảm 15% xóa đi thành quả của khoảng 95 ô lưới thắng. Grid không có dừng lỗ về bản chất là martingale chậm: càng giảm càng mua thêm.' },
-      { type: 'p', text: 'Martingale với đòn bẩy còn nhanh hơn: nhồi gấp đôi sau mỗi lần giảm. Như bài 5.10 đã tính, nhồi 4 lần gấp đôi mỗi 2.000 USDT từ 80.000 dẫn tới đòn bẩy thật khoảng 11,3x và cháy tài khoản khi BTC giảm khoảng 14%. Ngày 10/10/2025, BTC giảm khoảng 14,5% trong một ngày. Chiến lược này không cần xác suất thấp để thất bại; nó chỉ cần một ngày tồi tệ.' },
+      { type: 'p', text: 'Martingale với đòn bẩy còn nhanh hơn: nhồi gấp đôi sau mỗi lần giảm. Như bài 5.10 đã tính, nhồi 4 lần gấp đôi mỗi 2.000 USDT từ 80.000 dẫn tới đòn bẩy thật khoảng 11,3x và cháy tài khoản khi BTC giảm khoảng 14%. Trong đợt sập 10–11/10/2025, BTC giảm khoảng 14,5% từ đỉnh xuống đáy. Chiến lược này không cần xác suất thấp để thất bại; nó chỉ cần một ngày tồi tệ.' },
       { type: 'scenario', title: 'Đang giữ spot, thị trường có dấu hiệu yếu', setup: 'Bạn giữ 0,5 BTC spot mua giá 80.000. D1 bắt đầu tạo đỉnh thấp hơn, tuần sau có FOMC. Một nhóm chat rủ chạy bot grid long 20x để "tận dụng biến động".', bad: 'Trader cảm tính chạy grid long 20x bằng 2.000 USDT trong ví futures, đồng thời vẫn giữ nguyên spot không kế hoạch. Giá giảm 15% sau FOMC: grid mua đầy các tầng và bị thanh lý, spot lỗ 6.000 USDT. Họ lỗ cả hai nơi, cùng một chiều.', good: 'Trader có kế hoạch viết rõ: hedge 50% bằng short 0,25 BTC perpetual, Isolated 2x, gỡ hedge khi D1 lấy lại đỉnh gần nhất hoặc sau 3 tuần. Giá giảm 15%: spot −6.000, short +3.000, ròng −3.000. Không grid, không nhồi lệnh. Khi xu hướng giảm được xác nhận, họ xem xét thêm lệnh short riêng với rủi ro 0,5%, SL trên đỉnh cấu trúc.' },
       { type: 'callout', tone: 'tip', title: 'Luyện trước trên Demo Trading', text: 'Thử mở một cặp hedge (long và short) và một lệnh short có SL trên Binance Demo Trading. Quan sát giá thanh lý của chân short thay đổi thế nào khi bạn đổi đòn bẩy trên thanh trượt.' }
     ],
@@ -367,8 +369,8 @@ const lessons = {
     quiz: [
       { q: 'Vốn 1.000 USDT, rủi ro 0,5%. Short BTC tại 80.000, đỉnh cấu trúc 80.900, bạn đặt SL 81.000. Khối lượng đúng là bao nhiêu?', options: ['0,0025 BTC', '0,0556 BTC', '0,005 BTC', '0,05 BTC'], answer: 2, explain: 'Rủi ro 5 USDT, khoảng dừng lỗ 1.000 USDT → 5 ÷ 1.000 = 0,005 BTC. 0,0025 là tính với rủi ro 0,25%. 0,05 và 0,0556 là tính rủi ro 50 USDT (5%) với khoảng 1.000 và 900, sai cả rủi ro lẫn chỗ đặt SL.' },
       { q: 'Bạn giữ 1 BTC spot, short 0,5 BTC perpetual ở 80.000. Giá xuống 72.000. Lãi lỗ ròng là bao nhiêu (bỏ qua phí, funding)?', options: ['−4.000 USDT', '+4.000 USDT', '−8.000 USDT', '0 USDT'], answer: 0, explain: 'Spot lỗ 8.000, short lãi 0,5 × 8.000 = 4.000, ròng −4.000 = (1 − 0,5) × 8.000. −8.000 là không hedge. 0 chỉ đúng khi hedge 100%. +4.000 là chỉ nhìn chân short.' },
-      { q: 'Chiến lược long spot + short perpetual cùng khối lượng để nhận funding. Rủi ro nào KHÔNG được delta-neutral bảo vệ?', options: ['Giá BTC giảm 10% trong một ngày yên ả', 'Giá dao động ngang trong biên độ hẹp', 'Funding dương ổn định', 'Sàn sụp đổ, ADL đóng chân short đang lãi, hoặc chân short bị thanh lý khi giá tăng vọt'], answer: 3, explain: 'Delta-neutral chỉ bù trừ biến động giá thông thường giữa hai chân. Rủi ro đối tác (như FTX 2022), ADL (như 10/10/2025) và thanh lý chân short phá vỡ tính trung tính. Giá giảm 10% bình thường, đi ngang hay funding dương ổn định là những trường hợp chiến lược vận hành đúng.' },
-      { q: 'Vì sao grid long có đòn bẩy nguy hiểm trong xu hướng giảm?', options: ['Vì grid càng giảm càng mua thêm, tích lũy khối lượng lớn mà không có dừng lỗ, nên một đợt giảm mạnh có thể xóa kết quả của hàng chục ô lưới thắng', 'Vì grid chỉ hoạt động khi funding âm', 'Vì grid không bao giờ khớp lệnh trong xu hướng giảm', 'Vì grid luôn dùng Cross nên phí cao hơn'], answer: 0, explain: 'Grid long mua dần các tầng khi giá giảm, giống martingale chậm. Trong ví dụ, 10 tầng với 1.000 USDT cho đòn bẩy thật 9,5x, giảm 15% lỗ khoảng 950 USDT, bằng 95 ô lưới thắng. Grid không phụ thuộc funding, vẫn khớp lệnh trong xu hướng giảm (chính vì vậy mới ôm hàng), và chế độ ký quỹ không làm phí khác.' }
+      { q: 'Chiến lược long spot + short perpetual cùng khối lượng để nhận funding. Rủi ro nào KHÔNG được delta-neutral bảo vệ?', options: ['Giá BTC giảm 10% trong một ngày yên ả', 'Giá đi ngang trong biên độ hẹp nhiều tuần', 'Funding dương ổn định trong nhiều tháng', 'Sàn sụp, ADL hoặc chân short bị thanh lý'], answer: 3, explain: 'Delta-neutral chỉ bù trừ biến động giá thông thường giữa hai chân. Rủi ro đối tác (như FTX 2022), ADL (như 10/10/2025) và thanh lý chân short khi giá tăng vọt phá vỡ tính trung tính. Giá giảm 10% bình thường, đi ngang hay funding dương ổn định là những trường hợp chiến lược vận hành đúng.' },
+      { q: 'Vì sao grid long có đòn bẩy nguy hiểm trong xu hướng giảm?', options: ['Vì càng giảm càng mua thêm, không có dừng lỗ', 'Vì grid chỉ hoạt động khi funding đang âm', 'Vì grid không khớp lệnh trong xu hướng giảm', 'Vì grid luôn dùng Cross nên phí cao hơn'], answer: 0, explain: 'Grid long mua dần các tầng khi giá giảm, giống martingale chậm, tích lũy khối lượng lớn mà không có dừng lỗ. Trong ví dụ, 10 tầng với 1.000 USDT cho đòn bẩy thật 9,5x, giảm 15% lỗ khoảng 950 USDT, bằng 95 ô lưới thắng. Grid không phụ thuộc funding, vẫn khớp lệnh trong xu hướng giảm (chính vì vậy mới ôm hàng), và chế độ ký quỹ không làm phí khác.' }
     ],
     sources: [
       { title: 'What Is a Short Squeeze?', url: 'https://www.binance.com/en/academy/articles/what-is-a-short-squeeze', note: 'Binance Academy, tiếng Anh' },

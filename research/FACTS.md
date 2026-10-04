@@ -22,7 +22,7 @@ Mỗi dòng có nguồn đã mở và đọc. Dùng chung cho mọi bài để c
 - Funding: khoản thanh toán định kỳ giữa bên long và bên short của hợp đồng vĩnh cửu, để neo giá hợp đồng với giá chỉ số giao ngay. Funding dương thì long trả short; âm thì short trả long. Binance không thu phí trên funding.
 - Số tiền funding = Giá trị danh nghĩa vị thế × Funding rate (Giá trị danh nghĩa = Mark price × Khối lượng).
 - Chu kỳ mặc định 8 giờ: 00:00, 08:00, 16:00 UTC (tức 07:00, 15:00, 23:00 giờ Việt Nam). Chỉ trả/nhận nếu đang giữ vị thế tại thời điểm tính. Sàn có thể đổi chu kỳ khi biến động mạnh.
-- Funding rate = Premium Index (P) + clamp(Lãi suất − P, 0,05%, −0,05%); lãi suất mặc định 0,03%/ngày tức 0,01% mỗi 8 giờ. https://www.binance.com/en/support/faq/detail/360033525031
+- Funding rate = [Premium Index (P) + clamp(Lãi suất − P, 0,05%, −0,05%)] ÷ (8 ÷ N), N = số giờ của chu kỳ funding (chu kỳ 8 giờ thì rút gọn thành P + clamp(...)); lãi suất mặc định 0,03%/ngày tức 0,01% mỗi 8 giờ. https://www.binance.com/en/support/faq/detail/360033525031
 - Ký quỹ duy trì (maintenance margin) = Giá trị danh nghĩa × Tỷ lệ ký quỹ duy trì của bậc − Số tiền duy trì (maintenance amount) của bậc. Tỷ lệ tăng theo bậc quy mô vị thế. Ví dụ chính thức: 10 BTC × 26.000 = 260.000 USDT, bậc 3: 260.000 × 1% − 1.300 = 1.300 USDT. https://www.binance.com/en/support/faq/detail/b3c689c1f50a44cabb3a84e663b81d93
 - Chế độ isolated: chỉ số dư ký quỹ của vị thế đó chịu rủi ro. Cross: toàn bộ số dư ví futures dùng chung, lãi/lỗ các vị thế khác ảnh hưởng giá thanh lý.
 - Thanh lý dựa trên **mark price** (giá đánh dấu), không phải last price, để tránh bị thanh lý do thao túng giá tức thời.

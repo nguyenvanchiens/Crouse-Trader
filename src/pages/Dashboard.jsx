@@ -72,7 +72,7 @@ export default function Dashboard() {
             ) : (
               <div className="continue-card" style={{ '--c': 'var(--plan)' }}>
                 <span className="cc-no" aria-hidden="true">{flat.length}</span>
-                <span className="cc-body"><span className="k">Chúc mừng</span><strong>Bạn đã học xong cả khóa</strong><span className="cc-sum">Chứng nhận hoàn thành đã sẵn sàng. Bước tiếp theo là lộ trình 90 ngày ở bài 7.4.</span></span>
+                <span className="cc-body"><span className="k">Chúc mừng</span><strong>Bạn đã học xong cả khóa</strong><span className="cc-sum">Chứng nhận hoàn thành đã sẵn sàng. Bước tiếp theo là lộ trình kiểm chứng ở bài 7.4.</span></span>
               </div>
             )}
 

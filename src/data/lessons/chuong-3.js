@@ -1,11 +1,11 @@
 // Chương 3: Cơ bản, on-chain và vĩ mô
 const lessons = {
   'c3-b1': {
-    duration: 9,
+    duration: 10,
     level: 'Trung cấp',
     summary: 'Đọc tokenomics như đọc bảng cân đối: cung, lạm phát token, lịch mở khóa, FDV so với vốn hóa và doanh thu thật, để tránh những đồng coin sinh ra để xả.',
     goals: [
-      'Tính được vốn hóa, FDV và tỷ lệ cung lưu hành của một token',
+      'Dùng tỷ lệ FDV ÷ Vốn hóa và lịch mở khóa để tính mức pha loãng của một token',
       'Ước lượng áp lực bán từ một đợt mở khóa (unlock) trước khi nó xảy ra',
       'Nhận diện các dấu hiệu dự án rác và bài học từ LUNA/UST 5/2022'
     ],
@@ -23,18 +23,23 @@ const lessons = {
       { type: 'example', title: 'Lợi suất staking không phải lợi nhuận thật (số giả định)', text: 'Token ABC trả lợi suất staking 8%/năm, nhưng nguồn cung tăng 10%/năm. Sau một năm, số token của bạn nhân 1,08, còn tổng cung nhân 1,10. Tỷ trọng sở hữu của bạn = 1,08 ÷ 1,10 ≈ 0,982, tức <strong>giảm khoảng 1,8%</strong> dù bạn thấy số token tăng lên. Người không stake còn bị pha loãng nhiều hơn: tỷ trọng giảm khoảng 9,1% (1 ÷ 1,10 ≈ 0,909).' },
 
       { type: 'h', text: 'FDV và vốn hóa: khoảng cách là áp lực bán tiềm ẩn' },
-      { type: 'formula', title: 'Hai cách định giá một token', expr: 'Vốn hóa = Giá × Cung lưu hành;   FDV = Giá × Cung tối đa (hoặc tổng cung nếu không có trần)', vars: [['Vốn hóa', 'Market cap, giá trị phần token đang lưu hành'], ['FDV', 'Fully diluted valuation, định giá pha loãng hoàn toàn: giá trị nếu mọi token đều đã lưu hành']], note: 'Tỷ lệ Vốn hóa ÷ FDV cho biết bao nhiêu phần trăm nguồn cung đã ra thị trường. Tỷ lệ càng thấp, lượng token chờ mở khóa càng lớn.' },
-      { type: 'calc', title: 'Ví dụ: token XYZ mới niêm yết (toàn bộ số liệu là giả định)', rows: [
-        ['Giá hiện tại', '2 USDT'],
-        ['Cung lưu hành', '100 triệu token'],
-        ['Cung tối đa', '1 tỷ token'],
-        ['Vốn hóa', '2 × 100 triệu = 200 triệu USDT'],
-        ['FDV', '2 × 1 tỷ = 2 tỷ USDT'],
-        ['Tỷ lệ lưu hành', '100 triệu ÷ 1 tỷ = 10%'],
-        ['Nghĩa là', '90% nguồn cung (900 triệu token) còn chờ ra thị trường'],
-        ['Để giữ giá 2 USDT khi toàn bộ cung đã lưu hành', 'Thị trường phải hấp thụ thêm 900 triệu × 2 = 1,8 tỷ USDT tiền mua mới']
-      ], result: 'Vốn hóa 200 triệu trông "rẻ", nhưng bạn đang mua ở mức định giá 2 tỷ USDT nếu tính cả phần sẽ mở khóa.' },
-      { type: 'callout', tone: 'warn', title: 'Lầm tưởng: "giá thấp là rẻ"', text: 'Token giá 0,01 USDT không rẻ hơn token giá 100 USDT. Giá mỗi token vô nghĩa nếu không nhân với nguồn cung. Luôn so sánh bằng vốn hóa và FDV, không so bằng giá.' },
+      { type: 'p', text: 'Nhắc nhanh (xem bài 1.2): Vốn hóa = Giá × Cung lưu hành; FDV = Giá × Cung tối đa (hoặc tổng cung nếu token không có trần). Ở bài này ta đi xa hơn: dùng <strong>tỷ lệ FDV ÷ Vốn hóa</strong> để đo mức pha loãng còn chờ phía trước, và dùng lịch mở khóa để biết pha loãng đó đến nhanh hay chậm.' },
+      { type: 'table', head: ['FDV ÷ Vốn hóa', 'Tỷ lệ đang lưu hành', 'Cách đọc (ngưỡng thực hành của khóa)'], rows: [
+        ['Dưới 1,5 lần', 'Trên khoảng 67%', 'Phần lớn cung đã ra thị trường; vẫn kiểm tra lạm phát phát hành hằng năm'],
+        ['1,5–5 lần', 'Khoảng 20–67%', 'Bắt buộc đọc lịch mở khóa 12 tháng tới trước khi giao dịch'],
+        ['Trên 5 lần', 'Dưới 20%', '<strong>Cờ đỏ</strong>: phần lớn cung chưa ra, áp lực bán tiềm ẩn rất lớn (khớp ô đầu tiên của checklist cuối bài)']
+      ] },
+      { type: 'calc', title: 'Pha loãng theo lịch mở khóa 12 tháng: token XYZ (toàn bộ số liệu là giả định)', rows: [
+        ['Hiện tại', 'Giá 2 USDT, cung lưu hành 100 triệu, cung tối đa 1 tỷ token'],
+        ['Vốn hóa và FDV', '2 × 100 triệu = 200 triệu USDT; 2 × 1 tỷ = 2 tỷ USDT'],
+        ['FDV ÷ Vốn hóa', '2 tỷ ÷ 200 triệu = 10 lần (chỉ 10% đang lưu hành: cờ đỏ)'],
+        ['Lịch vesting 12 tháng tới', 'Thêm 300 triệu token ra thị trường'],
+        ['Cung lưu hành sau 12 tháng', '100 triệu + 300 triệu = 400 triệu (gấp 4 lần)'],
+        ['Lạm phát cung trong năm', '300 triệu ÷ 100 triệu = 300%'],
+        ['Nếu vốn hóa đứng yên 200 triệu USDT', 'Giá = 200 triệu ÷ 400 triệu = 0,5 USDT (giảm 75%)'],
+        ['Để giữ giá 2 USDT', 'Vốn hóa phải lên 2 × 400 triệu = 800 triệu USDT, tức cần thêm 600 triệu USDT tiền mua mới trong 12 tháng']
+      ], result: 'FDV ÷ Vốn hóa cho biết còn bao nhiêu pha loãng; lịch vesting cho biết nó đến nhanh thế nào. Token XYZ phải hút thêm 600 triệu USDT trong một năm chỉ để đứng giá.' },
+      { type: 'callout', tone: 'warn', title: 'Token không có trần cung', text: 'Với token không có cung tối đa, FDV thường được tính theo tổng cung hiện tại. Con số này có thể thấp hơn mức pha loãng thật, vì token vẫn được phát hành thêm hằng năm. Khi đó hãy nhìn tốc độ phát hành (lạm phát token) thay vì chỉ nhìn FDV.' },
 
       { type: 'h', text: 'Lịch mở khóa (unlock) và phân bổ token' },
       { type: 'p', text: 'Phần lớn token mới đều khóa một phần nguồn cung cho đội ngũ, quỹ đầu tư, cố vấn. Theo Binance Academy, giai đoạn khóa thường kéo dài 1–2 năm hoặc hơn, thường có một <strong>cliff</strong> (giai đoạn đầu không mở token nào, phổ biến khoảng 12 tháng), sau đó mở dần theo lịch (vesting). Token bị khóa không tính vào cung lưu hành. Khi mở khóa, chúng có thể được bán ngay.' },
@@ -76,7 +81,7 @@ const lessons = {
       { type: 'scenario', title: 'Token mới niêm yết đang tăng 60% trong tuần', setup: 'Token XYZ vừa lên sàn, cung lưu hành 10%, FDV 2 tỷ USDT. Nhóm Telegram báo "sắp có đối tác lớn". Lịch mở khóa cho thấy 3 tuần nữa có đợt unlock 50 triệu token.', bad: 'Thấy nến xanh liên tục, sợ lỡ cơ hội nên mua 40% tài khoản ở đỉnh, không xem lịch unlock. Ba tuần sau giá giảm 45%, tự nhủ "giữ dài hạn", rồi tiếp tục giữ khi giá giảm thêm.', good: 'Mở CoinGecko xem cung, FDV, bảng phân bổ và lịch mở khóa. Thấy đợt unlock bằng 50% cung lưu hành, ghi vào kế hoạch: không mua trước ngày unlock. Nếu vẫn muốn tham gia thì chờ sau unlock, giá tạo nền và có điểm vô hiệu rõ ràng, khối lượng tối đa theo quy tắc rủi ro 1% (xem bài 6.1).' }
     ],
     keyPoints: [
-      'So sánh token bằng vốn hóa và FDV, không bằng giá mỗi token.',
+      'FDV ÷ Vốn hóa trên 5 lần (dưới 20% cung đang lưu hành) là cờ đỏ; lịch vesting cho biết pha loãng đến nhanh hay chậm.',
       'Tỷ lệ Vốn hóa ÷ FDV thấp nghĩa là còn nhiều token chờ ra thị trường.',
       'Đợt unlock lớn so với cung lưu hành và khối lượng ngày là điều kiện không mở vị thế mua mới.',
       'Lợi suất trả bằng token in thêm là chi phí pha loãng, không phải doanh thu.',
@@ -88,7 +93,7 @@ const lessons = {
       'Chạy checklist "dự án rác" cho một token được quảng bá trong nhóm chat bạn tham gia. Đếm số ô bị đánh dấu.'
     ],
     quiz: [
-      { q: 'Token A giá 0,5 USDT, cung lưu hành 400 triệu, cung tối đa 2 tỷ. Vốn hóa và FDV là bao nhiêu?', options: ['Vốn hóa 1 tỷ, FDV 200 triệu USDT', 'Vốn hóa 200 triệu, FDV 1 tỷ USDT', 'Vốn hóa 200 triệu, FDV 400 triệu USDT', 'Vốn hóa 400 triệu, FDV 2 tỷ USDT'], answer: 1, explain: 'Vốn hóa = 0,5 × 400 triệu = 200 triệu; FDV = 0,5 × 2 tỷ = 1 tỷ USDT. Phương án đầu đảo ngược hai chỉ số. Phương án 3 tính FDV sai. Phương án 4 nhầm số lượng token với giá trị (quên nhân giá 0,5).' },
+      { q: 'Token A giá 1 USDT, cung lưu hành 200 triệu. Lịch vesting đưa thêm 100 triệu token ra thị trường trong 12 tháng tới. Nếu vốn hóa đứng yên, giá sau 12 tháng khoảng bao nhiêu?', options: ['1,5 USDT', 'Khoảng 0,67 USDT', '0,5 USDT', '1 USDT'], answer: 1, explain: 'Cung mới = 200 + 100 = 300 triệu. Giá = 200 triệu USDT ÷ 300 triệu ≈ 0,67 USDT, giảm khoảng 33%. 1,5 USDT là nhân 1,5 thay vì chia; 0,5 USDT là tính như thể cung tăng gấp đôi (mở khóa 200 triệu); 1 USDT là bỏ qua pha loãng.' },
       { q: 'Token B có cung lưu hành 200 triệu. Tuần tới mở khóa 60 triệu token cho quỹ đầu tư, khối lượng ngày khoảng 5 triệu USDT, giá 1 USDT. Nhận định nào hợp lý nhất?', options: ['Unlock không ảnh hưởng vì dự án đã công bố từ trước', 'Unlock chỉ ảnh hưởng nếu đội ngũ công bố sẽ bán', 'Unlock bằng 30% cung lưu hành và gấp 12 lần khối lượng ngày, nên coi là rủi ro lớn và không mở vị thế mua mới trước ngày đó', 'Nên mua trước unlock vì cung tăng làm thanh khoản tốt hơn'], answer: 2, explain: '60 ÷ 200 = 30% cung lưu hành; 60 triệu USDT ÷ 5 triệu = 12 lần khối lượng ngày. Công bố trước không xóa bỏ áp lực bán thật, người nhận không cần thông báo trước khi bán, và thanh khoản tốt hơn không đồng nghĩa giá tăng.' },
       { q: 'Một token trả lợi suất staking 12%/năm, trong khi nguồn cung tăng 15%/năm. Nếu bạn stake, tỷ trọng sở hữu của bạn thay đổi thế nào sau một năm?', options: ['Giảm khoảng 2,6%', 'Tăng 12%', 'Không đổi', 'Tăng khoảng 3%'], answer: 0, explain: '1,12 ÷ 1,15 ≈ 0,974, tức tỷ trọng giảm khoảng 2,6%. Lợi suất 12% chỉ là số token tăng, không phải phần sở hữu tăng. "Không đổi" và "tăng 3%" sai vì bỏ qua pha loãng hoặc lấy ngược phép tính.' },
       { q: 'Điểm yếu cốt lõi về tokenomics của UST/LUNA trước khi sụp đổ 5/2022 là gì?', options: ['Cung tối đa bị giới hạn quá thấp', 'Thiếu sàn niêm yết', 'Đội ngũ phát triển quá chậm', 'Neo giá dựa vào cơ chế in thêm LUNA, và lợi suất cao không đến từ doanh thu thật'], answer: 3, explain: 'Khi UST mất neo, cơ chế đổi UST lấy LUNA buộc in thêm LUNA hàng loạt, cung phình to và giá cả hai về gần 0. LUNA không bị giới hạn cung thấp (ngược lại), được niêm yết rộng rãi, và tốc độ phát triển không phải nguyên nhân.' }
@@ -157,7 +162,7 @@ const lessons = {
       { type: 'p', text: 'Ngày 10/01/2024, SEC Mỹ chấp thuận các quỹ ETF bitcoin giao ngay. Nhà đầu tư có thể mua bitcoin qua tài khoản chứng khoán thông thường. Chủ tịch SEC khi đó, Gary Gensler, nhấn mạnh SEC <em>không</em> chấp thuận hay bảo chứng cho bitcoin, và gọi bitcoin là tài sản đầu cơ, biến động mạnh.' },
       { type: 'list', items: [
         '<strong>Hệ quả 1</strong>: dòng tiền vào/ra ETF mỗi ngày trở thành một lực cung cầu lớn, được công bố công khai.',
-        '<strong>Hệ quả 2</strong>: bitcoin nằm trong danh mục cùng cổ phiếu, nên khi các quỹ giảm rủi ro, họ bán cả hai. Từ năm 2020, bitcoin có xu hướng biến động cùng chiều với chứng khoán Mỹ, nhất là nhóm công nghệ, rõ hơn so với trước đó.',
+        '<strong>Hệ quả 2</strong>: bitcoin nằm trong danh mục cùng cổ phiếu, nên khi các quỹ giảm rủi ro, họ bán cả hai. Theo một ghi chú của IMF (1/2022), tương quan giữa bitcoin và các chỉ số chứng khoán Mỹ như S&P 500, Nasdaq tăng rõ trong giai đoạn 2020–2021 so với 2017–2019.',
         '<strong>Hệ quả 3</strong>: giờ mở cửa chứng khoán Mỹ (khoảng 20:30 giờ Việt Nam khi Mỹ theo giờ mùa hè) thường là lúc biến động bitcoin tăng.'
       ] },
       { type: 'p', text: 'Tương quan thay đổi theo thời gian. Có lúc rất cao, có lúc gần bằng 0. Đừng giả định bitcoin là "vàng kỹ thuật số" chống khủng hoảng: trong nhiều đợt bán tháo tài sản rủi ro, nó giảm cùng chứng khoán.' },
@@ -191,14 +196,15 @@ const lessons = {
       'Mở biểu đồ BTC khung tuần, đánh dấu 4 lần halving và các đỉnh sau đó. Ghi nhận khoảng cách thời gian, rồi viết ra 2 lý do vì sao lần tới có thể khác.'
     ],
     quiz: [
-      { q: 'Sau halving 2024, mỗi ngày có khoảng 144 khối được tạo. Lượng BTC mới mỗi ngày là khoảng bao nhiêu?', options: ['900 BTC', '1.800 BTC', '450 BTC', '225 BTC'], answer: 2, explain: '144 × 3,125 = 450 BTC. 900 BTC là mức trước halving 2024 (phần thưởng 6,25). 1.800 BTC tương ứng phần thưởng 12,5 (sau halving 2016). 225 BTC là mức sau halving 2028.' },
-      { q: 'Nhận định nào đúng nhất về chu kỳ halving?', options: ['Chu kỳ là cơ chế lập trình sẵn nên chắc chắn lặp lại', 'Chu kỳ là mẫu lịch sử với rất ít điểm dữ liệu, có thể thay đổi khi cấu trúc thị trường và vĩ mô thay đổi', 'Halving làm giá tăng ngay trong tháng diễn ra', 'Sau ETF, chu kỳ không còn liên quan gì đến giá'], answer: 1, explain: 'Chỉ phần thưởng khối là được lập trình; phản ứng giá thì không. Giá không nhất thiết tăng ngay khi halving. Nói chu kỳ "không còn liên quan gì" cũng là khẳng định quá mức, không có căn cứ.' },
-      { q: 'Fed vừa tăng lãi suất vì lạm phát cao, DXY mạnh lên. Trader có kế hoạch nên điều chỉnh thế nào?', options: ['Giảm rủi ro mỗi lệnh, ưu tiên setup cùng xu hướng khung lớn, hạn chế đòn bẩy', 'Tăng đòn bẩy để tận dụng biến động', 'Short toàn bộ tài khoản vì chắc chắn giá sẽ giảm', 'Bỏ qua vĩ mô vì chỉ giao dịch theo biểu đồ'], answer: 0, explain: 'Môi trường thắt chặt thường bất lợi cho tài sản rủi ro, nên thu nhỏ rủi ro là hợp lý. Vĩ mô không đảm bảo hướng giá, nên short toàn bộ là đánh cược. Tăng đòn bẩy khi bối cảnh bất lợi làm tăng rủi ro thanh lý. Bỏ qua hoàn toàn vĩ mô là thiếu một lớp bối cảnh quan trọng.' },
-      { q: 'BTC giảm từ 126.080 USD xuống 84.000 USD. Cần tăng khoảng bao nhiêu phần trăm để về lại đỉnh?', options: ['33%', '42%', '66%', '50%'], answer: 3, explain: '126.080 ÷ 84.000 ≈ 1,501, tức cần tăng khoảng 50%. 33% là mức giảm, không phải mức tăng cần thiết. 42% và 66% không khớp với phép tính.' }
+      { q: 'Sau halving 2024, mỗi ngày có khoảng 144 khối được tạo. Lượng BTC mới mỗi ngày là khoảng bao nhiêu?', options: ['450 BTC', '1.800 BTC', '900 BTC', '225 BTC'], answer: 0, explain: '144 × 3,125 = 450 BTC. 900 BTC là mức trước halving 2024 (phần thưởng 6,25). 1.800 BTC tương ứng phần thưởng 12,5 (sau halving 2016). 225 BTC là mức sau halving 2028.' },
+      { q: 'Nhận định nào đúng nhất về chu kỳ halving?', options: ['Chu kỳ là cơ chế lập trình sẵn nên chắc chắn lặp lại', 'Sau ETF, chu kỳ không còn liên quan gì đến giá', 'Halving làm giá tăng ngay trong tháng diễn ra', 'Chu kỳ là mẫu lịch sử với rất ít điểm dữ liệu, có thể thay đổi khi cấu trúc thị trường và vĩ mô thay đổi'], answer: 3, explain: 'Chỉ phần thưởng khối là được lập trình; phản ứng giá thì không. Giá không nhất thiết tăng ngay khi halving. Nói chu kỳ "không còn liên quan gì" cũng là khẳng định quá mức, không có căn cứ.' },
+      { q: 'Fed vừa tăng lãi suất vì lạm phát cao, DXY mạnh lên. Trader có kế hoạch nên điều chỉnh thế nào?', options: ['Short toàn bộ tài khoản vì chắc chắn giá sẽ giảm', 'Tăng đòn bẩy để tận dụng biến động', 'Giảm rủi ro mỗi lệnh, ưu tiên setup cùng xu hướng khung lớn, hạn chế đòn bẩy', 'Bỏ qua vĩ mô vì chỉ giao dịch theo biểu đồ'], answer: 2, explain: 'Môi trường thắt chặt thường bất lợi cho tài sản rủi ro, nên thu nhỏ rủi ro là hợp lý. Vĩ mô không đảm bảo hướng giá, nên short toàn bộ là đánh cược. Tăng đòn bẩy khi bối cảnh bất lợi làm tăng rủi ro thanh lý. Bỏ qua hoàn toàn vĩ mô là thiếu một lớp bối cảnh quan trọng.' },
+      { q: 'Trước cuộc họp FOMC, thị trường gần như chắc chắn Fed sẽ giữ nguyên lãi suất. Fed giữ nguyên đúng như vậy. Cách hiểu nào hợp lý nhất?', options: ['Giá chắc chắn tăng mạnh vì Fed không tăng lãi suất', 'Quyết định không có bất ngờ nên tự nó thường gây ít biến động; phần bất ngờ (nếu có) nằm ở thông cáo và họp báo', 'Nên mở lệnh lớn ngay khi tin ra vì đã biết kết quả', 'Giá chắc chắn giảm mạnh vì Fed không giảm lãi suất'], answer: 1, explain: 'Giá phản ứng với phần bất ngờ so với kỳ vọng, không phải với bản thân quyết định. Kết quả đúng kỳ vọng đã được phản ánh vào giá, nên không có gì chắc chắn tăng hay giảm. Vào lệnh lớn ngay khi tin ra là bỏ qua cú giật hai chiều và quy tắc không mở lệnh mới quanh giờ tin (bài 3.4).' }
     ],
     sources: [
       { title: 'Bitcoin Halving', url: 'https://bitcoin.org/en/halving', note: 'Bitcoin.org, tiếng Anh' },
       { title: 'Statement on the Approval of Spot Bitcoin Exchange-Traded Products', url: 'https://www.sec.gov/newsroom/speeches-statements/gensler-statement-spot-bitcoin-011023', note: 'SEC Mỹ, Chủ tịch Gary Gensler, 10/01/2024, tiếng Anh' },
+      { title: 'Global Financial Stability Notes 2022/01: Cryptic Connections: Spillovers between Crypto and Equity Markets', url: 'https://www.imf.org/-/media/files/publications/gfs-notes/2022/english/gfsnea2022001.pdf', note: 'IMF, Tara Iyer, 1/2022, tiếng Anh' },
       { title: 'Federal Reserve issues FOMC statement (16/09/2026)', url: 'https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm', note: 'Cục Dự trữ Liên bang Mỹ, 2026, tiếng Anh' },
       { title: 'Bitcoin price, market cap and supply', url: 'https://www.coingecko.com/en/coins/bitcoin', note: 'CoinGecko, dữ liệu tra cứu 27/09/2026, tiếng Anh' }
     ],
@@ -271,10 +277,12 @@ const lessons = {
       { type: 'h', text: 'Công cụ miễn phí và nguyên tắc diễn giải' },
       { type: 'table', head: ['Loại dữ liệu', 'Nơi xem miễn phí (tham khảo)'], rows: [
         ['Giá, vốn hóa, cung, dominance', 'CoinGecko, CoinMarketCap, TradingView (mã BTC.D)'],
-        ['OI, funding, tỷ lệ long/short', 'Binance Futures → Data → Trading Data; các trang tổng hợp phái sinh'],
-        ['Tổng cung stablecoin', 'Các trang tổng hợp DeFi và stablecoin, trang minh bạch của đơn vị phát hành'],
-        ['Dòng tiền sàn, ví lớn', 'Các nền tảng phân tích on-chain (bản miễn phí thường giới hạn dữ liệu)']
+        ['OI, funding, tỷ lệ long/short', 'Binance Futures → Data → Trading Data; CoinGlass (tổng hợp OI, funding, thanh lý từ nhiều sàn)'],
+        ['Tổng cung stablecoin', 'DefiLlama (mục Stablecoins); trang minh bạch của đơn vị phát hành'],
+        ['Tra một địa chỉ, một giao dịch', 'Trình duyệt blockchain (block explorer) như mempool.space cho BTC, Etherscan cho ETH'],
+        ['Dòng tiền sàn, ví lớn', 'Glassnode, CryptoQuant: có gói miễn phí nhưng giới hạn chỉ số và độ phân giải dữ liệu']
       ] },
+      { type: 'p', text: 'Các công cụ trên chỉ là ví dụ để bạn biết bắt đầu từ đâu, không phải khuyến nghị. Mỗi nơi dùng nhãn ví và phương pháp tổng hợp riêng, nên cùng một chỉ số có thể lệch nhau giữa hai trang. Gói miễn phí thường chỉ có dữ liệu theo ngày hoặc bị trễ. Hãy ghi rõ nguồn và khung thời gian mỗi khi chép số vào nhật ký, và so ít nhất hai nguồn trước khi kết luận.' },
       { type: 'steps', items: [
         { title: 'Hỏi "so với cái gì?"', text: 'Một con số đơn lẻ vô nghĩa. So với trung bình 30 ngày hoặc 90 ngày của chính nó.' },
         { title: 'Tìm xác nhận từ giá', text: 'Dữ liệu on-chain chỉ có giá trị khi khớp với cấu trúc giá. Netflow âm mà giá vẫn tạo LH/LL thì giá thắng.' },
@@ -304,10 +312,10 @@ const lessons = {
       'Lần tới thấy tin "cá voi chuyển coin", tra địa chỉ trên trình duyệt blockchain và ghi lại ví đó có nhãn sàn hay không.'
     ],
     quiz: [
-      { q: 'Trong một ngày, 8.000 ETH được nạp vào các sàn và 11.000 ETH được rút ra. Netflow là bao nhiêu và thường được hiểu thế nào?', options: ['+3.000 ETH, áp lực bán tăng', '+19.000 ETH, thanh khoản tăng', '−3.000 ETH, lượng coin sẵn sàng bán trên sàn giảm', '−19.000 ETH, sàn đang mất khách'], answer: 2, explain: 'Netflow = 8.000 − 11.000 = −3.000 ETH. Coin rút ra nhiều hơn vào, thường được hiểu là áp lực bán ngắn hạn giảm. Dấu dương sai chiều; 19.000 là cộng thay vì trừ.' },
-      { q: 'Giá BTC tăng mạnh, OI tăng dựng đứng, funding +0,08% mỗi 8 giờ nhiều ngày liền. Hành động hợp lý nhất là gì?', options: ['Mở short ngay vì funding quá cao', 'Không mở thêm long lớn, giảm khối lượng, giữ dừng lỗ theo kế hoạch vì phía long đang rất đông', 'Tăng đòn bẩy long vì OI xác nhận xu hướng', 'Bỏ qua vì dữ liệu phái sinh không liên quan đến giá'], answer: 1, explain: 'Funding cao kéo dài và OI tăng mạnh cho thấy long đông và dùng nhiều đòn bẩy, rủi ro quét thanh lý cao. Short chỉ vì funding là đánh cược đảo chiều, có thể bị squeeze. Tăng đòn bẩy làm tăng rủi ro. Dữ liệu phái sinh có liên quan tới biến động, nên không nên bỏ qua.' },
+      { q: 'Trong một ngày, 8.000 ETH được nạp vào các sàn và 11.000 ETH được rút ra. Netflow là bao nhiêu và thường được hiểu thế nào?', options: ['+3.000 ETH, áp lực bán tăng', '+19.000 ETH, thanh khoản tăng', '−19.000 ETH, sàn đang mất khách', '−3.000 ETH, lượng coin sẵn sàng bán trên sàn giảm'], answer: 3, explain: 'Netflow = 8.000 − 11.000 = −3.000 ETH. Coin rút ra nhiều hơn vào, thường được hiểu là áp lực bán ngắn hạn giảm. Dấu dương sai chiều; 19.000 là cộng thay vì trừ.' },
+      { q: 'Giá BTC tăng mạnh, OI tăng dựng đứng, funding +0,08% mỗi 8 giờ nhiều ngày liền. Hành động hợp lý nhất là gì?', options: ['Mở short ngay vì funding quá cao', 'Tăng đòn bẩy long vì OI xác nhận xu hướng', 'Không mở thêm long lớn, giảm khối lượng, giữ dừng lỗ theo kế hoạch vì phía long đang rất đông', 'Bỏ qua vì dữ liệu phái sinh không liên quan đến giá'], answer: 2, explain: 'Funding cao kéo dài và OI tăng mạnh cho thấy long đông và dùng nhiều đòn bẩy, rủi ro quét thanh lý cao. Short chỉ vì funding là đánh cược đảo chiều, có thể bị squeeze. Tăng đòn bẩy làm tăng rủi ro. Dữ liệu phái sinh có liên quan tới biến động, nên không nên bỏ qua.' },
       { q: 'Vốn hóa BTC đứng yên ở 1.500 tỷ USD, tổng vốn hóa giảm từ 2.500 tỷ xuống 2.400 tỷ vì altcoin giảm. Dominance thay đổi thế nào?', options: ['Từ 60% lên 62,5%', 'Từ 60% xuống 57,5%', 'Không đổi 60%', 'Từ 62,5% xuống 60%'], answer: 0, explain: '1.500 ÷ 2.500 = 60%; 1.500 ÷ 2.400 = 62,5%. Dominance tăng dù BTC đứng giá. Hai phương án giảm sai chiều, còn "không đổi" bỏ qua việc mẫu số nhỏ lại.' },
-      { q: 'Vì sao không nên coi mọi cảnh báo "cá voi nạp coin lên sàn" là tín hiệu bán?', options: ['Vì cá voi không bao giờ bán', 'Vì dữ liệu blockchain là bí mật', 'Vì giá luôn tăng sau khi cá voi nạp coin', 'Vì đó có thể là sàn chuyển ví nội bộ, quỹ lưu ký hoặc giao dịch OTC, và cần giá xác nhận'], answer: 3, explain: 'Giao dịch lớn có nhiều mục đích, nhãn ví không hoàn hảo. Cá voi có bán, dữ liệu blockchain là công khai, và giá không "luôn" tăng sau sự kiện nào cả.' }
+      { q: 'Vì sao không nên coi mọi cảnh báo "cá voi nạp coin lên sàn" là tín hiệu bán?', options: ['Vì cá voi không bao giờ bán', 'Vì đó có thể là sàn chuyển ví nội bộ, quỹ lưu ký hoặc giao dịch OTC, và cần giá xác nhận', 'Vì giá luôn tăng sau khi cá voi nạp coin', 'Vì dữ liệu blockchain là bí mật'], answer: 1, explain: 'Giao dịch lớn có nhiều mục đích, nhãn ví không hoàn hảo. Cá voi có bán, dữ liệu blockchain là công khai, và giá không "luôn" tăng sau sự kiện nào cả.' }
     ],
     sources: [
       { title: 'The Power of Netflow: Understanding the Indicator and How it Underscores Binance’s Strength', url: 'https://www.binance.com/en/blog/markets/the-power-of-netflow-understanding-the-indicator-and-how-it-underscores-binances-strength-1574629156748725279', note: 'Binance Blog, 28/02/2024, tiếng Anh' },
@@ -373,7 +381,7 @@ const lessons = {
       { type: 'h', text: 'Bộ quy tắc giao dịch quanh tin' },
       { type: 'steps', items: [
         { title: 'Trước tin 30–60 phút', text: 'Không mở lệnh mới. Với lệnh đang mở: hoặc đóng, hoặc giảm khối lượng sao cho lỗ khi trượt 1,5 lần khoảng dừng lỗ vẫn dưới 1% tài khoản. Kiểm tra dừng lỗ là stop-market và đã đặt trên sàn.' },
-        { title: 'Khi tin ra', text: 'Không bấm lệnh trong 15–30 phút đầu. Không mua đuổi nến xanh đầu tiên hay bán đuổi nến đỏ đầu tiên. Không dời dừng lỗ ra xa.' },
+        { title: 'Khi tin ra', text: 'Không mở lệnh mới trong ít nhất 30 phút đầu (bộ chuẩn bài 5.9). Không mua đuổi nến xanh đầu tiên hay bán đuổi nến đỏ đầu tiên. Không dời dừng lỗ ra xa.' },
         { title: 'Sau tin 30–60 phút', text: 'Chờ nến khung 15 phút hoặc 1 giờ đóng. Xem giá đã chọn hướng, phá hay giữ vùng quan trọng chưa. Chỉ vào nếu có setup theo hệ thống, với khối lượng tính từ dừng lỗ mới.' },
         { title: 'Tin ngoài lịch', text: 'Tin chiến tranh, thuế quan, sàn sập: không giao dịch theo tiêu đề. Kiểm tra dừng lỗ, giảm đòn bẩy, đợi thị trường ổn định.' },
         { title: 'Ghi nhật ký', text: 'Ghi lại tin, phản ứng giá và cảm xúc của bạn. Sau vài tháng bạn sẽ biết mình có nên giao dịch quanh tin hay không.' }
@@ -394,13 +402,13 @@ const lessons = {
         '<strong>Ai được lợi?</strong> Người đăng có đang giữ coin đó, nhận tiền quảng bá, hay bán khóa học "tín hiệu" không?'
       ] },
       { type: 'callout', tone: 'risk', title: 'Nhóm kèo và "chuyên gia" gọi vốn', text: 'Nhóm Telegram, Zalo, Facebook hô "kèo x10", "tin nội bộ niêm yết" thường là nơi người tổ chức mua trước rồi bán cho thành viên (pump and dump). Không ai chia sẻ miễn phí tin nội bộ có giá trị thật. Tham gia nhóm gọi vốn, ủy thác, hay hứa lãi cố định có thể khiến bạn mất trắng. Xem thêm bài 1.5.' },
-      { type: 'scenario', title: 'Đêm công bố FOMC', setup: 'Đêm 28/10/2026, FOMC công bố lúc 01:00 sáng 29/10 giờ Việt Nam. Bạn đang long BTC có lãi. Nhóm chat bàn tán "chắc chắn giảm lãi suất, bơm mạnh".', bad: 'Nghe nhóm chat, nhồi thêm long với đòn bẩy 25x lúc 00:55, không đặt dừng lỗ vì "chắc chắn tăng". Tin ra khác kỳ vọng, giá giật 3% xuống trong 2 phút, vị thế bị thanh lý. Lên nhóm hỏi thì trưởng nhóm bảo "cá mập đánh úp".', good: 'Từ chiều đã quyết định: chốt 50% vị thế trước 00:00, dời dừng lỗ phần còn lại về hòa vốn, không mở lệnh mới. Tắt nhóm chat, đi ngủ. Sáng hôm sau đọc thông cáo trên trang Fed, xem nến H1 và H4 rồi mới cân nhắc lệnh mới theo setup.' }
+      { type: 'scenario', title: 'Đêm công bố FOMC', setup: 'Đêm 28/10/2026, FOMC công bố lúc 01:00 sáng 29/10 giờ Việt Nam. Bạn đang long BTC có lãi. Nhóm chat bàn tán "chắc chắn giảm lãi suất, bơm mạnh".', bad: 'Nghe nhóm chat, nhồi thêm long với đòn bẩy 25x lúc 00:55, không đặt dừng lỗ vì "chắc chắn tăng". Tin ra khác kỳ vọng, giá giật 4% xuống trong 2 phút. Ở 25x, giá chỉ cần đi ngược khoảng 3,5% là chạm giá thanh lý, nên vị thế bị thanh lý. Lên nhóm hỏi thì trưởng nhóm bảo "cá mập đánh úp".', good: 'Từ chiều đã quyết định: chốt 50% vị thế trước 00:00, dời dừng lỗ phần còn lại về hòa vốn, không mở lệnh mới. Tắt nhóm chat, đi ngủ. Sáng hôm sau đọc thông cáo trên trang Fed, xem nến H1 và H4 rồi mới cân nhắc lệnh mới theo setup.' }
     ],
     keyPoints: [
       'CPI và báo cáo việc làm Mỹ ra lúc 19:30 giờ VN khi Mỹ theo giờ mùa hè, 20:30 khi theo giờ mùa đông; FOMC công bố lúc 01:00 hoặc 02:00 sáng hôm sau.',
       'Giá phản ứng với phần bất ngờ so với kỳ vọng; "mua tin đồn, bán sự thật" thường xảy ra với niêm yết và sự kiện được chờ lâu.',
       'Ngày 10/10/2025: khoảng 19 tỷ USD bị thanh lý trong 24 giờ, xảy ra lúc rạng sáng giờ VN; chỉ dừng lỗ đặt sẵn và đòn bẩy thấp bảo vệ bạn.',
-      'Quy tắc cốt lõi: không mở lệnh mới 30–60 phút trước tin, không bấm lệnh 15–30 phút đầu, chờ nến đóng.',
+      'Quy tắc cốt lõi: không mở lệnh mới 30–60 phút trước tin, không mở lệnh mới trong ít nhất 30 phút sau tin, chờ nến đóng.',
       'Kiểm chứng nguồn gốc, thời điểm và động cơ người đăng trước khi hành động theo bất kỳ tin nào.'
     ],
     practice: [
@@ -409,10 +417,10 @@ const lessons = {
       'Chọn một lần công bố CPI gần nhất, mở biểu đồ BTC khung 5 phút, ghi lại biên độ 30 phút đầu và hướng giá có bị đảo không.'
     ],
     quiz: [
-      { q: 'CPI Mỹ tháng 11/2026 công bố lúc 08:30 giờ miền Đông Mỹ ngày 10/12/2026. Theo giờ Việt Nam là mấy giờ?', options: ['19:30 ngày 10/12', '20:30 ngày 10/12', '08:30 ngày 11/12', '21:30 ngày 10/12'], answer: 1, explain: 'Sau 01/11/2026 Mỹ theo giờ mùa đông (EST, UTC−5), chênh 12 giờ với Việt Nam: 08:30 + 12 = 20:30. 19:30 là giờ khi Mỹ theo giờ mùa hè. 21:30 là giờ mở cửa chứng khoán Mỹ mùa đông. 08:30 hôm sau là cộng sai.' },
+      { q: 'CPI Mỹ tháng 11/2026 công bố lúc 08:30 giờ miền Đông Mỹ ngày 10/12/2026. Theo giờ Việt Nam là mấy giờ?', options: ['19:30 ngày 10/12', '08:30 ngày 11/12', '20:30 ngày 10/12', '21:30 ngày 10/12'], answer: 2, explain: 'Sau 01/11/2026 Mỹ theo giờ mùa đông (EST, UTC−5), chênh 12 giờ với Việt Nam: 08:30 + 12 = 20:30. 19:30 là giờ khi Mỹ theo giờ mùa hè. 21:30 là giờ mở cửa chứng khoán Mỹ mùa đông. 08:30 hôm sau là cộng sai.' },
       { q: 'Tài khoản 10.000 USDT, rủi ro 1%. Long BTC tại 80.000, dừng lỗ stop-market 79.000. Tin ra, lệnh khớp tại 78.500. Lỗ thực tế bao nhiêu R?', options: ['1R', '2R', '1,25R', '1,5R'], answer: 3, explain: 'Khối lượng = 100 ÷ 1.000 = 0,1 BTC. Lỗ thực tế = (80.000 − 78.500) × 0,1 = 150 USDT = 1,5R. 1R là lỗ theo kế hoạch, bỏ qua trượt giá. 1,25R và 2R tính sai khoảng trượt.' },
-      { q: 'Một token được đồn sẽ niêm yết trên sàn lớn, đã tăng 80% trong một tuần. Sáng nay sàn xác nhận niêm yết. Theo nguyên tắc "mua tin đồn, bán sự thật", rủi ro chính là gì?', options: ['Người mua sớm đã lãi lớn và có thể chốt lời khi tin được xác nhận, làm giá giảm', 'Giá chắc chắn tăng tiếp vì tin đã được xác nhận', 'Sàn sẽ hủy niêm yết ngay', 'Không có rủi ro vì sàn lớn đã thẩm định'], answer: 0, explain: 'Tin đã được kỳ vọng và phản ánh vào giá; người mua sớm có động cơ bán. Tin xác nhận không đảm bảo giá tăng tiếp. Hủy niêm yết ngay là không có căn cứ. Sàn niêm yết không bảo đảm giá.' },
-      { q: 'Theo bộ quy tắc giao dịch quanh tin, 20 phút trước giờ FOMC bạn nên làm gì với ý tưởng lệnh mới vừa thấy?', options: ['Vào ngay với khối lượng gấp đôi để kịp tin', 'Vào bằng lệnh stop-limit để kiểm soát giá', 'Không mở lệnh mới; chờ sau tin 30–60 phút, nến đóng và setup còn hợp lệ mới cân nhắc', 'Vào lệnh không dừng lỗ để tránh bị quét'], answer: 2, explain: 'Quy tắc là không mở lệnh mới trong 30–60 phút trước tin. Khối lượng gấp đôi làm tăng rủi ro. Stop-limit có thể không khớp khi giá lao qua. Không dừng lỗ trong tin lớn là cách nhanh nhất để mất khoản lỗ không giới hạn.' }
+      { q: 'Một token được đồn sẽ niêm yết trên sàn lớn, đã tăng 80% trong một tuần. Sáng nay sàn xác nhận niêm yết. Theo nguyên tắc "mua tin đồn, bán sự thật", rủi ro chính là gì?', options: ['Giá chắc chắn tăng tiếp vì tin đã được xác nhận', 'Người mua sớm đã lãi lớn và có thể chốt lời khi tin được xác nhận, làm giá giảm', 'Sàn sẽ hủy niêm yết ngay', 'Không có rủi ro vì sàn lớn đã thẩm định'], answer: 1, explain: 'Tin đã được kỳ vọng và phản ánh vào giá; người mua sớm có động cơ bán. Tin xác nhận không đảm bảo giá tăng tiếp. Hủy niêm yết ngay là không có căn cứ. Sàn niêm yết không bảo đảm giá.' },
+      { q: 'Theo bộ quy tắc giao dịch quanh tin, 20 phút trước giờ FOMC bạn nên làm gì với ý tưởng lệnh mới vừa thấy?', options: ['Không mở lệnh mới; chờ sau tin 30–60 phút, nến đóng và setup còn hợp lệ mới cân nhắc', 'Vào bằng lệnh stop-limit để kiểm soát giá', 'Vào ngay với khối lượng gấp đôi để kịp tin', 'Vào lệnh không dừng lỗ để tránh bị quét'], answer: 0, explain: 'Quy tắc là không mở lệnh mới trong 30–60 phút trước tin. Khối lượng gấp đôi làm tăng rủi ro. Stop-limit có thể không khớp khi giá lao qua. Không dừng lỗ trong tin lớn là cách nhanh nhất để mất khoản lỗ không giới hạn.' }
     ],
     sources: [
       { title: 'Schedule of Releases for the Consumer Price Index', url: 'https://www.bls.gov/schedule/news_release/cpi.htm', note: 'Cục Thống kê Lao động Mỹ (BLS), lịch 2026, tiếng Anh' },

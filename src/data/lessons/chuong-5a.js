@@ -1,6 +1,6 @@
 const lessons = {
   'c5-b1': {
-    duration: 9,
+    duration: 10,
     level: 'Trung cấp',
     summary: 'Hợp đồng tương lai có kỳ hạn và vĩnh cửu, USDⓈ-M và COIN-M, cách tính lãi lỗ long/short bằng con số, và vì sao futures là trò chơi tổng bằng không trừ phí.',
     goals: [
@@ -13,7 +13,7 @@ const lessons = {
       { type: 'p', text: 'Khi mua spot (giao ngay), bạn trả tiền và nhận coin thật về ví. Khi giao dịch <strong>hợp đồng tương lai (futures)</strong>, bạn không mua coin. Bạn ký một hợp đồng với một người khác, cam kết thanh toán phần chênh lệch giá của tài sản đó. Giá đi đúng hướng bạn đặt cược thì bạn nhận chênh lệch. Giá đi ngược thì bạn trả chênh lệch.' },
       { type: 'p', text: 'Futures ban đầu sinh ra để phòng hộ (hedge): người nông dân bán trước vụ lúa ở giá cố định để khỏi lo giá sập. Trong crypto, futures chủ yếu được dùng để đầu cơ, vì nó cho phép hai thứ mà spot không làm được dễ dàng: kiếm lời khi giá giảm và mở vị thế lớn hơn số tiền đang có (đòn bẩy, xem bài 5.2).' },
       { type: 'table', head: ['Loại hợp đồng', 'Ngày hết hạn', 'Funding', 'Dùng cho ai'], rows: [
-        ['Có kỳ hạn (delivery, ví dụ hợp đồng quý)', 'Có. Ví dụ BTC 0925 hết hạn sau khoảng 3 tháng', 'Không có', 'Người giữ lâu, người phòng hộ muốn chi phí dự đoán được'],
+        ['Có kỳ hạn (delivery, ví dụ hợp đồng quý)', 'Có, cố định theo từng hợp đồng. Ví dụ hợp đồng quý BTCUSDT_261225 đáo hạn ngày 25/12/2026', 'Không có', 'Người giữ lâu, người phòng hộ muốn chi phí dự đoán được'],
         ['Vĩnh cửu (perpetual)', 'Không có, giữ bao lâu cũng được nếu không bị thanh lý', 'Có, trả/nhận định kỳ (bài 5.4)', 'Phần lớn trader nhỏ lẻ, giao dịch ngắn hạn']
       ] },
       { type: 'p', text: 'Hợp đồng vĩnh cửu không có ngày đáo hạn, nên sàn cần một cơ chế để giá hợp đồng không trôi quá xa giá giao ngay. Cơ chế đó là <strong>funding</strong>: khoản thanh toán định kỳ giữa bên long và bên short. Bài 5.4 sẽ tính chi tiết. Ở bài này bạn chỉ cần nhớ: giữ perpetual lâu có thể tốn tiền kể cả khi giá đứng yên.' },
@@ -21,7 +21,7 @@ const lessons = {
       { type: 'table', head: ['', 'USDⓈ-M', 'COIN-M'], rows: [
         ['Ký quỹ và thanh toán', 'Bằng USDT hoặc USDC', 'Bằng chính coin cơ sở (BTC, ETH...)'],
         ['Giá trị một hợp đồng', 'Tính theo số lượng coin (1 hợp đồng BTCUSDT tương ứng 1 BTC, đặt được số lẻ)', 'Mỗi hợp đồng BTC đại diện 100 USD, ETH đại diện 10 USD'],
-        ['Kỳ hạn có sẵn trên Binance', 'Vĩnh cửu và theo quý', 'Vĩnh cửu, theo quý và hai quý'],
+        ['Kỳ hạn có sẵn trên Binance', 'Vĩnh cửu cho rất nhiều cặp; riêng một số cặp lớn như BTCUSDT, ETHUSDT có thêm hợp đồng quý hiện tại và quý kế tiếp', 'Vĩnh cửu, và hợp đồng quý hiện tại, quý kế tiếp cho một số coin (BTC, ETH, BNB, XRP, SOL...)'],
         ['Điểm cần hiểu', 'Lãi lỗ tính thẳng ra USDT, dễ quy đổi', 'Tài sản ký quỹ tự biến động theo giá coin, lãi lỗ tính bằng coin']
       ] },
       { type: 'p', text: 'Với người mới, <strong>USDⓈ-M là lựa chọn dễ kiểm soát hơn</strong>: số dư đứng yên bằng USDT, lãi lỗ hiện thẳng bằng USDT. Ở COIN-M, nếu bạn long BTC bằng ký quỹ BTC thì khi giá giảm bạn lỗ hai lần: vị thế lỗ và bản thân tài sản ký quỹ mất giá. Toàn bộ ví dụ trong chương này dùng USDⓈ-M.' },
@@ -97,14 +97,15 @@ const lessons = {
       'Viết ra giấy một câu trả lời: "Nếu tôi thắng lệnh này, ai đang thua, và vì sao tôi giỏi hơn họ?" Nếu không trả lời được, đừng vào lệnh thật.'
     ],
     quiz: [
-      { q: 'Bạn short 2 ETH ở 3.000 USDT, đóng ở 2.850 USDT, phí taker 0,05% mỗi lượt. Lãi ròng là bao nhiêu?', options: ['300 USDT', '294,15 USDT', '305,85 USDT', '−294,15 USDT'], answer: 1, explain: 'Lãi gộp = 2 × (3.000 − 2.850) = 300. Phí mở = 6.000 × 0,05% = 3; phí đóng = 5.700 × 0,05% = 2,85. Lãi ròng = 300 − 3 − 2,85 = 294,15. 300 là quên phí; 305,85 là cộng phí thay vì trừ; số âm là nhầm chiều short.' },
-      { q: 'Điểm khác biệt chính giữa perpetual và hợp đồng theo quý là gì?', options: ['Perpetual không có đòn bẩy', 'Hợp đồng theo quý phải trả funding mỗi 8 giờ', 'Perpetual chỉ có ở COIN-M', 'Perpetual không có ngày hết hạn và dùng funding để neo giá với giá giao ngay'], answer: 3, explain: 'Perpetual không đáo hạn nên cần funding để giữ giá gần giá chỉ số. Hợp đồng theo quý có ngày hết hạn và không có funding. Cả hai đều có đòn bẩy, và perpetual có cả ở USDⓈ-M lẫn COIN-M.' },
-      { q: 'An long và Bình short cùng 0,1 BTC ở cùng giá, cùng đóng ở cùng giá, mỗi người trả tổng 8,2 USDT phí. Tổng lãi lỗ ròng của hai người là?', options: ['−16,4 USDT', '0 USDT', '+16,4 USDT', 'Tùy giá tăng hay giảm'], answer: 0, explain: 'Lãi gộp của người này đúng bằng lỗ gộp của người kia nên tổng gộp là 0 dù giá đi hướng nào. Trừ phí của cả hai: 0 − 8,2 − 8,2 = −16,4. Đó là lý do futures là tổng âm cho người chơi sau phí.' },
+      { q: 'Bạn short 2 ETH ở 3.000 USDT, đóng ở 2.850 USDT, phí taker 0,05% mỗi lượt. Lãi ròng là bao nhiêu?', options: ['294,15 USDT', '300 USDT', '305,85 USDT', '−294,15 USDT'], answer: 0, explain: 'Lãi gộp = 2 × (3.000 − 2.850) = 300. Phí mở = 6.000 × 0,05% = 3; phí đóng = 5.700 × 0,05% = 2,85. Lãi ròng = 300 − 3 − 2,85 = 294,15. 300 là quên phí; 305,85 là cộng phí thay vì trừ; số âm là nhầm chiều short.' },
+      { q: 'Điểm khác biệt chính giữa perpetual và hợp đồng theo quý là gì?', options: ['Perpetual không có đòn bẩy', 'Perpetual không có ngày hết hạn và dùng funding để neo giá với giá giao ngay', 'Hợp đồng theo quý phải trả funding mỗi 8 giờ', 'Perpetual chỉ có ở COIN-M'], answer: 1, explain: 'Perpetual không đáo hạn nên cần funding để giữ giá gần giá chỉ số. Hợp đồng theo quý có ngày hết hạn và không có funding. Cả hai đều có đòn bẩy, và perpetual có cả ở USDⓈ-M lẫn COIN-M.' },
+      { q: 'An long và Bình short cùng 0,1 BTC ở cùng giá, cùng đóng ở cùng giá, mỗi người trả tổng 8,2 USDT phí. Tổng lãi lỗ ròng của hai người là?', options: ['0 USDT', '+16,4 USDT', 'Tùy giá tăng hay giảm', '−16,4 USDT'], answer: 3, explain: 'Lãi gộp của người này đúng bằng lỗ gộp của người kia nên tổng gộp là 0 dù giá đi hướng nào. Trừ phí của cả hai: 0 − 8,2 − 8,2 = −16,4. Đó là lý do futures là tổng âm cho người chơi sau phí.' },
       { q: 'Bạn mua 0,1 BTC spot và một người khác long 0,1 BTC futures ký quỹ 800 USDT, cùng giá 80.000. Giá giảm về 72.000 rồi hồi lên 85.000. Nhận định nào đúng?', options: ['Cả hai cùng lãi khi giá hồi lên 85.000', 'Người futures lỗ ít hơn vì chỉ bỏ 800 USDT', 'Người spot vẫn giữ coin và lãi khi giá hồi; người futures đã bị thanh lý quanh 72.300 trước khi giá hồi', 'Người spot bị thanh lý ở 72.000'], answer: 2, explain: 'Với ký quỹ 800 cho vị thế 8.000, giá giảm khoảng 9,6% (quanh 72.300) là bị thanh lý, mất gần hết ký quỹ, không còn vị thế để hưởng nhịp hồi. Spot không bị thanh lý. Người futures không lỗ ít hơn: họ mất gần trọn 800 trong khi người spot cuối cùng lãi.' }
     ],
     sources: [
       { title: 'What Are Perpetual Futures and Quarterly Futures', url: 'https://www.binance.com/en/support/faq/what-are-perpetual-futures-and-quarterly-futures-d2a1afd5f829455c9ded23f0ca561a40', note: 'Binance Support, tiếng Anh' },
       { title: 'What Are USDⓈ-Margined Futures and COIN-Margined Futures?', url: 'https://www.binance.com/en/support/faq/detail/85eac2bba0b342819122dc9bd4745e9b', note: 'Binance Support, tiếng Anh' },
+      { title: 'Binance Futures to Launch Multi-Currency Quarterly 0326 Delivery Contracts', url: 'https://panews.io/articles/01a0b392-7d2d-70a1-a8a4-deea7dcbb0a7', note: 'PANews, 2026, tiếng Anh: sau khi hợp đồng quý 0925 đáo hạn, Binance mở hợp đồng quý 0326 USDⓈ-M (BTCUSDT, ETHUSDT) và COIN-M' },
       { title: 'Introduction to Binance Futures Funding Rates', url: 'https://www.binance.com/en/support/faq/detail/360033525031', note: 'Binance Support, tiếng Anh (funding chuyển trực tiếp giữa người chơi, sàn không thu phí)' },
       { title: 'Understand the Risks of Virtual Currency Trading', url: 'https://www.cftc.gov/LearnAndProtect/AdvisoriesAndArticles/understand_risks_of_virtual_currency.html', note: 'CFTC, Customer Advisory, tiếng Anh' }
     ],
@@ -194,9 +195,9 @@ const lessons = {
       'Tìm trang Leverage & Margin của BTCUSDT trên sàn, chép lại MMR và maintenance amount của bậc 1 đến bậc 3, rồi tự tính ký quỹ duy trì cho vị thế 50.000 USDT.'
     ],
     quiz: [
-      { q: 'Tài khoản 2.000 USDT. Bạn mở một vị thế danh nghĩa 1.000 USDT với thanh trượt 25x. Đòn bẩy thật và ký quỹ ban đầu là?', options: ['25x và 1.000 USDT', '25x và 40 USDT', '0,5x và 40 USDT', '0,5x và 80 USDT'], answer: 2, explain: 'Ký quỹ = 1.000 ÷ 25 = 40 USDT. Đòn bẩy thật = 1.000 ÷ 2.000 = 0,5x. 25x chỉ là con số thanh trượt; 80 USDT là chia nhầm cho 12,5.' },
-      { q: 'Theo ví dụ chính thức của Binance, vị thế 260.000 USDT ở bậc 3 (MMR 1%, maintenance amount 1.300) cần ký quỹ duy trì bao nhiêu?', options: ['1.300 USDT', '2.600 USDT', '3.900 USDT', '260 USDT'], answer: 0, explain: '260.000 × 1% − 1.300 = 1.300. 2.600 là quên trừ maintenance amount; 3.900 là cộng thay vì trừ; 260 là dùng nhầm 0,1%.' },
-      { q: 'Ví 1.000 USDT, bạn long 1 ETH ở 3.000 không đặt dừng lỗ. Nếu ETH sập mạnh, chế độ nào có thể làm bạn mất gần cả ví?', options: ['Isolated 10x', 'Isolated 2x', 'Cả hai chế độ đều chỉ mất ký quỹ ban đầu', 'Cross'], answer: 3, explain: 'Ở cross toàn bộ số dư ví đứng sau vị thế, giá thanh lý bị đẩy xa (khoảng 2.010) và bạn mất gần 990 USDT. Isolated 10x chỉ mất khoảng 300 USDT. Isolated 2x có ký quỹ 1.500, vượt quá số dư 1.000 nên không mở được đúng khối lượng này.' },
+      { q: 'Tài khoản 2.000 USDT. Bạn mở một vị thế danh nghĩa 1.000 USDT với thanh trượt 25x. Đòn bẩy thật và ký quỹ ban đầu là?', options: ['25x và 1.000 USDT', '25x và 40 USDT', '0,5x và 80 USDT', '0,5x và 40 USDT'], answer: 3, explain: 'Ký quỹ = 1.000 ÷ 25 = 40 USDT. Đòn bẩy thật = 1.000 ÷ 2.000 = 0,5x. 25x chỉ là con số thanh trượt; 80 USDT là chia nhầm cho 12,5.' },
+      { q: 'Theo ví dụ chính thức của Binance, vị thế 260.000 USDT ở bậc 3 (MMR 1%, maintenance amount 1.300) cần ký quỹ duy trì bao nhiêu?', options: ['2.600 USDT', '3.900 USDT', '1.300 USDT', '260 USDT'], answer: 2, explain: '260.000 × 1% − 1.300 = 1.300. 2.600 là quên trừ maintenance amount; 3.900 là cộng thay vì trừ; 260 là dùng nhầm 0,1%.' },
+      { q: 'Ví 1.000 USDT, bạn long 1 ETH ở 3.000 không đặt dừng lỗ. Nếu ETH sập mạnh, chế độ nào có thể làm bạn mất gần cả ví?', options: ['Cross', 'Isolated 10x', 'Isolated 2x', 'Cả hai chế độ đều chỉ mất ký quỹ ban đầu'], answer: 0, explain: 'Ở cross toàn bộ số dư ví đứng sau vị thế, giá thanh lý bị đẩy xa (khoảng 2.010) và bạn mất gần 990 USDT. Isolated 10x chỉ mất khoảng 300 USDT. Isolated 2x có ký quỹ 1.500, vượt quá số dư 1.000 nên không mở được đúng khối lượng này.' },
       { q: 'Tài khoản 1.000 USDT, đòn bẩy thật 20x, phí taker 0,05% mỗi lượt. Phí khứ hồi một lệnh chiếm bao nhiêu % tài khoản?', options: ['0,1%', '2%', '1%', '0,05%'], answer: 1, explain: 'Danh nghĩa 20.000 USDT, phí khứ hồi 20.000 × 0,1% = 20 USDT = 2% tài khoản. 0,1% là phí tính trên danh nghĩa, chưa quy về tài khoản; 1% chỉ tính một chiều; 0,05% là tỷ lệ phí một lượt.' }
     ],
     sources: [
@@ -209,7 +210,7 @@ const lessons = {
   },
 
   'c5-b3': {
-    duration: 10,
+    duration: 11,
     level: 'Nâng cao',
     summary: 'Mark, last và index price; công thức giá thanh lý; margin ratio; giá phá sản; quỹ bảo hiểm và ADL. Quy tắc: dừng lỗ phải kích hoạt rất lâu trước thanh lý.',
     goals: [
@@ -274,14 +275,14 @@ const lessons = {
         ['A: danh nghĩa 10.000, lãi 2.000, số dư 1.000', '% PnL = 20%; đòn bẩy hiệu dụng = 10.000 ÷ 3.000 ≈ 3,33; hạng ≈ 0,67'],
         ['B: danh nghĩa 10.000, lãi 2.000, số dư 9.000', '% PnL = 20%; đòn bẩy hiệu dụng = 10.000 ÷ 11.000 ≈ 0,91; hạng ≈ 0,18']
       ], result: 'A bị ADL trước B dù lãi bằng nhau, chỉ vì dùng đòn bẩy hiệu dụng cao hơn.' },
-      { type: 'p', text: 'ADL là lý do bạn có thể bị đóng lệnh đang lãi mà không làm gì sai. Hợp đồng COIN-M dễ bị ADL hơn USDⓈ-M vì quỹ bảo hiểm dùng chung theo tài sản ký quỹ nên nhỏ hơn. Trong đợt sập 10/10/2025, CoinGecko ghi nhận nhiều vị thế short đang lãi (của người giao dịch trung lập delta) bị đóng qua ADL, khiến chân long bên kia không còn được phòng hộ.' },
+      { type: 'p', text: 'ADL là lý do bạn có thể bị đóng lệnh đang lãi mà không làm gì sai. Hợp đồng COIN-M dễ bị ADL hơn USDⓈ-M vì quỹ bảo hiểm dùng chung theo tài sản ký quỹ nên nhỏ hơn. Trong đợt sập 10/10/2025, CoinGecko mô tả các vị thế trung lập delta (long và short cùng lượng) bị vỡ vì chân short đang lãi bị đóng qua ADL, khiến lỗ của chân long không còn được bù.' },
       { type: 'h', text: 'Quy tắc: dừng lỗ phải kích hoạt rất lâu trước thanh lý' },
       { type: 'p', text: 'Thanh lý là thất bại của quản trị rủi ro, không phải một kịch bản trong kế hoạch. Dừng lỗ của bạn nằm ở điểm vô hiệu của ý tưởng (bài 5.7). Giá thanh lý phải nằm <strong>xa hơn dừng lỗ nhiều lần</strong>, để kể cả khi dừng lỗ bị trượt giá hoặc giá giật mạnh, bạn vẫn thoát trước khi bị sàn tiếp quản.' },
       { type: 'calc', title: 'Long BTC ở 80.000, dừng lỗ 78.400 (cách 2%), MMR 0,4% (giả định)', rows: [
         ['10x: giá thanh lý', '72.320, cách 9,6%, xa gấp khoảng 4,8 lần dừng lỗ'],
         ['20x: giá thanh lý', '76.320, cách 4,6%, chỉ gấp 2,3 lần'],
         ['50x: giá thanh lý', '78.720, nằm TRÊN dừng lỗ 78.400: bị thanh lý trước khi dừng lỗ kịp chạy'],
-        ['Đòn bẩy tối đa để thanh lý xa ≥ 3 lần dừng lỗ', '1 ÷ (3 × 2% + 0,4%) = 1 ÷ 0,064 ≈ 15,6 → chọn không quá 15x, tốt hơn là thấp hơn nhiều']
+        ['Đòn bẩy tối đa để thanh lý xa ≥ 3 lần dừng lỗ', '1 ÷ (3 × 2% + 0,4%) = 1 ÷ 0,064 ≈ 15,6 → không quá 15x; bộ chuẩn bài 5.9 còn giới hạn thanh trượt tối đa 5x–10x']
       ], result: 'Với dừng lỗ 2%, đòn bẩy thanh trượt trên 15x đã vi phạm quy tắc. Nếu khối lượng tính theo rủi ro 1% thì thanh trượt 2–5x là đủ ký quỹ.' },
       { type: 'formula', title: 'Đòn bẩy thanh trượt tối đa theo quy tắc', expr: 'Đòn bẩy tối đa ≈ 1 ÷ (k × Khoảng dừng lỗ % + MMR)', vars: [['k', 'Bội số an toàn, ít nhất 3 (thanh lý cách giá vào ít nhất 3 lần khoảng dừng lỗ)'], ['Khoảng dừng lỗ %', 'Khoảng cách từ giá vào tới dừng lỗ, dạng thập phân']] },
       { type: 'scenario', title: 'Giá quét xuống nhanh trong đêm', setup: 'Long 0,1 BTC ở 80.000 (giả định). Cụm thanh lý lớn nằm quanh 78.500. Tin xấu ra lúc 1 giờ sáng.', bad: 'Dùng 50x isolated, ký quỹ 160 USDT, không đặt dừng lỗ vì "giá thanh lý đã là dừng lỗ rồi". Giá quét xuống 78.300 trong vài giây rồi hồi lên 80.500. Vị thế bị thanh lý ở khoảng 78.720, mất trọn 160 USDT cộng phí thanh lý, nhìn giá hồi mà không còn vị thế.', good: 'Khối lượng tính theo rủi ro 1% (bài 5.2), isolated 5x, giá thanh lý khoảng 64.320. Dừng lỗ Stop-Market ở điểm vô hiệu có đệm dưới cụm thanh lý. Nếu dừng lỗ chạy thì mất khoảng 1% tài khoản như kế hoạch; nếu không chạm thì vẫn còn vị thế khi giá hồi. Cả hai trường hợp đều không có thanh lý.' },
@@ -289,7 +290,7 @@ const lessons = {
         'Đã chọn isolated',
         'Đã tính giá thanh lý và nó xa hơn dừng lỗ ít nhất 3 lần',
         'Dừng lỗ là Stop-Market, đặt ngay khi vào lệnh',
-        'Margin ratio dự kiến vẫn dưới 80% kể cả khi giá chạm dừng lỗ'
+        'Margin ratio tính tại giá dừng lỗ không quá 30% (vị thế thỏa quy tắc 3 lần với dừng lỗ từ 0,5% trở lên luôn dưới mức này; ví dụ 10x, dừng lỗ 78.400: 31,36 ÷ 640 ≈ 4,9%). Mức 80% Binance khuyến nghị là ngưỡng báo động, không phải mục tiêu'
       ] }
     ],
     keyPoints: [
@@ -306,17 +307,18 @@ const lessons = {
       'Với lệnh tiếp theo bạn định vào, tính khoảng dừng lỗ %, rồi dùng công thức 1 ÷ (3 × d + MMR) để ra đòn bẩy thanh trượt tối đa. Viết con số vào nhật ký giao dịch.'
     ],
     quiz: [
-      { q: 'Long BTC ở 80.000, isolated 20x, MMR 0,4%. Giá thanh lý gần đúng là?', options: ['76.000', '84.000', '72.320', '76.320'], answer: 3, explain: '80.000 × (1 − 1/20 + 0,004) = 80.000 × 0,954 = 76.320. 76.000 là quên MMR (đó gần với giá phá sản); 72.320 là của 10x; 84.000 là hướng short và sai công thức.' },
-      { q: 'Bạn long BTC ở 80.000 với dừng lỗ ở 78.400. Mức đòn bẩy isolated nào khiến bạn bị thanh lý TRƯỚC khi dừng lỗ kịp kích hoạt (MMR 0,4%)?', options: ['10x', '50x', '20x', '5x'], answer: 1, explain: 'Ở 50x giá thanh lý ≈ 80.000 × (1 − 0,02 + 0,004) = 78.720, nằm trên dừng lỗ 78.400, nên thanh lý xảy ra trước. 20x cho 76.320, 10x cho 72.320, 5x cho 64.320, đều nằm dưới dừng lỗ.' },
+      { q: 'Long BTC ở 80.000, isolated 20x, MMR 0,4%. Giá thanh lý gần đúng là?', options: ['76.000', '76.320', '84.000', '72.320'], answer: 1, explain: '80.000 × (1 − 1/20 + 0,004) = 80.000 × 0,954 = 76.320. 76.000 là quên MMR (đó gần với giá phá sản); 72.320 là của 10x; 84.000 là hướng short và sai công thức.' },
+      { q: 'Bạn long BTC ở 80.000 với dừng lỗ ở 78.400. Mức đòn bẩy isolated nào khiến bạn bị thanh lý TRƯỚC khi dừng lỗ kịp kích hoạt (MMR 0,4%)?', options: ['50x', '10x', '20x', '5x'], answer: 0, explain: 'Ở 50x giá thanh lý ≈ 80.000 × (1 − 0,02 + 0,004) = 78.720, nằm trên dừng lỗ 78.400, nên thanh lý xảy ra trước. 20x cho 76.320, 10x cho 72.320, 5x cho 64.320, đều nằm dưới dừng lỗ.' },
       { q: 'Trên BTCUSDT perpetual, last price bất ngờ giật xuống sâu trong một giây rồi hồi lại, trong khi giá ở các sàn khác gần như không đổi. Điều gì quyết định vị thế long của bạn có bị thanh lý không?', options: ['Last price', 'Giá mở cửa ngày', 'Mark price', 'Giá trung bình của bạn trong 24 giờ'], answer: 2, explain: 'Binance dùng mark price để kích hoạt thanh lý. Mark price là trung vị của ba giá có dùng index từ nhiều sàn, nên cú giật của last price trên một sổ lệnh thường không kéo được nó. Last price chỉ dùng cho khớp lệnh và PnL đã chốt.' },
-      { q: 'Hai trader cùng short lãi 20% trên vị thế 10.000 USDT. A có số dư 1.000, B có số dư 9.000. Khi ADL xảy ra, ai bị đóng trước?', options: ['A, vì đòn bẩy hiệu dụng cao hơn nên hạng ADL cao hơn', 'B, vì số dư lớn hơn', 'Cả hai cùng lúc vì lãi bằng nhau', 'Không ai, vì ADL chỉ đóng vị thế đang lỗ'], answer: 0, explain: 'Hạng = % PnL × Đòn bẩy hiệu dụng. A: 20% × (10.000 ÷ 3.000) ≈ 0,67. B: 20% × (10.000 ÷ 11.000) ≈ 0,18. A đứng trước. ADL đóng vị thế đang lãi ở bên đối diện, không phải vị thế lỗ.' }
+      { q: 'Hai trader cùng short lãi 20% trên vị thế 10.000 USDT. A có số dư 1.000, B có số dư 9.000. Khi ADL xảy ra, ai bị đóng trước?', options: ['B, vì số dư lớn hơn', 'Cả hai cùng lúc vì lãi bằng nhau', 'Không ai, vì ADL chỉ đóng vị thế đang lỗ', 'A, vì đòn bẩy hiệu dụng cao hơn nên hạng ADL cao hơn'], answer: 3, explain: 'Hạng = % PnL × Đòn bẩy hiệu dụng. A: 20% × (10.000 ÷ 3.000) ≈ 0,67. B: 20% × (10.000 ÷ 11.000) ≈ 0,18. A đứng trước. ADL đóng vị thế đang lãi ở bên đối diện, không phải vị thế lỗ.' }
     ],
     sources: [
       { title: 'Liquidation Protocols', url: 'https://www.binance.com/en/support/faq/detail/360033525271', note: 'Binance Support, tiếng Anh (điều kiện thanh lý, margin ratio, ví dụ 17.000 → 17.100)' },
       { title: 'What Is Auto-Deleveraging (ADL) and How Does It Work?', url: 'https://www.binance.com/en/support/faq/detail/360033525471', note: 'Binance Support, tiếng Anh (thứ hạng ADL, giá phá sản)' },
       { title: 'What Are Mark Price and Price Index in USDⓈ-Margined Futures?', url: 'https://www.binance.com/en/support/faq/detail/360033525071', note: 'Binance Support, tiếng Anh' },
       { title: 'Mark Price vs. Last Price on Binance Futures – What is the Difference?', url: 'https://www.binance.com/en/blog/futures/5704082076024731087', note: 'Binance Blog, tiếng Anh' },
-      { title: 'How to Calculate Liquidation Price of USDⓈ-M Futures Contracts', url: 'https://www.binance.com/en/support/faq/detail/b3c689c1f50a44cabb3a84e663b81d93', note: 'Binance Support, tiếng Anh' }
+      { title: 'How to Calculate Liquidation Price of USDⓈ-M Futures Contracts', url: 'https://www.binance.com/en/support/faq/detail/b3c689c1f50a44cabb3a84e663b81d93', note: 'Binance Support, tiếng Anh' },
+      { title: 'October 10 Crypto Crash Explained', url: 'https://www.coingecko.com/learn/october-10-crypto-crash-explained', note: 'CoinGecko Learn, tiếng Anh (ADL đóng chân short của vị thế trung lập delta)' }
     ],
     updated: '2026-09'
   },
@@ -347,7 +349,7 @@ const lessons = {
       { type: 'p', text: 'Chu kỳ mặc định là 8 giờ nhưng sàn có thể đổi chu kỳ cho từng hợp đồng khi biến động mạnh. Luôn xem đồng hồ đếm ngược funding cạnh giá trên giao diện, đừng giả định.' },
       { type: 'h', text: 'Công thức funding của Binance' },
       { type: 'formula', title: 'Số tiền funding', expr: 'Số tiền funding = Giá trị danh nghĩa vị thế × Funding rate', vars: [['Giá trị danh nghĩa', 'Mark price × Khối lượng tại thời điểm tính'], ['Funding rate', 'Tỷ lệ của kỳ đó, dương hoặc âm']] },
-      { type: 'formula', title: 'Funding rate', expr: 'F = [P + clamp(I − P, 0,05%, −0,05%)] ÷ (8 ÷ N)', vars: [['P', 'Premium Index trung bình có trọng số theo thời gian trong chu kỳ, đo độ lệch giữa giá hợp đồng (impact bid/ask) và Price Index'], ['I', 'Lãi suất, mặc định 0,03%/ngày tức 0,01% mỗi 8 giờ (một số cặp như ETHBTC là 0%)'], ['clamp', 'Kẹp giá trị trong khoảng −0,05% đến +0,05%'], ['N', 'Số giờ của chu kỳ funding; với chu kỳ 8 giờ thì 8 ÷ N = 1']], note: 'Premium Index tức thời = [Max(0, Impact Bid − Price Index) − Max(0, Price Index − Impact Ask)] ÷ Price Index. Funding còn bị giới hạn trần/sàn theo từng hợp đồng.' },
+      { type: 'formula', title: 'Funding rate', expr: 'F = [P + clamp(I − P, 0,05%, −0,05%)] ÷ (8 ÷ N)', vars: [['P', 'Premium Index trung bình có trọng số theo thời gian trong chu kỳ, đo độ lệch giữa giá hợp đồng (impact bid/ask) và Price Index'], ['I', 'Lãi suất, mặc định 0,03%/ngày tức 0,01% mỗi 8 giờ (một số cặp như ETHBTC là 0%)'], ['clamp', 'Kẹp giá trị trong khoảng −0,05% đến +0,05%'], ['N', 'Số giờ của chu kỳ funding (funding interval); với chu kỳ 8 giờ thì 8 ÷ N = 1 nên công thức rút gọn thành F = P + clamp(I − P, 0,05%, −0,05%)']], note: 'Công thức theo FAQ funding của Binance. Premium Index tức thời = [Max(0, Impact Bid − Price Index) − Max(0, Price Index − Impact Ask)] ÷ Price Index. Funding còn bị giới hạn trần/sàn theo từng hợp đồng.' },
       { type: 'calc', title: 'Vì sao funding thường đứng ở 0,01% (chu kỳ 8 giờ)', rows: [
         ['Ví dụ chính thức của Binance: P = 0,0429%', '0,0429% + clamp(0,01% − 0,0429%) = 0,0429% − 0,0329% = 0,0100%'],
         ['P = 0,02%', '0,02% + (−0,01%) = 0,01%'],
@@ -389,14 +391,14 @@ const lessons = {
         '<strong>Bản đồ thanh lý (liquidation map/heatmap)</strong>: các trang dữ liệu bên thứ ba ước tính nơi tập trung nhiều giá thanh lý, dựa trên OI và giả định về đòn bẩy. Đây là ước tính, không phải dữ liệu thật của từng vị thế.',
         'Cách dùng đúng: xem đây là <strong>bức tranh đám đông và nơi có thể xảy ra biến động mạnh</strong>, không phải lệnh mua bán. Đám đông quá đông một phía, funding cao, OI tăng nhanh là thị trường "dễ vỡ", nên giảm khối lượng hoặc đứng ngoài.'
       ] },
-      { type: 'example', title: 'Ngày 10/10/2025: thanh lý dây chuyền', text: 'Sau thông báo thuế quan 100% với hàng nhập khẩu Trung Quốc, thị trường crypto chứng kiến đợt thanh lý lớn nhất lịch sử: khoảng 19 tỷ USD vị thế đòn bẩy bị thanh lý trong 24 giờ, hơn 1,6 triệu tài khoản. Theo CoinGecko, khoảng 70% diễn ra trong 40 phút; BTC giảm từ khoảng 122.574 xuống 104.782 USD (−14,5%). Cơ chế: vị thế long bị thanh lý tạo lệnh bán, đẩy giá xuống thêm, chạm giá thanh lý của lớp tiếp theo. Cross margin làm lỗ lan sang mọi vị thế, và ADL đóng cả vị thế short phòng hộ đang lãi.' },
+      { type: 'example', title: 'Ngày 10/10/2025: thanh lý dây chuyền', text: 'Sau thông báo thuế quan 100% với hàng nhập khẩu Trung Quốc, thị trường crypto chứng kiến đợt thanh lý lớn nhất lịch sử: khoảng 19 tỷ USD vị thế đòn bẩy bị thanh lý trong 24 giờ, hơn 1,6 triệu tài khoản. Theo CoinGecko, khoảng 6,93 tỷ USD thanh lý (khoảng 70% số liệu thanh lý mà họ phân tích) dồn vào chỉ 40 phút, từ 20:50 đến 21:30 UTC; BTC giảm từ đỉnh trong ngày 122.574 xuống 104.782 USD (−14,5%). Cơ chế: vị thế long bị thanh lý tạo lệnh bán, đẩy giá xuống thêm, chạm giá thanh lý của lớp tiếp theo. Cross margin làm lỗ lan sang mọi vị thế, và ADL đóng cả vị thế short phòng hộ đang lãi.' },
       { type: 'p', text: 'Nhìn lại, dữ liệu phái sinh trước những đợt như vậy thường cho thấy đòn bẩy tích tụ cao. Nhưng không ai biết trước ngày giờ tin ra. Bài học không phải "đọc OI để bắt đáy". Bài học là: <strong>khi đòn bẩy toàn thị trường cao, giá có thể đi xa hơn mọi phân tích kỹ thuật</strong>, và chỉ những người có dừng lỗ, đòn bẩy thấp, isolated mới sống sót.' },
       { type: 'scenario', title: 'Funding cao, OI tăng mạnh, tỷ lệ long lệch hẳn', setup: 'BTC tăng 3 ngày liền (giả định). Funding 0,05% mỗi 8 giờ, OI tăng nhanh, bản đồ thanh lý cho thấy cụm lớn phía dưới giá 4%.', bad: 'Thấy funding âm ở một coin khác là "tín hiệu mua", thấy funding cao ở BTC là "tín hiệu short", mở short 20x ngay không chờ setup. Hoặc ngược lại, long thêm 20x vì "mọi người đều long". Giữ nhiều ngày, trả funding 15 USDT mỗi ngày trên 10.000 danh nghĩa.', good: 'Ghi nhận: thị trường đông long, đòn bẩy cao, dễ có nhịp quét xuống. Không coi đó là lệnh. Chỉ vào khi setup đủ điều kiện, giảm một nửa khối lượng, dừng lỗ đặt ngoài cụm thanh lý, cộng chi phí funding vào kế hoạch nếu giữ qua đêm.' }
     ],
     keyPoints: [
       'Funding dương: long trả short; âm: short trả long. Binance không thu phí trên funding.',
       'Mốc funding mặc định 07:00, 15:00, 23:00 giờ Việt Nam; chỉ trả/nhận nếu đang giữ vị thế đúng lúc đó.',
-      'F = P + clamp(I − P, ±0,05%), I = 0,01% mỗi 8 giờ, nên funding thường đúng 0,01%.',
+      'F = [P + clamp(I − P, ±0,05%)] ÷ (8 ÷ N); với chu kỳ 8 giờ (N = 8) là F = P + clamp(I − P, ±0,05%), I = 0,01% mỗi 8 giờ, nên funding thường đúng 0,01%.',
       'Funding tính trên danh nghĩa: 10.000 USDT, 0,05%/8 giờ, 30 ngày tốn 450 USDT.',
       'OI, tỷ lệ long/short, bản đồ thanh lý là bức tranh đám đông, không phải tín hiệu mua bán.',
       'Ngày 10/10/2025: khoảng 19 tỷ USD bị thanh lý trong 24 giờ, minh chứng cho thanh lý dây chuyền.'
@@ -407,10 +409,10 @@ const lessons = {
       'Trên Demo Trading, mở một vị thế nhỏ trước mốc 15:00 và giữ qua mốc đó. Vào lịch sử giao dịch xem dòng funding fee và đối chiếu với công thức.'
     ],
     quiz: [
-      { q: 'Funding rate là +0,03%. Bạn đang short vị thế danh nghĩa 5.000 USDT đúng lúc tính funding. Điều gì xảy ra?', options: ['Bạn nhận 1,5 USDT', 'Bạn trả 1,5 USDT', 'Bạn nhận 15 USDT', 'Không có gì vì Binance thu funding'], answer: 0, explain: 'Funding dương thì long trả short. Số tiền = 5.000 × 0,03% = 1,5 USDT, bạn là short nên nhận. 15 USDT là tính nhầm 0,3%. Binance không thu phí trên funding, tiền chuyển thẳng giữa người chơi.' },
-      { q: 'Bạn giữ long 20.000 USDT danh nghĩa trong 10 ngày, funding không đổi ở 0,05% mỗi 8 giờ. Tổng funding phải trả là?', options: ['100 USDT', '10 USDT', '300 USDT', '30 USDT'], answer: 2, explain: 'Mỗi kỳ 20.000 × 0,05% = 10 USDT; 3 kỳ mỗi ngày là 30 USDT; 10 ngày là 300 USDT. 10 là một kỳ, 30 là một ngày, 100 là quên rằng mỗi ngày có 3 kỳ.' },
+      { q: 'Funding rate là +0,03%. Bạn đang short vị thế danh nghĩa 5.000 USDT đúng lúc tính funding. Điều gì xảy ra?', options: ['Bạn trả 1,5 USDT', 'Bạn nhận 15 USDT', 'Bạn nhận 1,5 USDT', 'Không có gì vì Binance thu funding'], answer: 2, explain: 'Funding dương thì long trả short. Số tiền = 5.000 × 0,03% = 1,5 USDT, bạn là short nên nhận. 15 USDT là tính nhầm 0,3%. Binance không thu phí trên funding, tiền chuyển thẳng giữa người chơi.' },
+      { q: 'Bạn giữ long 20.000 USDT danh nghĩa trong 10 ngày, funding không đổi ở 0,05% mỗi 8 giờ. Tổng funding phải trả là?', options: ['100 USDT', '10 USDT', '30 USDT', '300 USDT'], answer: 3, explain: 'Mỗi kỳ 20.000 × 0,05% = 10 USDT; 3 kỳ mỗi ngày là 30 USDT; 10 ngày là 300 USDT. 10 là một kỳ, 30 là một ngày, 100 là quên rằng mỗi ngày có 3 kỳ.' },
       { q: 'Bạn mở long lúc 15:10 và đóng lúc 22:40 cùng ngày (giờ Việt Nam), chu kỳ funding mặc định 8 giờ. Bạn trả bao nhiêu kỳ funding?', options: ['1 kỳ', '0 kỳ', '2 kỳ', 'Tùy funding dương hay âm'], answer: 1, explain: 'Các mốc là 07:00, 15:00, 23:00 giờ Việt Nam. Bạn mở sau 15:00 và đóng trước 23:00 nên không giữ vị thế tại mốc nào, không trả không nhận. Dấu của funding chỉ quyết định ai trả, không đổi số kỳ.' },
-      { q: 'Giá BTC giảm, OI tăng nhanh, funding âm sâu, tỷ lệ short cao. Cách hiểu nào đúng nhất?', options: ['Chắc chắn giá sẽ bật tăng, long ngay với đòn bẩy cao', 'Chắc chắn giá giảm tiếp, short thêm', 'OI tăng nghĩa là giá sắp tăng', 'Đám đông đang đông short, thị trường dễ có nhịp ép short; đây là bối cảnh để quản trị rủi ro, không phải tín hiệu vào lệnh'], answer: 3, explain: 'Dữ liệu phái sinh mô tả đám đông và lượng đòn bẩy, không dự đoán hướng giá. Bối cảnh này cho biết nếu giá đảo chiều thì short có thể bị ép đóng dây chuyền, nên cần thận trọng. Các lựa chọn "chắc chắn" đều sai vì OI tự nó không dự đoán hướng.' }
+      { q: 'Giá BTC giảm, OI tăng nhanh, funding âm sâu, tỷ lệ short cao. Cách hiểu nào đúng nhất?', options: ['Phía short đang đông, dễ có nhịp ép short; dùng để quản trị rủi ro', 'Chắc chắn giá sẽ bật tăng mạnh, nên long ngay với đòn bẩy cao', 'Chắc chắn giá sẽ còn giảm tiếp, nên mở thêm lệnh short ngay', 'OI tăng nhanh nghĩa là giá sắp tăng, bất kể funding ra sao'], answer: 0, explain: 'Dữ liệu phái sinh mô tả đám đông và lượng đòn bẩy, không dự đoán hướng giá. Bối cảnh này cho biết nếu giá đảo chiều thì short có thể bị ép đóng dây chuyền, nên cần thận trọng. Các lựa chọn "chắc chắn" đều sai vì không dữ liệu nào bảo đảm hướng giá, và OI tăng tự nó không dự đoán hướng: ở đây OI tăng khi giá giảm là áp lực short đang tích tụ.' }
     ],
     sources: [
       { title: 'Introduction to Binance Futures Funding Rates', url: 'https://www.binance.com/en/support/faq/detail/360033525031', note: 'Binance Support, tiếng Anh (công thức funding, mốc giờ, ví dụ 0,0429%)' },

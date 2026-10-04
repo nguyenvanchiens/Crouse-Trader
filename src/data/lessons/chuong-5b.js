@@ -1,6 +1,6 @@
 const lessons = {
   'c5-b5': {
-    duration: 14,
+    duration: 15,
     level: 'Trung cấp',
     summary: 'Khung 3 lớp bối cảnh → vùng → kích hoạt, 3 setup có quy tắc rõ, thang điểm A/B/C và danh sách điều kiện cấm vào lệnh.',
     goals: [
@@ -56,13 +56,13 @@ const lessons = {
         ['2. Vùng H4 hợp lệ', '0, 1 hoặc 2', '2 nếu vùng được tôn trọng từ 2 lần trở lên hoặc là vùng vừa phá vỡ rõ ràng. 1 nếu chỉ chạm 1 lần. 0 nếu giá đang ở giữa hai vùng.'],
         ['3. Kích hoạt H1 đã đóng nến', '0 hoặc 2', '2 nếu có MSB hoặc nến xác nhận ĐÃ ĐÓNG. 0 nếu nến đang chạy hoặc chưa có tín hiệu.'],
         ['4. R:R tới vùng cản gần nhất', '0, 1 hoặc 2', '2 nếu từ 2R trở lên; 1 nếu 1,5–2R; 0 nếu dưới 1,5R.'],
-        ['5. Lịch và dữ liệu phái sinh', '0 hoặc 1', '1 nếu không có tin lớn (CPI, FOMC) trong 4 giờ tới và funding không cực đoan. 0 nếu ngược lại.'],
+        ['5. Lịch và dữ liệu phái sinh', '0 hoặc 1', '1 nếu thời điểm vào lệnh không nằm trong khoảng 30 phút trước đến 30 phút sau tin lớn (CPI, FOMC, NFP; xem bài 5.9) và funding không cực đoan. 0 nếu ngược lại (khi đó danh sách cấm bên dưới cũng phủ quyết lệnh).'],
         ['6. Trạng thái bản thân', '0 hoặc 1', '1 nếu chưa chạm giới hạn lỗ ngày, không vừa thua 2 lệnh liên tiếp, ngủ đủ, không đang giận. 0 nếu ngược lại.']
       ] },
       { type: 'list', items: [
-        '<strong>Hạng A</strong>: từ 8 đến 10 điểm VÀ các tiêu chí 1, 3, 4 đều khác 0. Được vào lệnh với rủi ro theo kế hoạch (ví dụ 1%).',
-        '<strong>Hạng B</strong>: 6–7 điểm, hoặc có tiêu chí 1, 3, 4 bằng 0. Không vào. Ghi vào nhật ký và theo dõi xem nếu vào thì kết quả ra sao, để kiểm chứng bộ quy tắc.',
-        '<strong>Hạng C</strong>: từ 5 điểm trở xuống. Không vào, không cần theo dõi.'
+        '<strong>Hạng A</strong>: từ 8 đến 10 điểm VÀ ba tiêu chí bắt buộc 1, 3, 4 đều đạt 2 điểm (bối cảnh rõ, nến kích hoạt đã đóng, R:R từ 2R). Được vào lệnh với rủi ro theo kế hoạch (ví dụ 1%).',
+        '<strong>Hạng B</strong>: từ 6 điểm trở lên nhưng chưa đạt hạng A (6–7 điểm, hoặc từ 8 điểm mà một tiêu chí bắt buộc chưa đạt 2). Không vào. Ghi vào nhật ký và theo dõi xem nếu vào thì kết quả ra sao, để kiểm chứng bộ quy tắc.',
+        '<strong>Hạng C</strong>: từ 5 điểm trở xuống, bất kể tiêu chí nào. Không vào, không cần theo dõi.'
       ] },
       { type: 'example', title: 'Chấm thử một lệnh short ETH (giả định)', text: 'D1 ETH có LH/LL nhưng giá vừa đóng trên EMA 50 D1: tiêu chí 1 = 0. Vùng kháng cự H4 3.080–3.120 đã chặn 3 lần: 2. H1 vừa đóng nến nhấn chìm giảm: 2. Hỗ trợ gần nhất 2.860, vào 3.050, dừng lỗ 3.140: lời 190, lỗ 90, R:R ≈ 2,1: 2. Không có tin lớn: 1. Trạng thái ổn: 1. Tổng 8 điểm nhưng tiêu chí 1 bằng 0 nên là hạng B. Không vào lệnh. Tổng điểm cao không cứu được một điều kiện bắt buộc bị thiếu.' },
       { type: 'checklist', title: 'Checklist trước khi gọi một setup là hạng A', items: [
@@ -71,9 +71,9 @@ const lessons = {
         'Nến kích hoạt trên H1 đã đóng cửa',
         'Tôi biết chính xác giá dừng lỗ và nó nằm ở nơi ý tưởng bị sai',
         'Mục tiêu đầu tiên cách điểm vào ít nhất 2R và không có vùng cản lớn chắn giữa',
-        'Không có CPI/FOMC trong 4 giờ tới, funding không cực đoan',
+        'Giờ hiện tại không nằm trong khoảng 30 phút trước đến 30 phút sau CPI/FOMC/NFP, funding không cực đoan',
         'Tôi chưa chạm giới hạn lỗ ngày và không vừa thua 2 lệnh liên tiếp',
-        'Tổng điểm từ 8 trở lên và tiêu chí 1, 3, 4 đều khác 0'
+        'Tổng điểm từ 8 trở lên, tiêu chí 1, 3, 4 đều đạt 2 điểm, và không dính dòng nào trong danh sách cấm'
       ] },
 
       { type: 'h', text: 'Danh sách điều kiện KHÔNG vào lệnh' },
@@ -94,7 +94,7 @@ const lessons = {
       'Luôn đi theo thứ tự D1 bối cảnh → H4 vùng → H1 kích hoạt; khung nhỏ không được cãi khung lớn.',
       'Kích hoạt chỉ tính khi nến đã đóng cửa: nến xác nhận hoặc phá vỡ cấu trúc khung nhỏ (MSB).',
       'Ba setup: pullback theo xu hướng (dễ nhất), breakout-retest (chờ kiểm tra lại, không đuổi nến phá vỡ), đảo chiều tại vùng lớn (khó nhất, giảm rủi ro một nửa).',
-      'Chấm điểm 10: chỉ vào hạng A (từ 8 điểm và tiêu chí bối cảnh, kích hoạt, R:R đều khác 0).',
+      'Chấm điểm 10: chỉ vào hạng A (từ 8 điểm và tiêu chí bối cảnh, kích hoạt, R:R đều đạt 2 điểm); từ 5 điểm trở xuống là hạng C.',
       'Danh sách cấm có quyền phủ quyết: giữa biên độ, trước tin lớn, funding cực đoan, vừa thua 2 lệnh, không có dừng lỗ hợp lý.'
     ],
     practice: [
@@ -104,10 +104,10 @@ const lessons = {
       'In hoặc chép danh sách 8 điều kiện KHÔNG vào lệnh, dán cạnh màn hình.'
     ],
     quiz: [
-      { q: 'D1 của ETH đang tạo đỉnh thấp dần, đáy thấp dần và giá nằm dưới EMA 50 D1. Trên H1 bạn thấy một nến búa đẹp tại hỗ trợ H4. Theo khung 3 lớp, bạn nên làm gì?', options: ['Long ngay vì nến búa là tín hiệu tăng', 'Không long; bối cảnh D1 chỉ cho phép tìm short, nến búa này chỉ báo nhịp hồi có thể bắt đầu', 'Long với đòn bẩy thấp để bù cho rủi ro ngược xu hướng', 'Long nếu RSI H1 dưới 30'], answer: 1, explain: 'Lớp 1 quyết định hướng: D1 là LH/LL và dưới EMA 50 thì chỉ tìm short. Tín hiệu H1 không được cãi D1. Giảm đòn bẩy không biến một lệnh ngược bối cảnh thành setup hợp lệ, và RSI dưới 30 cũng không thay đổi bối cảnh.' },
-      { q: 'Bạn tự chấm một setup được 9 điểm, trong đó đã cho 2 điểm tiêu chí kích hoạt dù nến H1 chưa đóng cửa. Xếp hạng đúng là gì?', options: ['Hạng A vì tổng điểm từ 8 trở lên', 'Hạng A nếu còn dưới 10 phút là nến đóng', 'Không phải hạng A; tiêu chí kích hoạt bằng 0 thì tối đa là hạng B, phải chờ nến đóng rồi chấm lại', 'Hạng C'], answer: 2, explain: 'Chấm đúng thì tiêu chí 3 bằng 0, tổng còn 7 và thiếu điều kiện bắt buộc, nên chưa phải hạng A. Nến chưa đóng có thể đổi hình dạng hoàn toàn trong vài phút cuối. Hạng C là quá thấp khi các tiêu chí khác đạt; cách đúng là chờ nến đóng rồi chấm lại.' },
-      { q: 'BTC vừa đóng nến H4 phá lên trên kháng cự 84.000 với volume lớn. Theo setup breakout-retest, điểm vào hợp lý là gì?', options: ['Chờ giá quay lại vùng quanh 84.000, có nến từ chối hoặc MSB trên H1 thì mới vào; không có retest thì bỏ lệnh', 'Mua market ngay khi nến phá vỡ đóng', 'Đặt lệnh short vì phá vỡ thường là giả', 'Đặt lệnh mua limit thấp hơn nhiều, ở 80.000'], answer: 0, explain: 'Setup breakout-retest vào lệnh khi kiểm tra lại thành công, vì kháng cự cũ đóng vai hỗ trợ. Mua ngay nến phá vỡ dễ dính phá vỡ giả và có R:R xấu. Short ngược phá vỡ là không có cơ sở. Limit ở 80.000 không gắn với vùng vừa phá.' },
-      { q: 'Tình huống nào sau đây KHÔNG thuộc danh sách cấm vào lệnh?', options: ['Còn 20 phút nữa là công bố CPI Mỹ', 'Bạn vừa thua 2 lệnh liên tiếp trong ngày', 'Funding đang +0,06% mỗi 8 giờ và bạn định mở long', 'Giá đang ở vùng hỗ trợ H4 đã giữ 3 lần, D1 tăng, nến kích hoạt H1 đã đóng, không có tin lớn trong 4 giờ tới'], answer: 3, explain: 'Lựa chọn D mô tả một setup pullback có đủ 3 lớp và không có tin, nên không bị cấm (vẫn phải chấm R:R). A rơi vào khung 30 phút trước CPI. B chạm quy tắc 2 lệnh thua. C là funding cực đoan ở chiều long theo quy tắc gợi ý.' }
+      { q: 'D1 của ETH đang tạo đỉnh thấp dần, đáy thấp dần và giá nằm dưới EMA 50 D1. Trên H1 bạn thấy một nến búa đẹp tại hỗ trợ H4. Theo khung 3 lớp, bạn nên làm gì?', options: ['Không long; D1 chỉ cho phép tìm short, nến búa chỉ báo nhịp hồi', 'Long ngay vì nến búa tại hỗ trợ H4 là tín hiệu tăng rõ ràng', 'Long với đòn bẩy thấp hơn để bù cho rủi ro ngược xu hướng', 'Long nếu RSI H1 dưới 30, vì khi đó giá đã quá bán'], answer: 0, explain: 'Lớp 1 quyết định hướng: D1 là LH/LL và dưới EMA 50 thì chỉ tìm short. Tín hiệu H1 không được cãi D1. Giảm đòn bẩy không biến một lệnh ngược bối cảnh thành setup hợp lệ, và RSI dưới 30 cũng không thay đổi bối cảnh.' },
+      { q: 'Bạn tự chấm một setup được 9 điểm, trong đó đã cho 2 điểm tiêu chí kích hoạt dù nến H1 chưa đóng cửa. Xếp hạng đúng là gì?', options: ['Hạng A, vì tổng điểm đã từ 8 trở lên', 'Hạng A, nếu chỉ còn dưới 10 phút là nến đóng', 'Hạng C, vì đã chấm sai một tiêu chí', 'Hạng B; chờ nến đóng rồi chấm lại từ đầu'], answer: 3, explain: 'Chấm đúng thì tiêu chí 3 bằng 0, tổng còn 7 điểm và thiếu điều kiện bắt buộc, nên là hạng B, không vào. Nến chưa đóng có thể đổi hình dạng hoàn toàn trong vài phút cuối. Hạng C chỉ dành cho tổng từ 5 điểm trở xuống, còn ở đây là 7; cách đúng là chờ nến đóng rồi chấm lại.' },
+      { q: 'BTC vừa đóng nến H4 phá lên trên kháng cự 84.000 với volume lớn. Theo setup breakout-retest, điểm vào hợp lý là gì?', options: ['Mua market ngay khi nến H4 phá vỡ vừa đóng cửa để không lỡ', 'Chờ giá retest vùng 84.000, có nến từ chối hoặc MSB H1 rồi mới vào', 'Đặt lệnh short vì phá vỡ có volume lớn thường là giả', 'Đặt limit mua thấp hơn nhiều, ở 80.000, cho giá vốn tốt'], answer: 1, explain: 'Setup breakout-retest vào lệnh khi kiểm tra lại thành công, vì kháng cự cũ đóng vai hỗ trợ. Mua ngay nến phá vỡ dễ dính phá vỡ giả và có R:R xấu. Short ngược phá vỡ là không có cơ sở. Limit ở 80.000 không gắn với vùng vừa phá.' },
+      { q: 'Tình huống nào sau đây KHÔNG thuộc danh sách cấm vào lệnh?', options: ['Còn 20 phút nữa là công bố CPI Mỹ', 'Bạn vừa thua 2 lệnh liên tiếp trong ngày', 'Giá ở vùng hỗ trợ H4 đã giữ 3 lần, D1 tăng, nến kích hoạt H1 đã đóng, không có tin lớn trong 30 phút trước hay sau', 'Funding đang +0,06% mỗi 8 giờ và bạn định mở long'], answer: 2, explain: 'Lựa chọn C mô tả một setup pullback có đủ 3 lớp và nằm ngoài khoảng cấm quanh tin, nên không bị cấm (vẫn phải chấm R:R). A rơi vào khung 30 phút trước CPI. B chạm quy tắc 2 lệnh thua. D là funding cực đoan ở chiều long theo quy tắc gợi ý.' }
     ],
     sources: [
       { title: 'Support & Resistance', url: 'https://chartschool.stockcharts.com/table-of-contents/chart-analysis/support-and-resistance', note: 'StockCharts ChartSchool, tiếng Anh: vùng hỗ trợ/kháng cự, hỗ trợ bị phá có thể thành kháng cự và ngược lại' },
@@ -119,7 +119,7 @@ const lessons = {
   },
 
   'c5-b6': {
-    duration: 12,
+    duration: 13,
     level: 'Trung cấp',
     summary: 'Chờ nến đóng, chọn đúng loại lệnh (limit, stop-market, market), tránh giờ tin lớn theo giờ Việt Nam, chia lệnh 2 phần và quy tắc lỡ tàu thì bỏ.',
     goals: [
@@ -176,11 +176,12 @@ const lessons = {
         ['Vùng hỗ trợ H4', '2.960 – 3.020. Dừng lỗ chung: dưới đáy vùng 2.960 trừ vùng đệm 20 → 2.940'],
         ['Phần 1 (sau nến kích hoạt)', 'Mua ở 3.020, khoảng dừng lỗ = 3.020 − 2.940 = 80 USDT/ETH'],
         ['Phần 2 (limit chờ sẵn)', 'Mua ở 2.980, khoảng dừng lỗ = 2.980 − 2.940 = 40 USDT/ETH'],
-        ['Khối lượng mỗi phần q', 'q × (80 + 40) = 10 → q = 10 ÷ 120 ≈ 0,0833 → làm tròn xuống 0,083 ETH (bước khối lượng giả định 0,001)'],
-        ['Chỉ phần 1 khớp rồi chạm dừng lỗ', '0,083 × 80 = 6,64 USDT'],
-        ['Cả hai phần khớp rồi chạm dừng lỗ', '0,083 × 120 = 9,96 USDT ≤ 10 USDT'],
+        ['Phí cho mỗi 1 ETH của q (kịch bản xấu nhất)', 'Phần 1 vào taker: 3.020 × 0,05% = 1,51; phần 2 vào maker: 2.980 × 0,02% = 0,596; thoát cả 2q bằng stop-market (taker): 2 × 2.940 × 0,05% = 2,94; cộng lại 5,046 USDT'],
+        ['Khối lượng mỗi phần q', 'q × (80 + 40) + q × 5,046 ≤ 10 → q ≤ 10 ÷ 125,046 ≈ 0,07997 → làm tròn xuống 0,079 ETH (bước khối lượng giả định 0,001)'],
+        ['Chỉ phần 1 khớp rồi chạm dừng lỗ', '0,079 × 80 = 6,32 USDT + phí 0,079 × (3.020 + 2.940) × 0,05% ≈ 0,24 → ≈ 6,56 USDT'],
+        ['Cả hai phần khớp rồi chạm dừng lỗ', '0,079 × 120 = 9,48 USDT + phí 0,079 × 5,046 ≈ 0,40 → ≈ 9,88 USDT ≤ 10 USDT'],
         ['Giá vào trung bình nếu khớp cả hai', '(3.020 + 2.980) ÷ 2 = 3.000']
-      ], result: 'Mỗi phần 0,083 ETH, dừng lỗ chung 2.940. Tệ nhất mất 9,96 USDT, không vượt 1R. Chưa cộng phí (khoảng 0,1–0,2 USDT), nên nếu muốn chặt chẽ hãy giảm khối lượng thêm một chút.' },
+      ], result: 'Mỗi phần 0,079 ETH, dừng lỗ chung 2.940. Tệ nhất mất khoảng 9,88 USDT kể cả phí, không vượt 1R. Nếu chỉ tính giá mà quên phí, bạn sẽ chọn 0,083 ETH và mất khoảng 9,96 + 0,42 ≈ 10,38 USDT, vượt 1R. Trượt giá của lệnh dừng lỗ còn có thể làm lỗ lớn hơn một chút.' },
       { type: 'callout', tone: 'warn', title: 'Chia phần khác với nhồi lệnh', text: 'Chia phần là kế hoạch viết TRƯỚC khi vào: hai mức giá, một dừng lỗ, tổng rủi ro cố định. Nhồi lệnh là thêm khối lượng SAU khi giá đi ngược, không có dừng lỗ mới, rủi ro phình to. Bài 5.8 có ví dụ số cho thấy sự khác biệt.' },
       { type: 'p', text: 'Quy tắc "lỡ tàu thì bỏ" được viết thành con số: <strong>nếu giá đã chạy quá 1R khỏi mức vào dự kiến theo hướng có lợi mà lệnh của bạn chưa khớp, hủy kế hoạch</strong>. Đuổi theo làm hỏng R:R vì dừng lỗ vẫn phải nằm ở điểm vô hiệu cũ, còn mục tiêu thì không xa thêm. Donchian cũng khuyên không đuổi theo một vị thế sau một nhịp chạy dài, mà chờ một nhịp điều chỉnh để cải thiện tỷ lệ lời/lỗ.' },
       { type: 'calc', title: 'Đuổi theo lệnh làm hỏng R:R như thế nào (giả định)', rows: [
@@ -220,7 +221,7 @@ const lessons = {
       { q: 'Tháng 10/2026 (Mỹ vẫn theo giờ mùa hè), CPI công bố 8:30 sáng giờ miền Đông. Theo quy tắc của bài, khoảng thời gian cấm mở lệnh mới theo giờ Việt Nam là:', options: ['18:00 – 19:00', '20:00 – 21:00', '19:00 – 20:00', 'Không cần cấm, chỉ cần đặt dừng lỗ'], answer: 2, explain: 'Giờ mùa hè Mỹ (EDT, UTC−4) nên 8:30 ET là 19:30 giờ Việt Nam. Cấm 30 phút trước và sau → 19:00–20:00. 20:00–21:00 là lệch do dùng giờ mùa đông sai. 18:00–19:00 kết thúc trước giờ tin. Dừng lỗ không chống được trượt giá lúc tin ra.' },
       { q: 'Bạn muốn vào long khi giá phá lên trên đỉnh của nến kích hoạt ở 80.500. Loại lệnh phù hợp nhất là:', options: ['Lệnh limit mua ở 80.500 đặt ngay bây giờ khi giá đang ở 80.100', 'Lệnh stop-market mua kích hoạt ở trên 80.500', 'Lệnh market ngay bây giờ', 'Lệnh limit bán ở 80.500'], answer: 1, explain: 'Stop-market mua chỉ kích hoạt khi giá đi lên chạm mức đã chọn, đúng với ý "vào khi phá vỡ". Limit mua ở 80.500 khi giá đang 80.100 thực chất sẽ khớp ngay như taker vì giá thị trường thấp hơn giá bạn sẵn sàng mua. Market ngay là vào trước khi giá chứng minh. Limit bán là lệnh ngược chiều.' },
       { q: 'Kế hoạch: vào 3.000, dừng lỗ 2.940 (1R = 60). Lệnh limit chưa khớp, giá đã lên 3.070. Bạn nên làm gì?', options: ['Hủy kế hoạch vì giá đã chạy quá 1R khỏi mức vào dự kiến (3.060)', 'Mua market ở 3.070, giữ dừng lỗ 2.940', 'Mua market ở 3.070 và dời dừng lỗ lên 3.040 cho R:R đẹp hơn', 'Tăng gấp đôi khối lượng để bù phần lãi đã lỡ'], answer: 0, explain: 'Ngưỡng bỏ lệnh là 3.000 + 60 = 3.060; giá 3.070 đã vượt. Mua ở 3.070 với dừng lỗ cũ làm R:R xấu đi. Dời dừng lỗ lên 3.040 để "đẹp R:R" là đặt dừng lỗ theo mong muốn, không theo điểm vô hiệu. Tăng khối lượng là tăng rủi ro vì cảm xúc.' },
-      { q: 'Chia lệnh 2 phần: phần 1 vào 80.200, phần 2 vào 79.600, dừng lỗ chung 78.800, rủi ro tối đa 10 USDT, bước khối lượng 0,001 BTC. Khối lượng mỗi phần (bằng nhau) đúng là:', options: ['0,005 BTC', '0,0125 BTC', '0,007 BTC', '0,004 BTC'], answer: 3, explain: 'Khoảng dừng lỗ: 80.200 − 78.800 = 1.400 và 79.600 − 78.800 = 800, tổng 2.200. q = 10 ÷ 2.200 ≈ 0,00455, làm tròn XUỐNG theo bước 0,001 được 0,004 (tệ nhất mất 0,004 × 2.200 = 8,8 USDT). 0,005 × 2.200 = 11 USDT vượt giới hạn vì làm tròn lên. 0,0125 là chỉ tính khoảng 800 của phần 2; 0,007 là chỉ tính khoảng 1.400 của phần 1.' }
+      { q: 'Chia lệnh 2 phần: phần 1 vào 80.200, phần 2 vào 79.600, dừng lỗ chung 78.800, rủi ro tối đa 10 USDT (câu này tạm bỏ qua phí), bước khối lượng 0,001 BTC. Khối lượng mỗi phần (bằng nhau) đúng là:', options: ['0,005 BTC', '0,0125 BTC', '0,007 BTC', '0,004 BTC'], answer: 3, explain: 'Khoảng dừng lỗ: 80.200 − 78.800 = 1.400 và 79.600 − 78.800 = 800, tổng 2.200. q = 10 ÷ 2.200 ≈ 0,00455, làm tròn XUỐNG theo bước 0,001 được 0,004 (tệ nhất mất 0,004 × 2.200 = 8,8 USDT). 0,005 × 2.200 = 11 USDT vượt giới hạn vì làm tròn lên. 0,0125 là chỉ tính khoảng 800 của phần 2; 0,007 là chỉ tính khoảng 1.400 của phần 1.' }
     ],
     sources: [
       { title: 'Binance Futures Fee Structure & Fee Calculations', url: 'https://www.binance.com/en/support/faq/detail/360033544231', note: 'Binance FAQ, tiếng Anh: maker 0,02%, taker 0,05% cho người dùng thường; phí = giá trị danh nghĩa × tỷ lệ phí' },
@@ -234,7 +235,7 @@ const lessons = {
   },
 
   'c5-b7': {
-    duration: 13,
+    duration: 14,
     level: 'Trung cấp',
     summary: 'Dừng lỗ đặt ở điểm ý tưởng sai, cộng vùng đệm chống râu nến; chọn Stop-Market, hiểu Mark/Last và Price Protection; rồi mới tính khối lượng.',
     goals: [
@@ -288,7 +289,7 @@ const lessons = {
       { type: 'steps', items: [
         { title: 'Đặt TP/SL ngay trong phiếu lệnh mở', text: 'Trên giao diện Binance Futures, tick TP/SL khi đặt lệnh vào, nhập giá dừng lỗ đã tính, chọn Mark Price. Binance Academy khuyên xác định TP/SL trước khi vào và đặt ngay khi mở lệnh. Không có "đặt sau vài phút".' },
         { title: 'Kiểm tra lệnh dừng lỗ đã nằm trong tab lệnh chờ', text: 'Sau khi khớp, mở tab Open Orders hoặc TP/SL của vị thế và xác nhận có lệnh Stop-Market đúng giá, đúng khối lượng, đóng toàn bộ vị thế.' },
-        { title: 'Kiểm tra giá thanh lý', text: 'Giá thanh lý hiển thị phải nằm xa hơn dừng lỗ rất nhiều. Quy tắc gợi ý: khoảng từ giá vào tới giá thanh lý ít nhất gấp 2 lần khoảng từ giá vào tới dừng lỗ. Nếu không, giảm đòn bẩy trên thanh trượt (tăng ký quỹ isolated).' }
+        { title: 'Kiểm tra giá thanh lý', text: 'Giá thanh lý hiển thị phải nằm xa hơn dừng lỗ rất nhiều. Quy tắc của khóa (bài 5.3, 5.9): khoảng từ giá vào tới giá thanh lý ít nhất gấp 3 lần khoảng từ giá vào tới dừng lỗ, tức đòn bẩy thanh trượt ≤ 1 ÷ (3 × d + MMR), với d là % khoảng dừng lỗ; và thanh trượt không quá 5x–10x. Nếu không thỏa, giảm đòn bẩy trên thanh trượt (tăng ký quỹ isolated).' }
       ] },
 
       { type: 'h', text: 'Ví dụ hoàn chỉnh: từ đáy cấu trúc tới giá thanh lý' },
@@ -304,15 +305,17 @@ const lessons = {
         ['Giá trị danh nghĩa', '0,005 × 80.000 = 400 USDT'],
         ['Đòn bẩy thật so với tài khoản', '400 ÷ 1.000 = 0,4x. Đòn bẩy tối thiểu cần: 1x là đủ vì 400 USDT nhỏ hơn số dư'],
         ['Chọn 2x isolated', 'Ký quỹ = 400 ÷ 2 = 200 USDT. Giá thanh lý ≈ 80.000 × (1 − 1/2 + 0,4%) = 40.320'],
-        ['Nếu chọn 20x isolated', 'Ký quỹ 20 USDT. Giá thanh lý ≈ 80.000 × (1 − 0,05 + 0,004) = 76.320; cách giá vào 3.680 = đúng 2 lần khoảng dừng lỗ, là mức giới hạn'],
+        ['Đòn bẩy tối đa theo quy tắc gấp 3 lần', '1 ÷ (3 × 2,3% + 0,4%) = 1 ÷ 0,073 ≈ 13,7x; bộ chuẩn bài 5.9 còn giới hạn thanh trượt 5x–10x, nên chọn tối đa 10x'],
+        ['Nếu chọn 10x isolated', 'Ký quỹ 40 USDT. Giá thanh lý ≈ 80.000 × (1 − 0,1 + 0,004) = 72.320; cách giá vào 7.680 ≈ 4,2 lần khoảng dừng lỗ: đạt'],
+        ['Nếu chọn 20x isolated', 'Ký quỹ 20 USDT. Giá thanh lý ≈ 80.000 × (1 − 0,05 + 0,004) = 76.320; cách giá vào 3.680 = chỉ 2 lần khoảng dừng lỗ: VI PHẠM quy tắc 3 lần'],
         ['Nếu chọn 40x isolated', 'Ký quỹ 10 USDT. Giá thanh lý ≈ 80.000 × (1 − 0,025 + 0,004) = 78.320, CAO HƠN dừng lỗ 78.160 → bị thanh lý trước khi dừng lỗ kịp chạy']
-      ], result: 'Khối lượng 0,005 BTC, danh nghĩa 400 USDT, rủi ro khoảng 9,6 USDT kể cả phí. Chọn 2x–5x isolated, giá thanh lý nằm rất xa dừng lỗ. Công thức giá thanh lý là gần đúng (MMR giả định 0,4%, bỏ qua phí); luôn đọc giá thanh lý thật trên phiếu lệnh.' },
+      ], result: 'Khối lượng 0,005 BTC, danh nghĩa 400 USDT, rủi ro khoảng 9,6 USDT kể cả phí. Chọn 2x–5x isolated, giá thanh lý nằm rất xa dừng lỗ; tối đa 10x. Công thức giá thanh lý là gần đúng (MMR giả định 0,4%, bỏ qua phí); luôn đọc giá thanh lý thật trên phiếu lệnh.' },
       { type: 'tool', name: 'position-size', note: 'Nhập tài khoản 1.000, rủi ro 1%, giá vào 80.000, dừng lỗ 78.160 để kiểm tra lại ví dụ trên, rồi thử với lệnh của bạn.' },
 
       { type: 'h', text: 'Dời dừng lỗ: một chiều duy nhất' },
       { type: 'p', text: 'Quy tắc tuyệt đối: <strong>dừng lỗ chỉ được dời theo hướng giảm rủi ro, không bao giờ dời xa hơn</strong>. Dời dừng lỗ xa hơn khi giá tiến lại gần là tăng số tiền rủi ro đúng lúc bằng chứng cho thấy bạn sai. Lệnh 1R biến thành 2R, 3R, rồi thành lệnh gồng lỗ.' },
-      { type: 'p', text: 'Dời về hòa vốn (breakeven) cũng có quy tắc. Dời quá sớm, dừng lỗ nằm ngay trong vùng nhiễu, bị quét rồi giá chạy tiếp. Điều kiện gợi ý: <strong>chỉ dời về hòa vốn khi (a) giá đã đạt ít nhất 1R lợi nhuận VÀ (b) trên khung kích hoạt đã hình thành một đáy mới cao hơn giá vào (với long)</strong>. Khi đó dời dừng lỗ xuống dưới đáy mới đó, hoặc về giá vào cộng phí, tùy mức nào cao hơn.' },
-      { type: 'example', title: 'Dời về hòa vốn đúng thời điểm (giả định)', text: 'Long 0,005 BTC ở 80.000, dừng lỗ 78.160, 1R = 1.840. Giá lên 81.900 (vượt 81.840 = 1R) nhưng chưa có đáy mới: giữ nguyên dừng lỗ. Giá điều chỉnh về 80.700 rồi bật lên, H1 xác nhận đáy mới 80.700 > 80.000. Lúc này dời dừng lỗ về 80.080 (giá vào cộng phí taker hai chiều: 80.000 × 0,05% × 2 = 80 USDT mỗi BTC). Từ đây, lệnh xấu nhất là hòa vốn.' },
+      { type: 'p', text: 'Dời về hòa vốn (breakeven) cũng có quy tắc. Dời quá sớm, dừng lỗ nằm ngay trong vùng nhiễu, bị quét rồi giá chạy tiếp. Điều kiện gợi ý: <strong>chỉ dời về hòa vốn khi (a) giá đã đạt ít nhất 1R lợi nhuận VÀ (b) trên khung kích hoạt đã hình thành một đáy mới cao hơn giá vào (với long)</strong>. Khi đó dời dừng lỗ lên một trong hai mức: dưới đáy mới đó trừ vùng đệm, hoặc giá vào cộng phí; chọn mức nào cao hơn (với long).' },
+      { type: 'example', title: 'Dời về hòa vốn đúng thời điểm (giả định)', text: 'Long 0,005 BTC ở 80.000, dừng lỗ 78.160, 1R = 1.840. Giá lên 81.900 (vượt 81.840 = 1R) nhưng chưa có đáy mới: giữ nguyên dừng lỗ. Giá điều chỉnh về 80.700 rồi bật lên, H1 xác nhận đáy mới 80.700 > 80.000. Hai mức để so: (1) dưới đáy mới trừ vùng đệm 0,3 × ATR = 0,3 × 800 = 240 → 80.700 − 240 = 80.460; (2) giá vào cộng phí taker hai chiều: 80.000 + 80.000 × 0,05% × 2 = 80.080. Mức (1) cao hơn, nên dời dừng lỗ lên 80.460. Từ đây, nếu bị chạm, lệnh vẫn lãi 0,005 × 460 = 2,3 USDT trước phí, khoảng 1,9 USDT sau phí (chưa tính trượt giá).' },
       { type: 'scenario', title: 'Giá tiến sát dừng lỗ', setup: 'Long 0,005 BTC ở 80.000, dừng lỗ Stop-Market 78.160 theo Mark price. Giá rơi về 78.400, đúng đáy cấu trúc, và đang dao động quanh đó.', bad: 'Trader cảm tính nghĩ "chắc là quét râu thôi", kéo dừng lỗ xuống 76.500, rồi hủy luôn. Không có dừng lỗ, giá xuống 75.000. Anh ta nhồi thêm để "hạ giá vốn". Lệnh 1R ban đầu thành khoản lỗ vài chục USDT, và đòn bẩy thật tăng dần theo mỗi lần nhồi.', good: 'Trader có kế hoạch không chạm vào dừng lỗ. Giá chạm 78.160, lệnh khớp ở 78.120 do trượt nhẹ. Lỗ 0,005 × 1.880 = 9,4 USDT cộng phí. Anh ta ghi nhật ký: setup, điểm vô hiệu, trượt giá bao nhiêu. Tính lại lỗ trong ngày: 1 lệnh thua, còn được phép 1 lệnh nữa theo quy tắc. Không có lệnh "gỡ".' }
     ],
     keyPoints: [
@@ -320,20 +323,20 @@ const lessons = {
       'Ba phương pháp: cấu trúc (mặc định), ATR 1–2 lần, vùng (mép xa của vùng); luôn cộng vùng đệm 0,2–0,5 × ATR và tránh số tròn.',
       'Trên Binance Futures dùng Stop-Market cho dừng lỗ; Stop-Limit có thể không khớp khi giá lao qua.',
       'Mark price ít bị râu nến cục bộ kích hoạt hơn Last price; Price Protection có thể chặn cả lệnh dừng lỗ.',
-      'Đặt TP/SL ngay khi mở lệnh, kiểm tra giá thanh lý cách xa ít nhất 2 lần khoảng dừng lỗ, không bao giờ dời dừng lỗ xa hơn.',
-      'Chỉ dời về hòa vốn khi đạt từ 1R và đã có đáy (đỉnh) mới xác nhận.'
+      'Đặt TP/SL ngay khi mở lệnh, kiểm tra giá thanh lý cách xa ít nhất 3 lần khoảng dừng lỗ (đòn bẩy ≤ 1 ÷ (3 × d + MMR), tối đa 10x), không bao giờ dời dừng lỗ xa hơn.',
+      'Chỉ dời về hòa vốn khi đạt từ 1R và đã có đáy (đỉnh) mới xác nhận; khi dời, chọn mức cao hơn giữa "dưới đáy mới trừ đệm" và "giá vào cộng phí".'
     ],
     practice: [
       'Chọn 3 lệnh gần nhất (thật hoặc Demo). Với mỗi lệnh, viết lại: điểm vô hiệu là gì, dừng lỗ đã đặt ở đâu, hai con số có khớp nhau không.',
       'Bật chỉ báo ATR(14) trên H4 của BTC và ETH. Ghi giá trị ATR và tính vùng đệm 0,3 × ATR cho mỗi đồng.',
       'Trên Demo Trading, mở một lệnh nhỏ với TP/SL đặt ngay trong phiếu lệnh, chọn Stop-Market kích hoạt theo Mark price. Kiểm tra tab lệnh chờ và giá thanh lý.',
-      'Dùng công cụ position-size cho một setup của bạn, rồi tính giá thanh lý với đòn bẩy 2x, 10x, 40x. Ghi đòn bẩy cao nhất mà giá thanh lý vẫn cách xa gấp 2 lần khoảng dừng lỗ.'
+      'Dùng công cụ position-size cho một setup của bạn, rồi tính giá thanh lý với đòn bẩy 2x, 10x, 40x. Ghi đòn bẩy cao nhất mà giá thanh lý vẫn cách xa ít nhất 3 lần khoảng dừng lỗ, rồi đối chiếu với công thức 1 ÷ (3 × d + MMR) và giới hạn 10x.'
     ],
     quiz: [
-      { q: 'Tài khoản 1.000 USDT, rủi ro 1%. Short ETH ở 3.000, đỉnh nhịp hồi 3.080, vùng đệm 12. Khối lượng đúng (làm tròn xuống bước 0,001) là:', options: ['0,108 ETH', '0,125 ETH', '0,333 ETH', '0,1087 ETH'], answer: 0, explain: 'Dừng lỗ = 3.080 + 12 = 3.092, khoảng = 92. Khối lượng = 10 ÷ 92 ≈ 0,1087 → làm tròn xuống 0,108. 0,1087 sai bước khối lượng và làm tròn lên thì vượt rủi ro. 0,125 là tính với khoảng 80 (bỏ đệm). 0,333 là tính với khoảng 30, không gắn với cấu trúc nào.' },
-      { q: 'Vì sao nên dùng Stop-Market thay vì Stop-Limit cho dừng lỗ vị thế futures?', options: ['Vì Stop-Market không mất phí', 'Vì Stop-Limit có thể không khớp khi giá lao qua giá limit, để vị thế vẫn mở đúng lúc cần thoát nhất', 'Vì Stop-Market luôn khớp đúng giá kích hoạt, không trượt', 'Vì Binance không cho dùng Stop-Limit làm dừng lỗ'], answer: 1, explain: 'Theo Binance, Stop-Limit đặt một lệnh limit sau khi kích hoạt; nếu thị trường lao qua giá limit thì lệnh không khớp. Stop-Market gửi lệnh market nên chắc chắn khớp nếu còn thanh khoản, nhưng CÓ THỂ trượt giá và vẫn trả phí taker. Binance vẫn cho phép Stop-Limit, chỉ là không phù hợp để thoát khẩn cấp.' },
+      { q: 'Tài khoản 1.000 USDT, rủi ro 1%. Short ETH ở 3.000, đỉnh nhịp hồi 3.080, vùng đệm 12. Khối lượng đúng (làm tròn xuống bước 0,001) là:', options: ['0,125 ETH', '0,333 ETH', '0,1087 ETH', '0,108 ETH'], answer: 3, explain: 'Dừng lỗ = 3.080 + 12 = 3.092, khoảng = 92. Khối lượng = 10 ÷ 92 ≈ 0,1087 → làm tròn xuống 0,108. 0,1087 sai bước khối lượng và làm tròn lên thì vượt rủi ro. 0,125 là tính với khoảng 80 (bỏ đệm). 0,333 là tính với khoảng 30, không gắn với cấu trúc nào.' },
+      { q: 'Vì sao nên dùng Stop-Market thay vì Stop-Limit cho dừng lỗ vị thế futures?', options: ['Vì lệnh Stop-Market hoàn toàn không mất phí giao dịch', 'Vì Stop-Limit có thể không khớp khi giá lao qua giá limit', 'Vì Stop-Market luôn khớp đúng giá kích hoạt, không trượt', 'Vì Binance không cho phép dùng Stop-Limit làm dừng lỗ'], answer: 1, explain: 'Theo Binance, Stop-Limit đặt một lệnh limit sau khi kích hoạt; nếu thị trường lao qua giá limit thì lệnh không khớp. Stop-Market gửi lệnh market nên chắc chắn khớp nếu còn thanh khoản, nhưng CÓ THỂ trượt giá và vẫn trả phí taker. Binance vẫn cho phép Stop-Limit, chỉ là không phù hợp để thoát khẩn cấp.' },
       { q: 'Long BTC ở 80.000, dừng lỗ 78.160, vị thế 0,005 BTC, isolated, MMR giả định 0,4%. Với đòn bẩy nào thì giá thanh lý gần đúng nằm TRÊN dừng lỗ (tức bị thanh lý trước)?', options: ['40x', '10x', '2x', '5x'], answer: 0, explain: 'Giá thanh lý ≈ 80.000 × (1 − 1/L + 0,004). 40x: 78.320 > 78.160, thanh lý xảy ra trước dừng lỗ. 10x: 72.320; 5x: 64.320; 2x: 40.320, đều nằm xa dưới dừng lỗ.' },
-      { q: 'Long vào 80.000, dừng lỗ 78.160 (1R = 1.840). Giá lên 82.000, chưa có đáy mới nào trên H1. Theo quy tắc của bài, bạn nên:', options: ['Dời dừng lỗ về 80.000 ngay vì đã có lãi hơn 1R', 'Dời dừng lỗ xuống 77.000 cho lệnh có không gian thở', 'Chốt toàn bộ vì đã có lãi', 'Giữ dừng lỗ ở 78.160, chờ một đáy mới cao hơn giá vào được xác nhận rồi mới dời'], answer: 3, explain: 'Điều kiện dời về hòa vốn gồm hai phần: đạt từ 1R VÀ có đáy mới xác nhận. Mới có điều kiện đầu, dời ngay dễ bị nhịp điều chỉnh bình thường quét. Dời xuống 77.000 là dời xa hơn, vi phạm quy tắc tuyệt đối. Chốt toàn bộ ở 1,1R không theo kế hoạch mục tiêu (xem bài 5.8).' }
+      { q: 'Long vào 80.000, dừng lỗ 78.160 (1R = 1.840). Giá lên 82.000, chưa có đáy mới nào trên H1. Theo quy tắc của bài, bạn nên:', options: ['Dời dừng lỗ về 80.000 ngay vì lãi đã vượt 1R', 'Dời dừng lỗ xuống 77.000 cho lệnh có chỗ thở', 'Giữ 78.160, chờ đáy mới cao hơn giá vào rồi mới dời', 'Chốt toàn bộ vị thế ngay vì đã có lãi trên 1R'], answer: 2, explain: 'Điều kiện dời về hòa vốn gồm hai phần: đạt từ 1R VÀ có đáy mới xác nhận. Mới có điều kiện đầu, dời ngay dễ bị nhịp điều chỉnh bình thường quét. Dời xuống 77.000 là dời xa hơn, vi phạm quy tắc tuyệt đối. Chốt toàn bộ ở 1,1R không theo kế hoạch mục tiêu (xem bài 5.8).' }
     ],
     sources: [
       { title: 'What Are Stop-Limit and Stop-Market Orders on Binance Futures', url: 'https://www.binance.com/en/support/faq/detail/360036351051', note: 'Binance FAQ, tiếng Anh: Stop-Limit vs Stop-Market, giá kích hoạt Last/Mark và giá trị mặc định' },
@@ -378,7 +381,7 @@ const lessons = {
         ['Nếu phần còn lại chạy tới vùng D1 86.000', '0,0025 × 6.000 = 15 USDT → tổng lệnh = 9,2 + 15 = 24,2 USDT ≈ 2,63R'],
         ['So với chốt toàn bộ tại 2R', '0,005 × 3.680 = 18,4 USDT = 2R']
       ], result: 'Chốt từng phần cho kết quả từ 1,5R (xấu nhất sau khi đạt 2R) đến khoảng 2,63R, so với 2R cố định. Không có cách nào luôn tốt hơn; quan trọng là quy tắc được viết trước và làm giống nhau mọi lần để nhật ký đo được. Các số trên chưa trừ phí.' },
-      { type: 'p', text: 'Trên Binance Futures, lệnh chốt một phần nên là lệnh limit có tick <strong>Reduce-Only</strong> (chỉ giảm vị thế). Theo Binance, ở chế độ One-way, lệnh reduce-only chỉ làm giảm và không bao giờ làm tăng vị thế đang mở; nó bị từ chối nếu cùng chiều với vị thế hoặc khối lượng lớn hơn vị thế. Nhờ vậy, nếu vị thế đã đóng bởi dừng lỗ, lệnh chốt lời treo trên sàn không thể vô tình mở một vị thế ngược chiều mới.' },
+      { type: 'p', text: 'Trên Binance Futures, lệnh chốt một phần nên là lệnh limit có tick <strong>Reduce-Only</strong> (chỉ giảm vị thế). Theo Binance, lệnh reduce-only chỉ làm giảm và không bao giờ làm tăng hay đảo chiều vị thế đang mở. Nó bị từ chối nếu cùng chiều với vị thế; khi khối lượng lớn hơn vị thế, sàn có thể từ chối lệnh, và khi vị thế nhỏ đi (ví dụ đã đóng một phần) các lệnh reduce-only ưu tiên thấp hơn có thể bị hủy. Chi tiết xử lý có thể khác theo loại lệnh, nhưng kết quả luôn là vị thế không bị lật sang chiều ngược lại. Nhờ vậy, nếu vị thế đã đóng bởi dừng lỗ, lệnh chốt lời treo trên sàn không thể vô tình mở một vị thế ngược chiều mới.' },
 
       { type: 'h', text: 'Trailing stop: kéo dừng lỗ theo cấu trúc, EMA hoặc Chandelier' },
       { type: 'p', text: 'Trailing stop (dừng lỗ kéo theo) chỉ di chuyển theo hướng có lợi. StockCharts mô tả nguyên tắc chung của ATR trailing stop: với long, dừng lỗ chỉ được nâng lên khi giá tạo đỉnh mới, không bao giờ hạ xuống. Chọn MỘT phương pháp và ghi vào kế hoạch lệnh trước khi vào.' },
@@ -439,13 +442,13 @@ const lessons = {
       'Viết mẫu "kế hoạch quản lý lệnh" gồm: mục tiêu theo vùng, mức chốt 50%, phương pháp trailing đã chọn, điều kiện đóng sớm, giờ xem lệnh. Dán vào nhật ký, dùng cho mọi lệnh.',
       'Tính lại bảng pyramiding với số của bạn: lần 1, lần 2, dừng lỗ chung; kiểm tra kết quả xấu nhất có âm không.',
       'Bật chỉ báo Chandelier Exit (hoặc tính tay đỉnh 22 kỳ − 3 × ATR) trên H4 của BTC và so sánh với dừng lỗ theo cấu trúc tại cùng thời điểm.',
-      'Trên Demo, đặt một lệnh limit reduce-only chốt 50% và kiểm tra rằng nó bị từ chối nếu bạn nhập khối lượng lớn hơn vị thế.'
+      'Trên Demo, đặt một lệnh limit reduce-only chốt 50%. Sau đó thử nhập khối lượng lớn hơn vị thế và ghi lại sàn xử lý thế nào (từ chối hay hủy); kiểm tra rằng trong mọi trường hợp vị thế không bị mở sang chiều ngược lại.'
     ],
     quiz: [
-      { q: 'Long 0,01 BTC ở 80.000, dừng lỗ 78.000 (1R = 20 USDT). Bạn chốt 50% tại 2R, dời dừng lỗ phần còn lại lên 82.000 và bị chạm ở đó. Tổng kết quả (chưa phí) là:', options: ['+40 USDT (2R)', '+30 USDT (1,5R)', '+20 USDT (1R)', '+10 USDT (0,5R)'], answer: 1, explain: '2R = 84.000. Chốt 0,005 × 4.000 = 20 USDT. Phần còn lại 0,005 × (82.000 − 80.000) = 10 USDT. Tổng 30 USDT = 1,5R. 40 USDT là nếu chốt toàn bộ tại 2R. 20 và 10 USDT bỏ sót một trong hai phần.' },
-      { q: 'H4: đỉnh cao nhất 22 nến = 3.400, ATR(22) = 30. Dừng lỗ hiện tại của lệnh long ETH đang ở 3.330. Theo Chandelier Exit hệ số 3, bạn nên:', options: ['Hạ dừng lỗ xuống 3.310', 'Đóng lệnh ngay vì giá dưới đỉnh', 'Nâng dừng lỗ lên 3.370', 'Giữ nguyên 3.330 vì Chandelier (3.310) thấp hơn dừng lỗ hiện tại'], answer: 3, explain: 'Chandelier = 3.400 − 3 × 30 = 3.310, thấp hơn 3.330. Trailing chỉ đi một chiều, nên giữ 3.330, không hạ xuống 3.310. 3.370 là dùng hệ số 1. Giá dưới đỉnh không phải tín hiệu đóng lệnh.' },
-      { q: 'Lần 1: long 0,004 BTC ở 80.000, đã dời dừng lỗ lên 81.000. Bạn thêm 0,002 BTC ở 83.000 với dừng lỗ chung 81.000. Nếu dừng lỗ bị chạm, kết quả (chưa phí) là:', options: ['0 USDT', '−4 USDT', '+4 USDT', '−8 USDT'], answer: 0, explain: 'Lần 1: 0,004 × (81.000 − 80.000) = +4. Lần 2: 0,002 × (81.000 − 83.000) = −4. Tổng 0: kịch bản xấu nhất là hòa vốn, rủi ro tổng không tăng. −4 là chỉ tính lần 2; +4 là chỉ tính lần 1; −8 là nhầm dấu.' },
-      { q: 'Tình huống nào là lý do HỢP LỆ để đóng lệnh long sớm, trước khi chạm dừng lỗ?', options: ['PnL giảm từ +1,8R xuống +1,2R trong 2 giờ', 'Nến D1 đóng cửa dưới đáy HL gần nhất, lý do bối cảnh không còn', 'Một thành viên trong nhóm chat nói sắp sập', 'Bạn thấy lo và mất ngủ'], answer: 1, explain: 'Bối cảnh D1 đổi là ý tưởng đã bị vô hiệu, nằm trong kế hoạch. PnL dao động đã được xử lý bằng chốt từng phần và trailing. Tin đồn nhóm chat không phải dữ kiện của kế hoạch. Nếu lo đến mất ngủ thì đó là dấu hiệu khối lượng quá lớn, cần sửa ở lệnh sau, không phải lý do đóng theo cảm xúc (dù giảm khối lượng để an toàn là chấp nhận được).' }
+      { q: 'Long 0,01 BTC ở 80.000, dừng lỗ 78.000 (1R = 20 USDT). Bạn chốt 50% tại 2R, dời dừng lỗ phần còn lại lên 82.000 và bị chạm ở đó. Tổng kết quả (chưa phí) là:', options: ['+40 USDT (2R)', '+20 USDT (1R)', '+30 USDT (1,5R)', '+10 USDT (0,5R)'], answer: 2, explain: '2R = 84.000. Chốt 0,005 × 4.000 = 20 USDT. Phần còn lại 0,005 × (82.000 − 80.000) = 10 USDT. Tổng 30 USDT = 1,5R. 40 USDT là nếu chốt toàn bộ tại 2R. 20 và 10 USDT bỏ sót một trong hai phần.' },
+      { q: 'H4: đỉnh cao nhất 22 nến = 3.400, ATR(22) = 30. Dừng lỗ hiện tại của lệnh long ETH đang ở 3.330. Theo Chandelier Exit hệ số 3, bạn nên:', options: ['Hạ dừng lỗ xuống 3.310', 'Giữ nguyên 3.330 vì Chandelier (3.310) thấp hơn dừng lỗ hiện tại', 'Đóng lệnh ngay vì giá dưới đỉnh', 'Nâng dừng lỗ lên 3.370'], answer: 1, explain: 'Chandelier = 3.400 − 3 × 30 = 3.310, thấp hơn 3.330. Trailing chỉ đi một chiều, nên giữ 3.330, không hạ xuống 3.310. 3.370 là dùng hệ số 1. Giá dưới đỉnh không phải tín hiệu đóng lệnh.' },
+      { q: 'Lần 1: long 0,004 BTC ở 80.000, đã dời dừng lỗ lên 81.000. Bạn thêm 0,002 BTC ở 83.000 với dừng lỗ chung 81.000. Nếu dừng lỗ bị chạm, kết quả (chưa phí) là:', options: ['−4 USDT', '+4 USDT', '−8 USDT', '0 USDT'], answer: 3, explain: 'Lần 1: 0,004 × (81.000 − 80.000) = +4. Lần 2: 0,002 × (81.000 − 83.000) = −4. Tổng 0: kịch bản xấu nhất là hòa vốn, rủi ro tổng không tăng. −4 là chỉ tính lần 2; +4 là chỉ tính lần 1; −8 là nhầm dấu.' },
+      { q: 'Tình huống nào là lý do HỢP LỆ để đóng lệnh long sớm, trước khi chạm dừng lỗ?', options: ['Nến D1 đóng cửa dưới đáy HL gần nhất, lý do bối cảnh không còn', 'PnL giảm từ +1,8R xuống +1,2R trong 2 giờ', 'Một thành viên trong nhóm chat nói sắp sập', 'Bạn thấy lo và mất ngủ'], answer: 0, explain: 'Bối cảnh D1 đổi là ý tưởng đã bị vô hiệu, nằm trong kế hoạch. PnL dao động đã được xử lý bằng chốt từng phần và trailing. Tin đồn nhóm chat không phải dữ kiện của kế hoạch. Nếu lo đến mất ngủ thì đó là dấu hiệu khối lượng quá lớn, cần sửa ở lệnh sau, không phải lý do đóng theo cảm xúc (dù giảm khối lượng để an toàn là chấp nhận được).' }
     ],
     sources: [
       { title: 'Chandelier Exit', url: 'https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-overlays/chandelier-exit', note: 'StockCharts ChartSchool, tiếng Anh: công thức 22 kỳ, 3 × ATR' },

@@ -11,7 +11,7 @@ const lessons = {
     ],
     blocks: [
       { type: 'h', text: 'Một cây nến kể gì: bốn con số OHLC' },
-      { type: 'p', text: 'Biểu đồ nến Nhật (candlestick) bắt nguồn từ Nhật Bản thế kỷ 17, gắn với thương nhân buôn gạo tên Homma. Phương Tây chỉ biết rộng rãi đến nó sau khi Steve Nison giới thiệu vào năm 1991. Ngày nay gần như mọi sàn crypto đều dùng nến làm biểu đồ mặc định.' },
+      { type: 'p', text: 'Biểu đồ nến Nhật (candlestick) bắt nguồn từ Nhật Bản, gắn với thương nhân buôn gạo Munehisa Homma (1724–1803) sống ở thế kỷ 18. Phương Tây chỉ biết rộng rãi đến nó sau khi Steve Nison giới thiệu vào năm 1991. Ngày nay gần như mọi sàn crypto đều dùng nến làm biểu đồ mặc định.' },
       { type: 'p', text: 'Mỗi cây nến tóm tắt một khoảng thời gian bằng bốn con số, gọi tắt là <strong>OHLC</strong>: giá mở (Open) là giá khớp đầu tiên, giá cao nhất (High), giá thấp nhất (Low) và giá đóng (Close) là giá khớp cuối cùng của khoảng thời gian đó.' },
       { type: 'list', items: [
         '<strong>Thân nến (body)</strong>: phần đặc nằm giữa giá mở và giá đóng. Nến xanh (tăng) là giá đóng cao hơn giá mở. Nến đỏ (giảm) là giá đóng thấp hơn giá mở.',
@@ -102,9 +102,9 @@ const lessons = {
       'Tìm 5 cây búa trong 6 tháng dữ liệu D1. Với mỗi cây, ghi lại: có nằm sau nhịp giảm không, có ở vùng hỗ trợ không, 3 nến sau có xác nhận không.'
     ],
     quiz: [
-      { q: 'Nến D1 có giá Mở 3.000, Cao 3.090, Thấp 2.940, Đóng 3.060 (giả định). Bóng dưới dài bao nhiêu?', options: ['120', '60', '30', '150'], answer: 1, explain: 'Nến tăng nên đáy thân là giá mở 3.000. Bóng dưới = 3.000 − 2.940 = 60. 120 là lấy giá đóng trừ giá thấp nhất (3.060 − 2.940), nhầm đáy thân của nến tăng; 30 là bóng trên (3.090 − 3.060); 150 là biên độ (3.090 − 2.940).' },
-      { q: 'Bạn giao dịch theo nến D1 trên Binance và đang ở Việt Nam. Nến D1 hôm nay đóng lúc mấy giờ?', options: ['00:00 đêm', '12:00 trưa', '19:00 tối', '07:00 sáng hôm sau'], answer: 3, explain: 'Nến D1 mặc định đóng lúc 00:00 UTC, tức 07:00 sáng giờ Việt Nam (UTC+7). 00:00 đêm là giờ UTC chưa quy đổi; 12:00 và 19:00 không liên quan tới giờ đóng nến ngày.' },
-      { q: 'Một cây búa hoàn hảo xuất hiện trên H4 khi giá đang đi ngang ở giữa biên độ, không gần hỗ trợ nào. Cách xử lý hợp lý nhất?', options: ['Bỏ qua vì không có xu hướng giảm trước đó và không nằm tại vùng giá quan trọng', 'Mua ngay vì búa là tín hiệu đảo chiều tăng', 'Bán khống vì búa trong vùng ngang là tín hiệu giảm', 'Mua với đòn bẩy nhỏ để thử'], answer: 0, explain: 'Mẫu đảo chiều cần có xu hướng để đảo và nên nằm tại vùng giá đã đánh dấu. Mua ngay hay mua thử đều là dùng mẫu nến như tín hiệu độc lập. Búa không phải tín hiệu giảm.' },
+      { q: 'Nến D1 có giá Mở 3.000, Cao 3.090, Thấp 2.940, Đóng 3.060 (giả định). Bóng dưới dài bao nhiêu?', options: ['120', '150', '30', '60'], answer: 3, explain: 'Nến tăng nên đáy thân là giá mở 3.000. Bóng dưới = 3.000 − 2.940 = 60. 120 là lấy giá đóng trừ giá thấp nhất (3.060 − 2.940), nhầm đáy thân của nến tăng; 30 là bóng trên (3.090 − 3.060); 150 là biên độ (3.090 − 2.940).' },
+      { q: 'Bạn giao dịch theo nến D1 trên Binance và đang ở Việt Nam. Nến D1 hôm nay đóng lúc mấy giờ?', options: ['07:00 sáng hôm sau', '12:00 trưa', '19:00 tối', '00:00 đêm'], answer: 0, explain: 'Nến D1 mặc định đóng lúc 00:00 UTC, tức 07:00 sáng giờ Việt Nam (UTC+7). 00:00 đêm là giờ UTC chưa quy đổi; 12:00 và 19:00 không liên quan tới giờ đóng nến ngày.' },
+      { q: 'Một cây búa hoàn hảo xuất hiện trên H4 khi giá đang đi ngang ở giữa biên độ, không gần hỗ trợ nào. Cách xử lý hợp lý nhất?', options: ['Mua ngay vì búa là tín hiệu đảo chiều tăng', 'Bỏ qua vì không có xu hướng giảm trước đó và không nằm tại vùng giá quan trọng', 'Bán khống vì búa trong vùng ngang là tín hiệu giảm', 'Mua với đòn bẩy nhỏ để thử'], answer: 1, explain: 'Mẫu đảo chiều cần có xu hướng để đảo và nên nằm tại vùng giá đã đánh dấu. Mua ngay hay mua thử đều là dùng mẫu nến như tín hiệu độc lập. Búa không phải tín hiệu giảm.' },
       { q: 'Vì sao doji xuất hiện giữa một chuỗi nến thân nhỏ thường không quan trọng?', options: ['Vì doji chỉ có ý nghĩa trên khung 1 phút', 'Vì doji luôn báo hiệu xu hướng tiếp diễn', 'Vì các nến xung quanh cũng đã thể hiện sự do dự, doji không mang thêm thông tin', 'Vì doji cần volume bằng 0'], answer: 2, explain: 'Theo Steve Nison (trích bởi ChartSchool), doji giữa các nến thân nhỏ không quan trọng, còn doji sau các nến thân dài mới đáng chú ý vì nó cho thấy lực đẩy trước đó đã khựng lại. Doji không giới hạn ở khung 1 phút, không luôn báo tiếp diễn và không liên quan volume bằng 0.' }
     ],
     sources: [
@@ -274,7 +274,7 @@ const lessons = {
         '<strong>Lọc bằng volume</strong>: phá vỡ thật thường đi kèm volume tăng (xem bài 2.4).',
         '<strong>Lọc bằng cấu trúc khung lớn</strong>: phá kháng cự khi D1 đang giảm có xác suất thất bại cao hơn.'
       ] },
-      { type: 'callout', tone: 'risk', title: 'Dừng lỗ đặt ngay ở mép vùng dễ bị quét', text: 'Nếu bạn mua ở hỗ trợ và đặt dừng lỗ đúng cạnh dưới vùng, rất nhiều người khác cũng đặt ở đó. Một cú chọc bóng là đủ quét tất cả. Hãy đặt dừng lỗ dưới vùng một khoảng đệm (ví dụ 0,3–0,5 ATR), và tính khối lượng theo khoảng cách đó để số tiền rủi ro không đổi.' },
+      { type: 'callout', tone: 'risk', title: 'Dừng lỗ đặt ngay ở mép vùng dễ bị quét', text: 'Nếu bạn mua ở hỗ trợ và đặt dừng lỗ đúng cạnh dưới vùng, rất nhiều người khác cũng đặt ở đó. Một cú chọc bóng là đủ quét tất cả. Hãy đặt dừng lỗ dưới vùng một khoảng đệm (ví dụ 0,2–0,5 ATR), và tính khối lượng theo khoảng cách đó để số tiền rủi ro không đổi.' },
       { type: 'scenario', title: 'BTC vượt 85.200 lúc 2 giờ sáng', setup: 'Vùng kháng cự 84.300–85.200 (giả định). Một nến H1 chọc lên 85.700, mạng xã hội hô "phá đỉnh".', bad: 'Trader cảm tính mua đuổi ở 85.650 bằng lệnh thị trường, không đặt dừng lỗ. Nến H4 đóng lại ở 84.800, bên trong vùng. Anh chờ "về bờ", đến khi giá xuống 82.000 thì cắt lỗ trong hoảng loạn.', good: 'Trader có kế hoạch chờ nến H4 đóng. Nến đóng 84.800, bên trong vùng, nên anh ghi nhận phá vỡ giả và không làm gì. Kế hoạch của anh chỉ mua khi có 2 nến H4 đóng trên 85.200 và giá retest cạnh trên vùng, với dừng lỗ dưới 84.200.' }
     ],
     keyPoints: [
@@ -298,7 +298,7 @@ const lessons = {
     sources: [
       { title: 'Support & Resistance', url: 'https://chartschool.stockcharts.com/table-of-contents/chart-analysis/support-and-resistance', note: 'StockCharts ChartSchool, tiếng Anh' },
       { title: 'Symmetrical Triangle (bộ lọc giá và thời gian cho phá vỡ)', url: 'https://chartschool.stockcharts.com/table-of-contents/chart-analysis/chart-patterns/symmetrical-triangle', note: 'StockCharts ChartSchool, tiếng Anh' },
-      { title: 'Parabolic SAR (nguồn gốc các chỉ báo của Wilder, 1978)', url: 'https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-overlays/parabolic-sar', note: 'StockCharts ChartSchool, tiếng Anh' }
+      { title: 'Average True Range (ATR) and Average True Range Percent (ATRP)', url: 'https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/average-true-range-atr-and-average-true-range-percent-atrp', note: 'StockCharts ChartSchool, tiếng Anh (Wilder, 1978)' }
     ],
     updated: '2026-09'
   },
@@ -360,7 +360,7 @@ const lessons = {
       { type: 'callout', tone: 'risk', title: 'Token nhỏ, sàn nhỏ, volume đẹp bất thường', text: 'Volume khổng lồ trên một token mới, chỉ có ở một sàn ít tên tuổi, là dấu hiệu cảnh báo chứ không phải lý do mua. Kiểm tra sổ lệnh (độ sâu bid/ask), chênh lệch giá mua bán (spread) và so với các sàn lớn. Tại Việt Nam, nhớ rằng chỉ tổ chức được Bộ Tài chính cấp phép mới được cung cấp dịch vụ tài sản mã hóa theo Nghị quyết 05/2025/NQ-CP.' },
 
       { type: 'h', text: 'Đưa volume vào quy trình' },
-      { type: 'scenario', title: 'Phá vỡ lúc cuối tuần', setup: 'ETH phá kháng cự 3.100 (giả định) vào tối Chủ nhật. Nến H4 đóng ở 3.140, nhưng volume chỉ 0,9 lần trung bình 20 nến.', bad: 'Trader cảm tính thấy giá xanh, mua ngay ở 3.140 với đòn bẩy 10x vì sợ lỡ. Sáng thứ Hai volume thật quay lại, giá rơi về 3.050, anh bị cắt lỗ sát vùng thanh lý.', good: 'Trader có kế hoạch ghi nhận: giá đóng trên vùng (đạt), volume tương đối 0,9 (không đạt). Hai trên ba điều kiện chưa đủ, nên anh đặt cảnh báo giá ở 3.100 và chờ retest có volume, không vào lệnh.' },
+      { type: 'scenario', title: 'Phá vỡ lúc cuối tuần', setup: 'ETH phá kháng cự 3.100 (giả định) vào tối Chủ nhật. Nến H4 đóng ở 3.140, nhưng volume chỉ 0,9 lần trung bình 20 nến.', bad: 'Trader cảm tính thấy giá xanh, mua ngay ở 3.140 với đòn bẩy 10x vì sợ lỡ. Sáng thứ Hai volume thật quay lại, giá rơi về 3.050. Giá chỉ giảm khoảng 2,9% nhưng với 10x anh đã mất khoảng 29% ký quỹ, và cắt lỗ trong hoảng loạn. Giá thanh lý ở quanh 2.840 vẫn còn xa, nhưng khoản lỗ đã lớn gấp nhiều lần mức anh từng định chịu.', good: 'Trader có kế hoạch ghi nhận: giá đóng trên vùng (đạt), volume tương đối 0,9 (không đạt). Một trên hai điều kiện là chưa đủ, nên anh đặt cảnh báo giá ở 3.100 và chờ retest có volume, không vào lệnh.' },
       { type: 'checklist', title: 'Kiểm tra volume trước khi vào lệnh phá vỡ', items: [
         'Nến phá vỡ đã đóng ngoài vùng',
         'Volume tương đối của nến phá vỡ từ 1,5 lần trung bình 20 nến trở lên',
@@ -452,8 +452,9 @@ const lessons = {
         ['Trong 2 tháng đi ngang', '6 tín hiệu giao cắt EMA 20/50, 5 lệnh thua đủ 1R, 1 lệnh thắng 1R'],
         ['Lỗ từ lệnh thua', '5 × 10 = 50 USDT'],
         ['Lãi từ lệnh thắng', '1 × 10 = 10 USDT'],
-        ['Phí giả định 0,2 USDT mỗi lệnh (vào + ra)', '6 × 0,2 = 1,2 USDT'],
-        ['Kết quả ròng', '−50 + 10 − 1,2 = −41,2 USDT, tức −4,12% tài khoản']
+        ['Giá trị mỗi lệnh (giả định)', 'Khoảng 400 USDT (dừng lỗ cách giá vào 2,5%: 10 ÷ 2,5% = 400)'],
+        ['Phí spot 0,1% mỗi chiều (vào + ra)', '400 × 0,1% × 2 = 0,8 USDT mỗi lệnh; 6 × 0,8 = 4,8 USDT'],
+        ['Kết quả ròng', '−50 + 10 − 4,8 = −44,8 USDT, tức −4,48% tài khoản']
       ], result: 'Hệ thống giao cắt MA không sai, nó chỉ đang dùng sai môi trường. Bộ lọc "EMA 50 nằm ngang hoặc giá cắt qua 3 lần trong 20 nến" giúp bạn nhận ra và đứng ngoài.' },
       { type: 'scenario', title: 'Giao cắt lần thứ tư trong tháng', setup: 'ETH đi ngang 2.800–3.200 (giả định) suốt 6 tuần. EMA 20 vừa cắt lên EMA 50 lần thứ tư trong tháng.', bad: 'Trader cảm tính đã thua 3 lệnh giao cắt trước, lần này tăng gấp ba khối lượng "để gỡ". Giá lên 3.150 rồi quay về 2.850, anh mất trong một lệnh bằng cả ba lệnh trước cộng lại.', good: 'Trader có kế hoạch đếm: giá đã cắt EMA 50 bốn lần trong 20 nến, EMA 50 gần như nằm ngang. Theo quy tắc, đây là thị trường đi ngang, tắt tín hiệu MA. Anh chuyển sang chỉ quan sát hai cạnh biên độ 2.800 và 3.200, chờ phá vỡ có xác nhận.' },
       { type: 'callout', tone: 'risk', title: 'Đừng tăng khối lượng sau chuỗi thua', text: 'Chuỗi thua trong thị trường đi ngang là bình thường với mọi công cụ theo xu hướng. Tăng khối lượng để gỡ biến một giai đoạn bất lợi thành thiệt hại lớn. Giữ nguyên % rủi ro mỗi lệnh.' },
@@ -518,7 +519,7 @@ const lessons = {
 
       { type: 'h', text: 'Quá mua không có nghĩa là sắp giảm' },
       { type: 'p', text: 'Cách hiểu truyền thống: RSI trên 70 là quá mua (overbought), dưới 30 là quá bán (oversold). Nhiều người mới dịch thẳng thành "trên 70 thì bán, dưới 30 thì mua". Đây là một trong những cách mất tiền nhanh nhất trong xu hướng mạnh.' },
-      { type: 'p', text: 'RSI trên 70 chỉ có nghĩa là giá đã tăng nhanh trong 14 kỳ gần đây. Trong xu hướng tăng mạnh, giá có thể tăng nhanh rất lâu. ChartSchool dẫn ví dụ cổ phiếu có RSI quá mua nhưng không giảm, chỉ đi ngang vài tuần rồi tăng tiếp. ChartSchool cũng dẫn quan sát của Andrew Cardwell: trong xu hướng tăng RSI thường dao động 40–90, vùng 40–50 đóng vai trò hỗ trợ; trong xu hướng giảm RSI thường dao động 10–60, vùng 50–60 là kháng cự.' },
+      { type: 'p', text: 'RSI trên 70 chỉ có nghĩa là giá đã tăng nhanh trong 14 kỳ gần đây. Trong xu hướng tăng mạnh, giá có thể tăng nhanh rất lâu. ChartSchool dẫn ví dụ cổ phiếu có RSI quá mua nhưng không giảm, chỉ đi ngang vài tuần rồi tăng tiếp. ChartSchool cũng dẫn quan sát của Constance Brown (sách <em>Technical Analysis for the Trading Professional</em>): trong xu hướng tăng RSI thường dao động 40–90, vùng 40–50 đóng vai trò hỗ trợ; trong xu hướng giảm RSI thường dao động 10–60, vùng 50–60 là kháng cự. Các vùng này có thể lệch tùy tham số RSI, độ mạnh xu hướng và độ biến động của tài sản.' },
       { type: 'table', head: ['Bối cảnh D1', 'Cách dùng RSI như bộ lọc'], rows: [
         ['Xu hướng tăng (HH/HL, giá trên EMA 50)', 'Không bán chỉ vì RSI trên 70. Nhịp điều chỉnh đưa RSI về 40–50 có thể là vùng tìm lệnh mua, nếu trùng hỗ trợ.'],
         ['Xu hướng giảm (LH/LL, giá dưới EMA 50)', 'Không mua chỉ vì RSI dưới 30. Nhịp hồi đưa RSI lên 50–60 thường gặp kháng cự.'],
@@ -586,7 +587,7 @@ const lessons = {
     sources: [
       { title: 'Relative Strength Index (RSI)', url: 'https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi', note: 'StockCharts ChartSchool, tiếng Anh' },
       { title: 'MACD (Moving Average Convergence/Divergence Oscillator)', url: 'https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/macd-moving-average-convergence-divergence-oscillator', note: 'StockCharts ChartSchool, tiếng Anh' },
-      { title: 'Parabolic SAR (sách New Concepts in Technical Trading Systems, 1978)', url: 'https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-overlays/parabolic-sar', note: 'StockCharts ChartSchool, tiếng Anh' }
+      { title: 'Average True Range (ATR) and Average True Range Percent (ATRP)', url: 'https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/average-true-range-atr-and-average-true-range-percent-atrp', note: 'StockCharts ChartSchool, tiếng Anh (ATR cùng sách New Concepts in Technical Trading Systems, 1978)' }
     ],
     updated: '2026-09'
   },
@@ -649,10 +650,11 @@ const lessons = {
       { type: 'figure', name: 'multi-timeframe', caption: 'Ba khung: D1 định hướng, H4 tìm vùng giá, H1 tìm điểm vào.' },
       { type: 'p', text: 'Alexander Elder đề xuất các khung cách nhau khoảng 5 lần: chọn khung giao dịch chính, khung lớn gấp khoảng 5 lần để xác định xu hướng. Theo ChartSchool mô tả hệ thống của Elder, tín hiệu mua trên khung ngày chỉ hợp lệ khi khung tuần đang tăng rõ; tín hiệu ngược chiều khung lớn bị bỏ qua. Trong thực tế, tỷ lệ 4–6 lần giữa các khung là hợp lý.' },
       { type: 'table', head: ['Kiểu giao dịch', 'Khung định hướng', 'Khung vùng giá', 'Khung vào lệnh', 'Tỷ lệ'], rows: [
-        ['Giữ vài tuần', 'W1', 'D1', 'H4', '7 lần và 6 lần'],
+        ['Giữ vài tuần', 'W1', 'D1', 'H4', '7 lần (ngoại lệ) và 6 lần'],
         ['Giữ vài ngày', 'D1', 'H4', 'H1', '6 lần và 4 lần'],
         ['Trong ngày', 'H4', 'H1', 'M15', '4 lần và 4 lần']
       ] },
+      { type: 'p', text: 'Cặp W1/D1 là ngoại lệ: một tuần crypto có 7 nến D1 nên tỷ lệ là 7, hơi vượt khoảng 4–6. Sàn không có khung 5 ngày phổ biến, nên W1 vẫn là lựa chọn gần nhất cho khung định hướng của người giữ lệnh vài tuần.' },
       { type: 'steps', items: [
         { title: 'D1: định hướng', text: 'Ghi nhãn xu hướng theo cấu trúc (bài 2.2) và bộ lọc EMA 50 (bài 2.5). Chỉ giao dịch cùng chiều nhãn này. Nhãn "không rõ" nghĩa là đứng ngoài.' },
         { title: 'H4: vùng giá', text: 'Tìm vùng hợp lưu: hỗ trợ ngang, Fibonacci 38,2–61,8%, EMA 50 H4, POC. Cần ít nhất 2 yếu tố trùng nhau.' },
@@ -683,7 +685,7 @@ const lessons = {
       'Viết bộ ba khung thời gian của bạn (ví dụ D1/H4/H1) vào kế hoạch giao dịch, kèm vai trò của từng khung.'
     ],
     quiz: [
-      { q: 'Sóng tăng từ 2.500 lên 3.500 (giả định). Mức Fibonacci thoái lui 61,8% nằm ở đâu?', options: ['3.118', '2.882', '3.000', '2.618'], answer: 1, explain: 'Độ dài sóng 1.000. Mức 61,8% = 3.500 − 1.000 × 0,618 = 2.882. 3.118 là mức 38,2%; 3.000 là mức 50%; 2.618 là lấy nhầm 2.000 + 618.' },
+      { q: 'Sóng tăng từ 2.500 lên 3.500 (giả định). Mức Fibonacci thoái lui 61,8% nằm ở đâu?', options: ['3.118', '2.882', '3.000', '2.163'], answer: 1, explain: 'Độ dài sóng 1.000. Mức 61,8% = 3.500 − 1.000 × 0,618 = 2.882. 3.118 là cộng 618 từ đáy (2.500 + 618), tức chính là mức 38,2%; 3.000 là mức 50%; 2.163 là nhân nhầm giá đỉnh với tỷ lệ (3.500 × 0,618) thay vì nhân độ dài sóng.' },
       { q: 'Vai đầu vai có đỉnh đầu 3.600, đường viền cổ 3.200 (giả định). Mục tiêu đo được sau khi phá đường viền cổ là?', options: ['3.400', '2.600', '2.800', '3.000'], answer: 2, explain: 'Chiều cao = 3.600 − 3.200 = 400. Mục tiêu = 3.200 − 400 = 2.800. 3.400 là điểm giữa; 2.600 là trừ gấp đôi; 3.000 là trừ một nửa chiều cao.' },
       { q: 'Bạn giao dịch giữ lệnh vài ngày và dùng H4 làm khung tìm vùng giá. Theo tỷ lệ 4–6 lần, khung định hướng hợp lý là?', options: ['H1', 'M15', 'W1', 'D1'], answer: 3, explain: 'D1 dài gấp 6 lần H4, nằm trong tỷ lệ 4–6. H1 và M15 nhỏ hơn H4 nên không thể là khung định hướng. W1 dài gấp 42 lần H4, quá xa.' },
       { q: 'Vai phải đang hình thành nhưng giá chưa phá đường viền cổ. Điều nào đúng?', options: ['Mô hình chưa hoàn thành; chưa có tín hiệu bán, chỉ theo dõi', 'Mô hình đã hoàn thành, nên bán khống ngay để có giá tốt', 'Mục tiêu đo được đã chắc chắn sẽ đạt', 'Nên mua thêm vì vai phải thấp hơn đầu'], answer: 0, explain: 'Vai đầu vai chỉ hoàn thành khi nến đóng dưới đường viền cổ. Bán sớm là đoán trước. Mục tiêu đo được không bao giờ chắc chắn. Vai phải thấp hơn đầu là một LH, là cảnh báo cho lệnh mua, không phải lý do mua thêm.' }
